@@ -53,7 +53,7 @@ else
     private string firstName;
     private string lastName;
     private string picturePath;
-    private string timestamp;
+    private Google.Cloud.Firestore.Timestamp timestamp;
     private string connection = "Disconnected";
     private bool accessStatus;
     private bool accountStatus;
@@ -78,7 +78,6 @@ else
 
     async void query_history(string terminal)
     {
-
         Google.Cloud.Firestore.Query historyQuery = fireStoreDb.Collection("history").WhereEqualTo("terminal",terminal);
         QuerySnapshot historyQuerySnapshot = await historyQuery.GetSnapshotAsync();
         List<Dictionary<string, object>> records = new List<Dictionary<string, object>>();
@@ -92,7 +91,7 @@ else
             userID = (string) recordDictionary["id"];
             firstName = (string) recordDictionary["firstname"];
             lastName = (string) recordDictionary["lastname"];
-            timestamp= (string) recordDictionary["timestamp"];
+            timestamp= (Google.Cloud.Firestore.Timestamp) recordDictionary["timestamp"];
         }
         accessHistory = records;
         StateHasChanged(); 

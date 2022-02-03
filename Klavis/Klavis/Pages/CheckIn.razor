@@ -25,7 +25,7 @@
 
         <RadzenCard >
             <div class="d-flex flex-row">
-                <RadzenImage Path=@accessPicturePath Class="rounded-circle float-left mr-3" Style="width: 100px; height: 100px;" />
+                <RadzenIcon Icon=@accessIcon />
                 <RadzenImage Path=@picturePath Class="rounded-circle float-left mr-3" Style="width: 100px; height: 100px;" />
                 <div>
                     <div>Name</div>
@@ -51,16 +51,16 @@
     FirestoreDb fireStoreDb;
     private string security_key_path = "wwwroot/klavis-4b8d1-eb6f81dfbefe.json";
     private string userID;
-    private string location = "designlab";
+    private string terminal = "designlab";
     private string terminalList;
     private string firstName;
     private string lastName;
     private string picturePath;
     private string accessPicturePath;
+    private string accessIcon = "lock_outline";
     private string connection = "Disconnected";
     private bool accountStatus;
     private bool accessStatus;
-
 
 
     async void connect()
@@ -100,51 +100,61 @@
         Console.WriteLine($"{args.Message}");
     }
 
-    async void queryUser(string id)
-    {
-        DocumentReference userRef = fireStoreDb.Collection("users").Document(id);
-        DocumentSnapshot snapshot = await userRef.GetSnapshotAsync();
-        if (snapshot.Exists)
-        {
-            Dictionary<string, object> userDictionary = snapshot.ToDictionary();
-            firstName = (string) userDictionary["firstname"];
-            lastName = (string) userDictionary["lastname"];
-            picturePath = (string) userDictionary["pictureLink"];
-            accountStatus = (bool) userDictionary["hascard"];
-        }
-        else
-        {
-            accountStatus = false;
-            firstName = null;
-            lastName = null;
-            picturePath = null;
-        }
-        StateHasChanged();
-    }
 
-    async void queryAccess(string id, string terminal)
-    {
-        DocumentReference userRef = fireStoreDb.Collection("access").Document(terminal).Collection("users").Document(id);
-        DocumentSnapshot snapshot = await userRef.GetSnapshotAsync();
-        if (snapshot.Exists)
-        {
-            accessStatus = true;
-            accessPicturePath = "https://www.pngkey.com/png/detail/0-9585_check-mark-symbol.png";
-        }
-        else
-        {
-            accessStatus = false;
-            accessPicturePath = "https://toppng.com/uploads/preview/check-mark-symbol-transparent-11547078495hj2jhwbhn4.png";
-        }
-        StateHasChanged();
-    }
 
     async void sendQuery(string id, string terminal)
     {
         if(id.Length == 8)
         {
-            queryUser(id);
-            queryAccess(id, terminal);
+
+            //Checkling User database
+            DocumentReference userRef = fireStoreDb.Collection("users").Document(id);
+            DocumentSnapshot snapshot = await userRef.GetSnapshotAsync();
+            if (snapshot.Exists)
+            {
+                Dictionary<string, object> userDictionary = snapshot.ToDictionary();
+                firstName = (string) userDictionary["firstname"];
+                lastName = (string) userDictionary["lastname"];
+                picturePath = (string) userDictionary["pictureLink"];
+                accountStatus = (bool) userDictionary["hascard"];
+                userID = id;
+            }
+            else
+            {
+                accountStatus = false;
+                firstName = "User not found.";
+                lastName = "";
+                picturePath = "https://img.search.brave.com/rsnQ2b5ZdZ5NqitJ3pIBqo_yylEga-fOE4uba4Zaq_8/rs:fit:512:512:1/g:ce/aHR0cHM6Ly9jcmlj/ZGFkZHkuY29tL3dw/LWNvbnRlbnQvdXBs/b2Fkcy8yMDIwLzA4/L2JsYW5rLXByb2Zp/bGUtcGljdHVyZS1w/bmcucG5n";
+            }
+
+            //Checking Access database
+            userRef = fireStoreDb.Collection("access").Document(terminal).Collection("users").Document(id);
+            snapshot = await userRef.GetSnapshotAsync();
+            accessStatus = snapshot.Exists;
+
+            if(accessStatus && accountStatus)
+            {
+                accessIcon = "lock_open";
+            }
+            else
+            {
+                accessIcon = "lock";
+            }
+            StateHasChanged();
+            
+            //Logging request
+            Dictionary<string, object> log = new Dictionary<string, object>
+            {
+                { "accessStatus",  accessStatus },
+                { "accountStatus", accountStatus },
+                { "id", userID },
+                { "terminal", terminal },
+                { "firstname", firstName },
+                { "lastname", lastName },
+                { "determination", (accessStatus && accountStatus) },
+                { "timestamp", DateTime.UtcNow }
+            };
+            DocumentReference addedDocRef = await fireStoreDb.Collection("history").AddAsync(log);
         }
 
 
