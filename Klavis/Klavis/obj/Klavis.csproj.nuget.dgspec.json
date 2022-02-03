@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\Klavis.csproj": {}
+    "C:\\Users\\isaac\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\Klavis.csproj": {}
   },
   "projects": {
-    "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\Klavis.csproj": {
+    "C:\\Users\\isaac\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\Klavis.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\Klavis.csproj",
+        "projectUniqueName": "C:\\Users\\isaac\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\Klavis.csproj",
         "projectName": "Klavis",
-        "projectPath": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\Klavis.csproj",
+        "projectPath": "C:\\Users\\isaac\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\Klavis.csproj",
         "packagesPath": "C:\\Users\\isaac\\.nuget\\packages\\",
-        "outputPath": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\obj\\",
+        "outputPath": "C:\\Users\\isaac\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
           "C:\\Users\\isaac\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -54,7 +54,7 @@
             },
             "Radzen.Blazor": {
               "target": "Package",
-              "version": "[3.14.7, )"
+              "version": "[3.14.11, )"
             }
           },
           "imports": [

@@ -377,7 +377,7 @@
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
       },
-      "Radzen.Blazor/3.14.7": {
+      "Radzen.Blazor/3.14.11": {
         "type": "package",
         "dependencies": {
           "LibSassBuilder": "2.0.1",
@@ -1195,10 +1195,10 @@
         "packageIcon.png"
       ]
     },
-    "Radzen.Blazor/3.14.7": {
-      "sha512": "4nWohBZkOtU0dtaNP8EGma8ufk3PG0Pb06f3b/9Q6DRik+EXinDAb74qV6UCfX2r3RsiDFQlMxS2s7cdC3KJAg==",
+    "Radzen.Blazor/3.14.11": {
+      "sha512": "xT0CZq2MFincMe2bGR/+ysrsWwlBwxVQzv6AaCekuZxoEYmArpsk5UqZxcsCMMtlmE+cqi+eGfGLB/qXZFpPfw==",
       "type": "package",
-      "path": "radzen.blazor/3.14.7",
+      "path": "radzen.blazor/3.14.11",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1212,7 +1212,7 @@
         "lib/net5.0/Radzen.Blazor.xml",
         "lib/netstandard2.1/Radzen.Blazor.dll",
         "lib/netstandard2.1/Radzen.Blazor.xml",
-        "radzen.blazor.3.14.7.nupkg.sha512",
+        "radzen.blazor.3.14.11.nupkg.sha512",
         "radzen.blazor.nuspec",
         "staticwebassets/Radzen.Blazor.js",
         "staticwebassets/css/dark-base.css",
@@ -1387,24 +1387,24 @@
     "net6.0": [
       "Google.Cloud.Firestore >= 2.5.0",
       "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.14.0",
-      "Radzen.Blazor >= 3.14.7"
+      "Radzen.Blazor >= 3.14.11"
     ]
   },
   "packageFolders": {
     "C:\\Users\\isaac\\.nuget\\packages\\": {},
-    "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\Klavis.csproj",
+      "projectUniqueName": "C:\\Users\\isaac\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\Klavis.csproj",
       "projectName": "Klavis",
-      "projectPath": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\Klavis.csproj",
+      "projectPath": "C:\\Users\\isaac\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\Klavis.csproj",
       "packagesPath": "C:\\Users\\isaac\\.nuget\\packages\\",
-      "outputPath": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\obj\\",
+      "outputPath": "C:\\Users\\isaac\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
         "C:\\Users\\isaac\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -1444,7 +1444,7 @@
           },
           "Radzen.Blazor": {
             "target": "Package",
-            "version": "[3.14.7, )"
+            "version": "[3.14.11, )"
           }
         },
         "imports": [

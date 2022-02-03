@@ -2,14 +2,15 @@
 
 @using Google.Cloud.Firestore;
 @using System;
+@using Klavis.Models;
 
 <PageTitle>Access History</PageTitle>
 
 <h1>Access History</h1>
-
+    
 <p>This component displays all recorded access history based on location.</p>
 
-@if (true)
+@if (accessHistory == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -21,17 +22,21 @@ else
                 <th>Timestamp</th>
                 <th>Name</th>
                 <th>ID</th>
+                <th>Access</th>
+                <th>Account</th>
                 <th>Determination</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ()
+            @foreach (Dictionary<string,object> record in accessHistory)
             {
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>@record["timestamp"]</td>
+                    <td>@(record["firstname"] + " " + record["lastname"])</td>
+                    <td>@record["id"]</td>
+                    <td>@record["accessStatus"]</td>
+                    <td>@record["accountStatus"]</td>
+                    <td>@record["determination"]</td>
                 </tr>
             }
         </tbody>
@@ -52,6 +57,7 @@ else
     private string connection = "Disconnected";
     private bool accessStatus;
     private bool accountStatus;
+    private List<Dictionary<string, object>> accessHistory = null;
 
     protected override async Task OnInitializedAsync()
     {
@@ -66,29 +72,29 @@ else
         {
             connection = "Connected";
         }
+        query_history("designlab");
         StateHasChanged();
     }
 
-    async void query_history(string date1, string date2, string terminal)
+    async void query_history(string terminal)
     {
 
         Google.Cloud.Firestore.Query historyQuery = fireStoreDb.Collection("history").WhereEqualTo("terminal",terminal);
         QuerySnapshot historyQuerySnapshot = await historyQuery.GetSnapshotAsync();
+        List<Dictionary<string, object>> records = new List<Dictionary<string, object>>();
         foreach (DocumentSnapshot documentSnapshot in historyQuerySnapshot.Documents)
         {
-            Dictionary<string, object> recordDictionary = historyQuerySnapshot.ToDictionary();
-            
+            Dictionary<string, object> recordDictionary = documentSnapshot.ToDictionary();
+            records.Add(recordDictionary);
+
             accessStatus = (bool) recordDictionary["accessStatus"];
             accountStatus = (bool) recordDictionary["accountStatus"];
             userID = (string) recordDictionary["id"];
-            firstName = (string) recordDictionary["firstName"];
-            lastName = (string) recordDictionary["lastName"];
+            firstName = (string) recordDictionary["firstname"];
+            lastName = (string) recordDictionary["lastname"];
             timestamp= (string) recordDictionary["timestamp"];
         }
-        else
-        {
-            firstName = "User not found.";
-        }
+        accessHistory = records;
         StateHasChanged(); 
         
         
