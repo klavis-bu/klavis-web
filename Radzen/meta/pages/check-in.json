@@ -1,0 +1,31 @@
+{
+  "access": "Everybody",
+  "components": [
+    {
+      "components": [
+        {
+          "name": "pageTitle",
+          "size": "H1",
+          "text": "CheckIn",
+          "type": "heading"
+        },
+        {
+          "name": "row1",
+          "type": "row"
+        },
+        {
+          "attributes": [
+            {}
+          ],
+          "name": "card0",
+          "type": "card",
+          "visible": true
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "layout": "Main",
+  "name": "CheckIn"
+}
