@@ -1,15 +1,15 @@
 ﻿@page "/history"
 
-<PageTitle>Weather forecast</PageTitle>
+@using Google.Cloud.Firestore;
+@using System;
 
-@using Klavis.Data
-@inject WeatherForecastService ForecastService
+<PageTitle>Access History</PageTitle>
 
-<h1>Weather forecast</h1>
+<h1>Access History</h1>
 
-<p>This component demonstrates fetching data from a service.</p>
+<p>This component displays all recorded access history based on location.</p>
 
-@if (forecasts == null)
+@if (true)
 {
     <p><em>Loading...</em></p>
 }
@@ -18,20 +18,20 @@ else
     <table class="table">
         <thead>
             <tr>
-                <th>Date</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
+                <th>Timestamp</th>
+                <th>Name</th>
+                <th>ID</th>
+                <th>Determination</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var forecast in forecasts)
+            @foreach ()
             {
                 <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
             }
         </tbody>
@@ -39,10 +39,59 @@ else
 }
 
 @code {
-    private WeatherForecast[]? forecasts;
+
+    FirestoreDb fireStoreDb;
+    private string security_key_path = "wwwroot/klavis-4b8d1-eb6f81dfbefe.json";
+    private string userID;
+    private string terminal;
+    private string terminalList;
+    private string firstName;
+    private string lastName;
+    private string picturePath;
+    private string timestamp;
+    private string connection = "Disconnected";
+    private bool accessStatus;
+    private bool accountStatus;
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+        Console.WriteLine("Connecting");
+        string filepath = "wwwroot/klavis-4b8d1-eb6f81dfbefe.json";
+        Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", filepath);
+        fireStoreDb = FirestoreDb.Create("klavis-4b8d1");
+
+        DocumentReference userRef = fireStoreDb.Collection("access").Document("designlab");
+        DocumentSnapshot snapshot = await userRef.GetSnapshotAsync();
+        if (snapshot.Exists)
+        {
+            connection = "Connected";
+        }
+        StateHasChanged();
+    }
+
+    async void query_history(string date1, string date2, string terminal)
+    {
+
+        Google.Cloud.Firestore.Query historyQuery = fireStoreDb.Collection("history").WhereEqualTo("terminal",terminal);
+        QuerySnapshot historyQuerySnapshot = await historyQuery.GetSnapshotAsync();
+        foreach (DocumentSnapshot documentSnapshot in historyQuerySnapshot.Documents)
+        {
+            Dictionary<string, object> recordDictionary = historyQuerySnapshot.ToDictionary();
+            
+            accessStatus = (bool) recordDictionary["accessStatus"];
+            accountStatus = (bool) recordDictionary["accountStatus"];
+            userID = (string) recordDictionary["id"];
+            firstName = (string) recordDictionary["firstName"];
+            lastName = (string) recordDictionary["lastName"];
+            timestamp= (string) recordDictionary["timestamp"];
+        }
+        else
+        {
+            firstName = "User not found.";
+        }
+        StateHasChanged(); 
+        
+        
+            
     }
 }

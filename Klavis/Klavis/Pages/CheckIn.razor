@@ -25,6 +25,7 @@
 
         <RadzenCard >
             <div class="d-flex flex-row">
+                <RadzenImage Path=@accessPicturePath Class="rounded-circle float-left mr-3" Style="width: 100px; height: 100px;" />
                 <RadzenImage Path=@picturePath Class="rounded-circle float-left mr-3" Style="width: 100px; height: 100px;" />
                 <div>
                     <div>Name</div>
@@ -36,7 +37,7 @@
         </RadzenCard>
         <RadzenCard>
             
-            <RadzenTextBox @bind-Value=@userID MaxLength="8" Change=@(args => query_user(args, "designlab")) Class="w-100" />
+            <RadzenTextBox @bind-Value=@userID MaxLength="8" Change=@(args => sendQuery(args, "designlab")) Class="w-100" />
             
         </RadzenCard>
     </div>
@@ -50,16 +51,34 @@
     FirestoreDb fireStoreDb;
     private string security_key_path = "wwwroot/klavis-4b8d1-eb6f81dfbefe.json";
     private string userID;
-    private string userSerial;
     private string location = "designlab";
     private string terminalList;
-    private string firstName = "first";
-    private string lastName = "last";
+    private string firstName;
+    private string lastName;
     private string picturePath;
+    private string accessPicturePath;
     private string connection = "Disconnected";
+    private bool accountStatus;
     private bool accessStatus;
 
+
+
     async void connect()
+    {
+        Console.WriteLine("Connecting");
+        Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", security_key_path);
+        fireStoreDb = FirestoreDb.Create("klavis-4b8d1");
+
+        DocumentReference userRef = fireStoreDb.Collection("access").Document("designlab");
+        DocumentSnapshot snapshot = await userRef.GetSnapshotAsync();
+        if (snapshot.Exists)
+        {
+            connection = "Connected";
+        }
+        StateHasChanged();
+    }
+
+    protected override async Task OnInitializedAsync()
     {
         Console.WriteLine("Connecting");
         string filepath = "wwwroot/klavis-4b8d1-eb6f81dfbefe.json";
@@ -68,7 +87,6 @@
 
         DocumentReference userRef = fireStoreDb.Collection("access").Document("designlab");
         DocumentSnapshot snapshot = await userRef.GetSnapshotAsync();
-
         if (snapshot.Exists)
         {
             connection = "Connected";
@@ -82,31 +100,53 @@
         Console.WriteLine($"{args.Message}");
     }
 
-    async void query_user(string id, string terminalLocation)
+    async void queryUser(string id)
     {
-            if (id.Length == 8)
-            {
-                Console.WriteLine("boop");
-                DocumentReference userRef = fireStoreDb.Collection("access").Document(terminalLocation).Collection("users").Document(id);
-                DocumentSnapshot snapshot = await userRef.GetSnapshotAsync();
-                if (snapshot.Exists)
-                {
-                    Dictionary<string, object> userDictionary = snapshot.ToDictionary();
-                    firstName = (string) userDictionary["firstname"];
-                    lastName = (string) userDictionary["lastname"];
-                    picturePath = (string) userDictionary["pictureLink"];
-                
-                }
-                else
-                {
-                    firstName = "User not found.";
-                }
-                StateHasChanged();
-            }
-            
+        DocumentReference userRef = fireStoreDb.Collection("users").Document(id);
+        DocumentSnapshot snapshot = await userRef.GetSnapshotAsync();
+        if (snapshot.Exists)
+        {
+            Dictionary<string, object> userDictionary = snapshot.ToDictionary();
+            firstName = (string) userDictionary["firstname"];
+            lastName = (string) userDictionary["lastname"];
+            picturePath = (string) userDictionary["pictureLink"];
+            accountStatus = (bool) userDictionary["hascard"];
+        }
+        else
+        {
+            accountStatus = false;
+            firstName = null;
+            lastName = null;
+            picturePath = null;
+        }
+        StateHasChanged();
+    }
+
+    async void queryAccess(string id, string terminal)
+    {
+        DocumentReference userRef = fireStoreDb.Collection("access").Document(terminal).Collection("users").Document(id);
+        DocumentSnapshot snapshot = await userRef.GetSnapshotAsync();
+        if (snapshot.Exists)
+        {
+            accessStatus = true;
+            accessPicturePath = "https://www.pngkey.com/png/detail/0-9585_check-mark-symbol.png";
+        }
+        else
+        {
+            accessStatus = false;
+            accessPicturePath = "https://toppng.com/uploads/preview/check-mark-symbol-transparent-11547078495hj2jhwbhn4.png";
+        }
+        StateHasChanged();
+    }
+
+    async void sendQuery(string id, string terminal)
+    {
+        if(id.Length == 8)
+        {
+            queryUser(id);
+            queryAccess(id, terminal);
+        }
+
 
     }
-    
-
-    
 }
