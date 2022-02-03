@@ -28,8 +28,7 @@
                 <RadzenImage Path=@picturePath Class="rounded-circle float-left mr-3" Style="width: 100px; height: 100px;" />
                 <div>
                     <div>Name</div>
-                    <b>@(firstName + " " + lastName)</b>
-                    <b>@firstName</b>
+                    <b role="status">@(firstName+" "+lastName)</b>
                     <div class="mt-3">BUID</div>
                     <b>@userID</b>
                 </div>
@@ -49,19 +48,20 @@
 
 @code {
     FirestoreDb fireStoreDb;
-    string security_key_path = "wwwroot/klavis-4b8d1-eb6f81dfbefe.json";
-    string userID;
-    string userSerial;
-    string location = "designlab";
-    string terminalList;
-    string firstName = "first";
-    string lastName = "last";
-    string picturePath;
-    string connection = "Disconnected";
-    bool accessStatus;
+    private string security_key_path = "wwwroot/klavis-4b8d1-eb6f81dfbefe.json";
+    private string userID;
+    private string userSerial;
+    private string location = "designlab";
+    private string terminalList;
+    private string firstName = "first";
+    private string lastName = "last";
+    private string picturePath;
+    private string connection = "Disconnected";
+    private bool accessStatus;
 
     async void connect()
     {
+        Console.WriteLine("Connecting");
         string filepath = "wwwroot/klavis-4b8d1-eb6f81dfbefe.json";
         Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", filepath);
         fireStoreDb = FirestoreDb.Create("klavis-4b8d1");
@@ -73,6 +73,7 @@
         {
             connection = "Connected";
         }
+        StateHasChanged();
     }
 
 
@@ -81,24 +82,26 @@
         Console.WriteLine($"{args.Message}");
     }
 
-    async void query_user(string userID, string terminalLocation)
+    async void query_user(string id, string terminalLocation)
     {
-            if (userID.Length == 8)
+            if (id.Length == 8)
             {
                 Console.WriteLine("boop");
-                DocumentReference userRef = fireStoreDb.Collection("access").Document(terminalLocation).Collection("users").Document(userID);
+                DocumentReference userRef = fireStoreDb.Collection("access").Document(terminalLocation).Collection("users").Document(id);
                 DocumentSnapshot snapshot = await userRef.GetSnapshotAsync();
                 if (snapshot.Exists)
                 {
                     Dictionary<string, object> userDictionary = snapshot.ToDictionary();
                     firstName = (string) userDictionary["firstname"];
                     lastName = (string) userDictionary["lastname"];
+                    picturePath = (string) userDictionary["pictureLink"];
                 
                 }
                 else
                 {
                     firstName = "User not found.";
                 }
+                StateHasChanged();
             }
             
 
