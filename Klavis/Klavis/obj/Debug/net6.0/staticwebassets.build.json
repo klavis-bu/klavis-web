@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "NuFLmBnOeWMRpGNWsIJFofsSOQsEOdq0vqEo4dhsung=",
+  "Hash": "34amE+gmGndk1DGvr3cwycCddbVwcLYhQ6dwYjfuFcI=",
   "Source": "Klavis",
   "BasePath": "_content/Klavis",
   "Mode": "Default",
@@ -10,7 +10,7 @@
     {
       "Name": "Klavis\\wwwroot",
       "Source": "Klavis",
-      "ContentRoot": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\wwwroot\\",
+      "ContentRoot": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\wwwroot\\",
       "BasePath": "_content/Klavis",
       "Pattern": "**"
     }
@@ -476,10 +476,10 @@
       "OriginalItemSpec": "C:\\Users\\isaac\\.nuget\\packages\\radzen.blazor\\3.14.7\\staticwebassets\\Radzen.Blazor.js"
     },
     {
-      "Identity": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\obj\\Debug\\net6.0\\scopedcss\\bundle\\Klavis.styles.css",
+      "Identity": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\obj\\Debug\\net6.0\\scopedcss\\bundle\\Klavis.styles.css",
       "SourceId": "Klavis",
       "SourceType": "Computed",
-      "ContentRoot": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\obj\\Debug\\net6.0\\scopedcss\\bundle\\",
+      "ContentRoot": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\obj\\Debug\\net6.0\\scopedcss\\bundle\\",
       "BasePath": "_content/Klavis",
       "RelativePath": "Klavis.styles.css",
       "AssetKind": "All",
@@ -490,13 +490,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\obj\\Debug\\net6.0\\scopedcss\\bundle\\Klavis.styles.css"
+      "OriginalItemSpec": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\obj\\Debug\\net6.0\\scopedcss\\bundle\\Klavis.styles.css"
     },
     {
-      "Identity": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\Klavis.bundle.scp.css",
+      "Identity": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\Klavis.bundle.scp.css",
       "SourceId": "Klavis",
       "SourceType": "Computed",
-      "ContentRoot": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/Klavis",
       "RelativePath": "Klavis.bundle.scp.css",
       "AssetKind": "All",
@@ -507,13 +507,13 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\Klavis.bundle.scp.css"
+      "OriginalItemSpec": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\Klavis.bundle.scp.css"
     },
     {
-      "Identity": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "Identity": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
       "SourceId": "Klavis",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\wwwroot\\",
+      "ContentRoot": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\wwwroot\\",
       "BasePath": "_content/Klavis",
       "RelativePath": "css/bootstrap/bootstrap.min.css",
       "AssetKind": "All",
@@ -527,10 +527,10 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Identity": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "Identity": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
       "SourceId": "Klavis",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\wwwroot\\",
+      "ContentRoot": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\wwwroot\\",
       "BasePath": "_content/Klavis",
       "RelativePath": "css/bootstrap/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -544,10 +544,10 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Identity": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
+      "Identity": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
       "SourceId": "Klavis",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\wwwroot\\",
+      "ContentRoot": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\wwwroot\\",
       "BasePath": "_content/Klavis",
       "RelativePath": "css/open-iconic/font/css/open-iconic-bootstrap.min.css",
       "AssetKind": "All",
@@ -561,10 +561,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css"
     },
     {
-      "Identity": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot",
+      "Identity": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot",
       "SourceId": "Klavis",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\wwwroot\\",
+      "ContentRoot": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\wwwroot\\",
       "BasePath": "_content/Klavis",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.eot",
       "AssetKind": "All",
@@ -578,10 +578,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot"
     },
     {
-      "Identity": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf",
+      "Identity": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf",
       "SourceId": "Klavis",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\wwwroot\\",
+      "ContentRoot": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\wwwroot\\",
       "BasePath": "_content/Klavis",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.otf",
       "AssetKind": "All",
@@ -595,10 +595,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf"
     },
     {
-      "Identity": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg",
+      "Identity": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg",
       "SourceId": "Klavis",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\wwwroot\\",
+      "ContentRoot": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\wwwroot\\",
       "BasePath": "_content/Klavis",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.svg",
       "AssetKind": "All",
@@ -612,10 +612,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg"
     },
     {
-      "Identity": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf",
+      "Identity": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf",
       "SourceId": "Klavis",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\wwwroot\\",
+      "ContentRoot": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\wwwroot\\",
       "BasePath": "_content/Klavis",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.ttf",
       "AssetKind": "All",
@@ -629,10 +629,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf"
     },
     {
-      "Identity": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff",
+      "Identity": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff",
       "SourceId": "Klavis",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\wwwroot\\",
+      "ContentRoot": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\wwwroot\\",
       "BasePath": "_content/Klavis",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.woff",
       "AssetKind": "All",
@@ -646,10 +646,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
     },
     {
-      "Identity": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
+      "Identity": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
       "SourceId": "Klavis",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\wwwroot\\",
+      "ContentRoot": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\wwwroot\\",
       "BasePath": "_content/Klavis",
       "RelativePath": "css/open-iconic/FONT-LICENSE",
       "AssetKind": "All",
@@ -663,10 +663,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\FONT-LICENSE"
     },
     {
-      "Identity": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\wwwroot\\css\\open-iconic\\ICON-LICENSE",
+      "Identity": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\wwwroot\\css\\open-iconic\\ICON-LICENSE",
       "SourceId": "Klavis",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\wwwroot\\",
+      "ContentRoot": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\wwwroot\\",
       "BasePath": "_content/Klavis",
       "RelativePath": "css/open-iconic/ICON-LICENSE",
       "AssetKind": "All",
@@ -680,10 +680,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\ICON-LICENSE"
     },
     {
-      "Identity": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\wwwroot\\css\\open-iconic\\README.md",
+      "Identity": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\wwwroot\\css\\open-iconic\\README.md",
       "SourceId": "Klavis",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\wwwroot\\",
+      "ContentRoot": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\wwwroot\\",
       "BasePath": "_content/Klavis",
       "RelativePath": "css/open-iconic/README.md",
       "AssetKind": "All",
@@ -697,10 +697,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\README.md"
     },
     {
-      "Identity": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\wwwroot\\css\\site.css",
+      "Identity": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\wwwroot\\css\\site.css",
       "SourceId": "Klavis",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\wwwroot\\",
+      "ContentRoot": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\wwwroot\\",
       "BasePath": "_content/Klavis",
       "RelativePath": "css/site.css",
       "AssetKind": "All",
@@ -714,10 +714,10 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\wwwroot\\favicon.ico",
+      "Identity": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\wwwroot\\favicon.ico",
       "SourceId": "Klavis",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\wwwroot\\",
+      "ContentRoot": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\wwwroot\\",
       "BasePath": "_content/Klavis",
       "RelativePath": "favicon.ico",
       "AssetKind": "All",
@@ -731,10 +731,10 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
-      "Identity": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\wwwroot\\klavis-4b8d1-eb6f81dfbefe.json",
+      "Identity": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\wwwroot\\klavis-4b8d1-eb6f81dfbefe.json",
       "SourceId": "Klavis",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\wwwroot\\",
+      "ContentRoot": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\wwwroot\\",
       "BasePath": "_content/Klavis",
       "RelativePath": "klavis-4b8d1-eb6f81dfbefe.json",
       "AssetKind": "All",

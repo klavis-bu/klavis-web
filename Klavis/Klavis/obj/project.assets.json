@@ -1397,11 +1397,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\Klavis.csproj",
+      "projectUniqueName": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\Klavis.csproj",
       "projectName": "Klavis",
-      "projectPath": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\Klavis.csproj",
+      "projectPath": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\Klavis.csproj",
       "packagesPath": "C:\\Users\\isaac\\.nuget\\packages\\",
-      "outputPath": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\obj\\",
+      "outputPath": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

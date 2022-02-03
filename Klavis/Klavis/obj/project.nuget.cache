@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/RtJj6YkrkRhYKTks4T7sS/B1HeHymPmHTtWPLwdDVRXhA2oX0/suFeV9RZY1/DL2l9wcTuUfD8YfnV6Lux0wA==",
+  "dgSpecHash": "jYQWn/Gm+gvJoWeXu1ipRyh5nzBlicmvVQq3jEqzcRJBAmx4lHsOphbkJchgUbikFky2VYUMZqF3X3G1s09pKA==",
   "success": true,
-  "projectFilePath": "D:\\OneDrive\\Documents\\klavis-web\\Klavis\\Klavis\\Klavis.csproj",
+  "projectFilePath": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\Klavis.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\isaac\\.nuget\\packages\\google.api.commonprotos\\2.5.0\\google.api.commonprotos.2.5.0.nupkg.sha512",
     "C:\\Users\\isaac\\.nuget\\packages\\google.api.gax\\3.6.0\\google.api.gax.3.6.0.nupkg.sha512",
