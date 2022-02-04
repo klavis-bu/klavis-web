@@ -1,41 +1,41 @@
-﻿@page "/adduser"
+﻿@page "/edituser/{targetID}"
 
 @using Google.Cloud.Firestore;
 @using System;
 @inject NavigationManager NavigationManager
 
-<PageTitle>Add User</PageTitle>
+<PageTitle>Edit User</PageTitle>
 
-<h1>Add User</h1>
+<h1>Edit User</h1>
 
-Fill in all required (*) information to add a new user.
+Adjust information to edit an existing user.
 <div class = "d-flex flex-row">
     <RadzenCard>
 
         <h3 class="mb-4">Personal Information</h3>    
         <div class = "row">
             <div class = "col">
-                <RadzenTextBox @bind-Value=@firstName  Class="w-100" />
-                <h5 class="mb-4">First Name*</h5>
+                <RadzenTextBox @bind-Value=@firstName Placeholder=firstName Class="w-100" />
+                <h5 class="mb-4">First Name</h5>
             </div>
             <div class = "col">
-                <RadzenTextBox @bind-Value=@lastName  Class="w-100" />
-                <h5 class="mb-4">Last Name*</h5>
-            </div>
-        </div>
-        <div class = "row">
-            <div class = "col">
-                <RadzenTextBox @bind-Value=@userID Placeholder="########" Class="w-100" />
-                <h5 class="mb-4">ID*</h5>
-            </div>
-            <div class = "col">
-                <RadzenTextBox @bind-Value=@email  Class="w-100" />
-                <h5 class="mb-4">Email Address*</h5>
+                <RadzenTextBox @bind-Value=@lastName Placeholder=lastName Class="w-100" />
+                <h5 class="mb-4">Last Name</h5>
             </div>
         </div>
         <div class = "row">
             <div class = "col">
-                <RadzenTextBox @bind-Value=@pictureLink  Class="w-100" />
+                <RadzenTextBox @bind-Value=@userID Placeholder=@userID Disabled=true Class="w-100" />
+                <h5 class="mb-4">ID</h5>
+            </div>
+            <div class = "col">
+                <RadzenTextBox @bind-Value=@email Placeholder=@email Class="w-100" />
+                <h5 class="mb-4">Email Address</h5>
+            </div>
+        </div>
+        <div class = "row">
+            <div class = "col">
+                <RadzenTextBox @bind-Value=@pictureLink Placeholder=@pictureLink Class="w-100" />
                 <h5 class="mb-4">Picture Link</h5>
             </div>
         </div>
@@ -49,7 +49,7 @@ Fill in all required (*) information to add a new user.
                         <RadzenRadioButtonListItem Text="False" Value=false />
                     </Items>
                 </RadzenRadioButtonList>
-                <h5 class="mb-4">Account Activation*</h5>
+                <h5 class="mb-4">Account Activation</h5>
             </div>
             <div class = "col">
                 <RadzenRadioButtonList @bind-Value=@cardCreated TValue="bool">
@@ -58,13 +58,13 @@ Fill in all required (*) information to add a new user.
                         <RadzenRadioButtonListItem Text="False" Value=false />
                     </Items>
                 </RadzenRadioButtonList>
-                <h5 class="mb-4">Card Created*</h5>
+                <h5 class="mb-4">Card Created</h5>
             </div>
         </div>
         <br />
         <div class = "row">
             <div class = "col">
-                <button class="btn btn-primary" @onclick=@addUser>Submit</button>
+                <button class="btn btn-primary" @onclick=@editUser>Submit</button>
             </div>
             <div class = "col">
                 <button class="btn btn-primary" @onclick=@cancel>Cancel</button>
@@ -87,7 +87,14 @@ Fill in all required (*) information to add a new user.
     private string pictureLink;
     private bool cardCreated;
     private bool accountStatus;
+    [Parameter]
+    public string targetID{ get; set; }
 
+    protected override void OnParametersSet()
+    {
+        //the param will be set now
+        userID = targetID;
+    }
 
     protected override async Task OnInitializedAsync()
     {
@@ -96,22 +103,35 @@ Fill in all required (*) information to add a new user.
         Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", filepath);
         fireStoreDb = FirestoreDb.Create("klavis-4b8d1");
 
+        DocumentReference userRef = fireStoreDb.Collection("users").Document(targetID);
+        DocumentSnapshot snapshot = await userRef.GetSnapshotAsync();
+        if (snapshot.Exists)
+        {
+            Dictionary<string, object> userDictionary = snapshot.ToDictionary();
+            firstName = (string) userDictionary["firstname"];
+            lastName = (string) userDictionary["lastname"];
+            pictureLink = (string) userDictionary["pictureLink"];
+            email = (string) userDictionary["email"];
+            cardCreated = (bool) userDictionary["cardCreated"];
+            accountStatus = (bool) userDictionary["accountStatus"];
+        }
+
         StateHasChanged();
     }
 
-    async void addUser()
+    async void editUser()
     {
+
         Dictionary<string, object> log = new Dictionary<string, object>
             {
                 { "firstname", firstName },
                 { "lastname", lastName },
                 { "email", email },
-                { "accountStatus", true },
-                { "cardCreated", cardCreated },
+                { "accountStatus", accountStatus },
                 { "pictureLink", pictureLink },
-                { "created", DateTime.UtcNow }
+                { "cardCreated", cardCreated }
             };
-            await fireStoreDb.Collection("users").Document(userID).SetAsync(log);
+            await fireStoreDb.Collection("users").Document(userID).UpdateAsync(log);
             NavigationManager.NavigateTo("/usermanagement");
     }
 

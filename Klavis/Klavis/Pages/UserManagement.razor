@@ -2,6 +2,7 @@
 
 @using Google.Cloud.Firestore;
 @using System;
+@using Klavis.Models;
 @inject NavigationManager NavigationManager
 
 <PageTitle>User Management</PageTitle>
@@ -36,8 +37,8 @@ else
                     <td><RadzenImage Path=@((string) user["pictureLink"]) Class="rounded-circle float-left mr-3" Style="width: 100px; height: 100px;" /></td>
                     <td>@(user["firstname"] + " " + user["lastname"])</td>
                     <td>@user["id"]</td>
-                    <td><RadzenButton  Icon="build" ButtonStyle="ButtonStyle.Light" /></td>
-                    <td><RadzenButton  Icon="delete" ButtonStyle="ButtonStyle.Light" /></td>
+                    <td><RadzenButton Click=@(args => editUser((string) user["id"])) Icon="build" ButtonStyle="ButtonStyle.Light" /></td>
+                    <td><RadzenButton Click=@(args => deleteUser((string) user["id"])) Icon="delete" ButtonStyle="ButtonStyle.Light" /></td>
                     
                 </tr>
             }
@@ -120,8 +121,8 @@ else
         DocumentReference userRef = fireStoreDb.Collection("users").Document(id);
         await userRef.DeleteAsync();
     }
-    async void editUser()
+    async void editUser(string id)
     {
-        
+        NavigationManager.NavigateTo(("/edituser/"+id));
     }
 }
