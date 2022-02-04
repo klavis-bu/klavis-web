@@ -1,45 +1,44 @@
-﻿@page "/history"
+﻿@page "/usermanagement"
 
 @using Google.Cloud.Firestore;
 @using System;
-@using Klavis.Models;
+@inject NavigationManager NavigationManager
 
-<PageTitle>Access History</PageTitle>
+<PageTitle>User Management</PageTitle>
 
-<h1>Access History</h1>
-    
-<p>This component displays all recorded access history based on location.</p>
+<h1>User Management</h1>
 
-@if (accessHistory == null)
+Add, remove, and modify user access permissions here.
+
+@if (users == null)
 {
     <p><em>Loading...</em></p>
 }
 else
 {
     <div class = "row">
-            <button class="btn btn-primary" @onclick=@clearHistory>Clear History</button>
+            <button class="btn btn-primary" @onclick=@addUser>Add User</button>
     </div>
     <table class="table">
         <thead>
             <tr>
-                <th>Timestamp</th>
+                <th></th>
                 <th>Name</th>
                 <th>ID</th>
-                <th>Access</th>
-                <th>Account</th>
-                <th>Determination</th>
+                <th>Modify</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (Dictionary<string,object> record in accessHistory)
+            @foreach (Dictionary<string,object> user in users)
             {
                 <tr>
-                    <td>@record["timestamp"]</td>
-                    <td>@(record["firstname"] + " " + record["lastname"])</td>
-                    <td>@record["id"]</td>
-                    <td>@record["accessStatus"]</td>
-                    <td>@record["accountStatus"]</td>
-                    <td>@record["determination"]</td>
+                    <td><RadzenImage Path=@((string) user["pictureLink"]) Class="rounded-circle float-left mr-3" Style="width: 100px; height: 100px;" /></td>
+                    <td>@(user["firstname"] + " " + user["lastname"])</td>
+                    <td>@user["id"]</td>
+                    <td><RadzenButton  Icon="build" ButtonStyle="ButtonStyle.Light" /></td>
+                    <td><RadzenButton  Icon="delete" ButtonStyle="ButtonStyle.Light" /></td>
+                    
                 </tr>
             }
         </tbody>
@@ -60,7 +59,7 @@ else
     private string connection = "Disconnected";
     private bool accessStatus;
     private bool accountStatus;
-    private List<Dictionary<string, object>> accessHistory = null;
+    private List<Dictionary<string, object>> users = null;
 
     protected override async Task OnInitializedAsync()
     {
@@ -75,31 +74,23 @@ else
         {
             connection = "Connected";
         }
-        queryHistory("designlab");
+        queryUsers();
         StateHasChanged();
     }
 
-    async void queryHistory(string terminal)
+    async void queryUsers()
     {
-        Google.Cloud.Firestore.Query historyQuery = fireStoreDb.Collection("history").WhereEqualTo("terminal",terminal);
-        QuerySnapshot historyQuerySnapshot = await historyQuery.GetSnapshotAsync();
+        Google.Cloud.Firestore.Query userQuery = fireStoreDb.Collection("users");
+        QuerySnapshot userQuerySnapshot = await userQuery.GetSnapshotAsync();
         List<Dictionary<string, object>> records = new List<Dictionary<string, object>>();
-        foreach (DocumentSnapshot documentSnapshot in historyQuerySnapshot.Documents)
+        foreach (DocumentSnapshot documentSnapshot in userQuerySnapshot.Documents)
         {
             Dictionary<string, object> recordDictionary = documentSnapshot.ToDictionary();
+            recordDictionary.Add("id", documentSnapshot.Id);
             records.Add(recordDictionary);
-
-            accessStatus = (bool) recordDictionary["accessStatus"];
-            accountStatus = (bool) recordDictionary["accountStatus"];
-            userID = (string) recordDictionary["id"];
-            firstName = (string) recordDictionary["firstname"];
-            lastName = (string) recordDictionary["lastname"];
-            timestamp= (Google.Cloud.Firestore.Timestamp) recordDictionary["timestamp"];
         }
-        accessHistory = records;
+        users = records;
         StateHasChanged(); 
-
-
 
     }
 
@@ -117,5 +108,20 @@ else
             documents = snapshot.Documents;
         }
         StateHasChanged();
+    }
+
+    async void addUser()
+    {
+        NavigationManager.NavigateTo("/adduser");
+    }
+
+    async void deleteUser(string id)
+    {
+        DocumentReference userRef = fireStoreDb.Collection("users").Document(id);
+        await userRef.DeleteAsync();
+    }
+    async void editUser()
+    {
+        
     }
 }
