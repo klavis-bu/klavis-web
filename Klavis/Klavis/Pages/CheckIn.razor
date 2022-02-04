@@ -14,17 +14,12 @@
 
 
 <div class="row">
-    <div class="col-md-6 col-lg-4 p-3">
-        <RadzenCard>
-            <b>@connection</b>
-            <button class="btn btn-primary" @onclick=@connect>Connect</button>
-        </RadzenCard>
-    </div>
 
     <div class="col-xl-6">
 
         <RadzenCard >
             <div class="d-flex flex-row">
+                <RadzenIcon Icon=@accessIcon />
                 <RadzenImage Path=@picturePath Class="rounded-circle float-left mr-3" Style="width: 100px; height: 100px;" />
                 <div>
                     <div>Name</div>
@@ -36,7 +31,7 @@
         </RadzenCard>
         <RadzenCard>
             
-            <RadzenTextBox @bind-Value=@userID MaxLength="8" Change=@(args => query_user(args, "designlab")) Class="w-100" />
+            <RadzenTextBox @bind-Value=@idField MaxLength="8" Change=@(args => sendQuery(args, "designlab")) Class="w-100" />
             
         </RadzenCard>
     </div>
@@ -50,16 +45,22 @@
     FirestoreDb fireStoreDb;
     private string security_key_path = "wwwroot/klavis-4b8d1-eb6f81dfbefe.json";
     private string userID;
-    private string userSerial;
-    private string location = "designlab";
+    private string idField;
+    private string terminal = "designlab";
     private string terminalList;
-    private string firstName = "first";
-    private string lastName = "last";
+    private string firstName;
+    private string lastName;
     private string picturePath;
+    private string accessPicturePath;
+    private string accessIcon = "lock_outline";
     private string connection = "Disconnected";
+    private bool accountStatus;
     private bool accessStatus;
 
-    async void connect()
+
+    
+
+    protected override async Task OnInitializedAsync()
     {
         Console.WriteLine("Connecting");
         string filepath = "wwwroot/klavis-4b8d1-eb6f81dfbefe.json";
@@ -68,7 +69,6 @@
 
         DocumentReference userRef = fireStoreDb.Collection("access").Document("designlab");
         DocumentSnapshot snapshot = await userRef.GetSnapshotAsync();
-
         if (snapshot.Exists)
         {
             connection = "Connected";
@@ -82,31 +82,65 @@
         Console.WriteLine($"{args.Message}");
     }
 
-    async void query_user(string id, string terminalLocation)
+
+
+    async void sendQuery(string id, string terminal)
     {
-            if (id.Length == 8)
-            {
-                Console.WriteLine("boop");
-                DocumentReference userRef = fireStoreDb.Collection("access").Document(terminalLocation).Collection("users").Document(id);
-                DocumentSnapshot snapshot = await userRef.GetSnapshotAsync();
-                if (snapshot.Exists)
-                {
-                    Dictionary<string, object> userDictionary = snapshot.ToDictionary();
-                    firstName = (string) userDictionary["firstname"];
-                    lastName = (string) userDictionary["lastname"];
-                    picturePath = (string) userDictionary["pictureLink"];
-                
-                }
-                else
-                {
-                    firstName = "User not found.";
-                }
-                StateHasChanged();
-            }
+        if(id.Length == 8)
+        {
             
+            //Checkling User database
+            DocumentReference userRef = fireStoreDb.Collection("users").Document(id);
+            DocumentSnapshot snapshot = await userRef.GetSnapshotAsync();
+            if (snapshot.Exists)
+            {
+                Dictionary<string, object> userDictionary = snapshot.ToDictionary();
+                firstName = (string) userDictionary["firstname"];
+                lastName = (string) userDictionary["lastname"];
+                picturePath = (string) userDictionary["pictureLink"];
+                accountStatus = (bool) userDictionary["hascard"];
+                userID = id;
+            }
+            else
+            {
+                accountStatus = false;
+                firstName = "User not found.";
+                lastName = "";
+                picturePath = "https://img.search.brave.com/rsnQ2b5ZdZ5NqitJ3pIBqo_yylEga-fOE4uba4Zaq_8/rs:fit:512:512:1/g:ce/aHR0cHM6Ly9jcmlj/ZGFkZHkuY29tL3dw/LWNvbnRlbnQvdXBs/b2Fkcy8yMDIwLzA4/L2JsYW5rLXByb2Zp/bGUtcGljdHVyZS1w/bmcucG5n";
+            }
+
+            //Checking Access database
+            userRef = fireStoreDb.Collection("access").Document(terminal).Collection("users").Document(id);
+            snapshot = await userRef.GetSnapshotAsync();
+            accessStatus = snapshot.Exists;
+
+            if(accessStatus && accountStatus)
+            {
+                accessIcon = "lock_open";
+            }
+            else
+            {
+                accessIcon = "lock";
+            }
+
+            idField = "";
+            StateHasChanged();
+            
+            //Logging request
+            Dictionary<string, object> log = new Dictionary<string, object>
+            {
+                { "accessStatus",  accessStatus },
+                { "accountStatus", accountStatus },
+                { "id", userID },
+                { "terminal", terminal },
+                { "firstname", firstName },
+                { "lastname", lastName },
+                { "determination", (accessStatus && accountStatus) },
+                { "timestamp", DateTime.UtcNow }
+            };
+            DocumentReference addedDocRef = await fireStoreDb.Collection("history").AddAsync(log);
+        }
+
 
     }
-    
-
-    
 }

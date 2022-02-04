@@ -1,0 +1,77 @@
+﻿@page "/adduser"
+
+@using Google.Cloud.Firestore;
+@using System;
+@inject NavigationManager NavigationManager
+
+<PageTitle>Add User</PageTitle>
+
+<h1>Add User</h1>
+
+Fill in all required (*) information to add a new user.
+<div class = "d-flex flex-row">
+    <RadzenCard>
+
+            
+        <div class = "row">
+            <div class = "col">
+                <RadzenTextBox @bind-Value=@firstName Class="w-100" />
+                <h4 class="mb-4">First Name*</h4>
+            </div>
+            <div class = "col">
+                <RadzenTextBox @bind-Value=@lastName Class="w-100" />
+                <h4 class="mb-4">Last Name*</h4>
+            </div>
+        </div>
+        <div class = "row">
+            <div class = "col">
+                <RadzenTextBox @bind-Value=@userID Class="w-100" />
+                <h4 class="mb-4">ID*</h4>
+            </div>
+            <div class = "col">
+                <RadzenTextBox @bind-Value=@email Class="w-100" />
+                <h4 class="mb-4">Email Address*</h4>
+            </div>
+        </div>
+        <div class = "row">
+            <button class="btn btn-primary" @onclick=@addUser>Add User</button>
+        </div>
+    </RadzenCard>
+        
+        
+</div>
+    
+
+
+
+@code{
+    FirestoreDb fireStoreDb;
+    private string firstName;
+    private string lastName;
+    private string userID;
+    private string email;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("Connecting");
+        string filepath = "wwwroot/klavis-4b8d1-eb6f81dfbefe.json";
+        Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", filepath);
+        fireStoreDb = FirestoreDb.Create("klavis-4b8d1");
+
+        StateHasChanged();
+    }
+
+    async void addUser()
+    {
+        Dictionary<string, object> log = new Dictionary<string, object>
+            {
+                { "firstname", firstName },
+                { "lastname", lastName },
+                { "email", email },
+                { "accountStatus", true },
+                { "created", DateTime.UtcNow }
+            };
+            await fireStoreDb.Collection("users").Document(userID).SetAsync(log);
+            NavigationManager.NavigateTo("/usermanagement");
+    }
+}

@@ -19,6 +19,10 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/OneDrive/Documents/GitHub/klavis-web/Klavis/Klavis/Pages/AddUser.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkVXNlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/OneDrive/Documents/GitHub/klavis-web/Klavis/Klavis/Pages/CheckIn.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hlY2tJbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -35,8 +39,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2V0dGluZ3MucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/OneDrive/Documents/GitHub/klavis-web/Klavis/Klavis/Pages/UserActions.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckFjdGlvbnMucmF6b3I=
+[D:/OneDrive/Documents/GitHub/klavis-web/Klavis/Klavis/Pages/UserManagement.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlck1hbmFnZW1lbnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/OneDrive/Documents/GitHub/klavis-web/Klavis/Klavis/Shared/SurveyPrompt.razor]

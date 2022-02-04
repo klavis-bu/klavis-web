@@ -4,10 +4,10 @@ using Google.Cloud.Firestore;
 namespace Klavis.Models
 {
     [FirestoreData]
-    public class User
+    public class Record
     {
         public string userID { get; set; }
-        public DateTime date { get; set; }
+        public DateTime timestamp { get; set; }
         [FirestoreProperty]
         public string firstName { get; set; }
         [FirestoreProperty]
@@ -15,11 +15,9 @@ namespace Klavis.Models
         [FirestoreProperty]
         public string pictureLink { get; set; }
         [FirestoreProperty]
+        public bool accessStatus { get; set; }
+        [FirestoreProperty]
         public bool accountStatus { get; set; }
-        [FirestoreProperty]
-        public bool cardCreated { get; set; }
-        [FirestoreProperty]
-        public DateTime dateCreated { get; set; }
 
     }
 }
