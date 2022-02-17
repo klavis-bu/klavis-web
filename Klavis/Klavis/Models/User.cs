@@ -6,8 +6,7 @@ namespace Klavis.Models
     [FirestoreData]
     public class User
     {
-        public string UserID { get; set; }
-        public DateTime date { get; set; }
+        public string userID { get; set; }
         [FirestoreProperty]
         public string firstName { get; set; }
         [FirestoreProperty]
