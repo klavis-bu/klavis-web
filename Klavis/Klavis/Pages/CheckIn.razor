@@ -26,7 +26,7 @@
     <div class="flex-col">
         <RadzenCard Style="background-image: linear-gradient(0deg, #d1b4d4 20%, #eeeeee 25%);  margin: 10px; height: 300px;" >
             <div class="flex-image">
-                <RadzenIcon Icon=@accessIcon Style="width: 200px; height: 200px;"/>
+                <RadzenImage Path=@accessIcon   Style="width: 200px; height: 200px;"/>
             </div>
             
             <RadzenTextBox @bind-Value=@idField Type="password" MaxLength="8" Change=@(args => sendQuery(args, "designlab")) Class="w-100" />
@@ -146,11 +146,11 @@
 
             if(accessStatus && accountStatus)
             {
-                accessIcon = "lock_open";
+                accessIcon = "check.png";
             }
             else
             {
-                accessIcon = "lock";
+                accessIcon = "x.png";
             }
 
             idField = "";
