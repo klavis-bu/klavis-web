@@ -4,6 +4,7 @@
 @using System;
 @using Klavis.Models;
 @inject NavigationManager NavigationManager
+@inject IJSRuntime jsRuntime
 
 <PageTitle>User Management</PageTitle>
 
@@ -17,33 +18,67 @@ Add, remove, and modify user access permissions here.
 }
 else
 {
-    <div class = "row">
-            <button class="btn btn-primary" @onclick=@addUser>Add User</button>
+    <div class="flex-row" >
+        <div class="flex-col">
+            <RadzenCard Style="background-image: linear-gradient(180deg, #d1b4d4 100px, #eeeeee 125px);  margin: 10px;" >
+                <div class="flex-row">
+                    <div class="flex-controls">
+                        
+                    </div>
+    
+                </div>
+                <div class="row">
+                    <table class="table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                            <th>ID</th>
+                            <th>Add Card</th>
+                            <th>Modify</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Dictionary<string, object> user in users)
+                            {
+                                if ((bool)user["cardCreated"] == false)
+                                {
+                                    <tr style="background-color:#F54748">
+                                        <td><RadzenImage Path=@((string) user["pictureLink"]) Class="rounded-circle float-left mr-3" Style="width: 100px; height: 100px;" /></td>
+                                        <td>@(user["firstname"] + " " + user["lastname"])</td>
+                                        <td>@user["id"]</td>
+                                        <td><RadzenButton Click=@(args => createCard((string) user["id"])) Icon="note_add" ButtonStyle="ButtonStyle.Light" /></td>
+                                        <td><RadzenButton Click=@(args => editUser((string) user["id"])) Icon="build" ButtonStyle="ButtonStyle.Light" /></td>
+                                        <td><RadzenButton Click=@(args => deleteUser((string) user["id"])) Icon="delete" ButtonStyle="ButtonStyle.Light" /></td>
+
+                                    </tr>
+                                }
+                            }
+                        @foreach (Dictionary<string, object> user in users)
+                            {
+                                if ((bool)user["cardCreated"] == true)
+                                {
+                                <tr>
+                                    <td><RadzenImage Path=@((string)user["pictureLink"]) Class="rounded-circle float-left mr-3" Style="width: 100px; height: 100px;" /></td>
+                                    <td>@(user["firstname"] + " " + user["lastname"])</td>
+                                    <td>@user["id"]</td>
+                                    <td><RadzenButton Click=@(args => createCard((string)user["id"])) Icon="note_add" ButtonStyle="ButtonStyle.Light" /></td>
+                                    <td><RadzenButton Click=@(args => editUser((string)user["id"])) Icon="build" ButtonStyle="ButtonStyle.Light" /></td>
+                                    <td><RadzenButton Click=@(args => deleteUser((string)user["id"])) Icon="delete" ButtonStyle="ButtonStyle.Light" /></td>
+
+                                </tr>
+                                }
+                            }
+                    </tbody>
+                </table>
+                </div>
+                
+            </RadzenCard>
+        
+        </div>
     </div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Name</th>
-                <th>ID</th>
-                <th>Modify</th>
-                <th>Delete</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (Dictionary<string,object> user in users)
-            {
-                <tr>
-                    <td><RadzenImage Path=@((string) user["pictureLink"]) Class="rounded-circle float-left mr-3" Style="width: 100px; height: 100px;" /></td>
-                    <td>@(user["firstname"] + " " + user["lastname"])</td>
-                    <td>@user["id"]</td>
-                    <td><RadzenButton Click=@(args => editUser((string) user["id"])) Icon="build" ButtonStyle="ButtonStyle.Light" /></td>
-                    <td><RadzenButton Click=@(args => deleteUser((string) user["id"])) Icon="delete" ButtonStyle="ButtonStyle.Light" /></td>
-                    
-                </tr>
-            }
-        </tbody>
-    </table>
+    
 }
 
 @code {
@@ -124,5 +159,11 @@ else
     async void editUser(string id)
     {
         NavigationManager.NavigateTo(("/edituser/"+id));
+    }
+
+    async void createCard(string id)
+    {
+        string url = "https://www.originpass.com/BU/";
+        await jsRuntime.InvokeAsync<object>("open", url, "_blank");
     }
 }

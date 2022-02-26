@@ -1,0 +1,58 @@
+﻿body {
+}
+
+.flex-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.flex-col {
+    float: left;
+    width: 50%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.flex-history {
+    float: left;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.flex-button {
+    float: right;
+    height: 2.5rem;
+    padding-right: 15px;
+    margin-left: auto;
+}
+
+.flex-title {
+    float: left;
+    width: 30%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.flex-controls {
+    float: right;
+    height: 100px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-left: auto;
+}
+.flex-dropdown {
+    float: right;
+    padding-right: 15px;
+    margin-left: auto;
+}
+
+.table {
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+
+

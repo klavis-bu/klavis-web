@@ -6,43 +6,62 @@
 
 <PageTitle>Check In</PageTitle>
 
-<div class="row">
-    <h1>Check In   </h1>
+<div class="flex-row">
+    <div class="flex-col">
+        <h1>Check In</h1>
+    </div>
+    <div class="flex-col" style="margin-left: auto">
+        <RadzenDropDown AllowClear="true" TValue="string" Class="flex-dropdown " 
+                        Data=@terminals
+                        Style="width: 40%; height: 2.5rem;"
+                        @bind-Value=@terminal />
+    </div>
 </div>
 
 
 
 
-<div class="row">
-
-    <div class="col-xl-6">
-        <RadzenCard>
-            <h4 class="mb-4">Location</h4>
-            <RadzenDropDown AllowClear="true" TValue="string" Class="w-100" 
-                        Data=@terminals
-                        @bind-Value=@terminal />
+<div class="flex-row" >
+    
+    <div class="flex-col">
+        <RadzenCard Style="background-image: linear-gradient(0deg, #d1b4d4 20%, #eeeeee 25%);  margin: 10px; height: 300px;" >
+            <div class="flex-image">
+                <RadzenIcon Icon=@accessIcon Style="width: 200px; height: 200px;"/>
+            </div>
+            
+            <RadzenTextBox @bind-Value=@idField Type="password" MaxLength="8" Change=@(args => sendQuery(args, "designlab")) Class="w-100" />
         </RadzenCard>
         
-        
-
-        <RadzenCard >
-            <div class="d-flex flex-row">
-                <RadzenIcon Icon=@accessIcon />
-                <RadzenImage Path=@picturePath Class="rounded-circle float-left mr-3" Style="width: 100px; height: 100px;" />
-                <div>
-                    <div><h4>Name</h4></div>
+    </div>
+    <div class="flex-col">
+        <RadzenCard Style="background-image: linear-gradient(0deg, #d1b4d4 20%, #eeeeee 25%);  margin: 10px; height: 300px;" >
+            <div class="flex-image">
+                <RadzenImage Path=@picturePath Class="rounded-circle"  Style="width: 200px; height: 200px;"/>
+                
+            </div>
+            <div class = "flex-row">
+                <div class = "col">
+                    <b>Name:</b>
                     <b role="status">@(firstName+" "+lastName)</b>
-                    <div><h4>BUID</h4></div>
+                </div>
+                <div class = "col">
+                    <b>BUID: </b>
                     <b>@userID</b>
                 </div>
+                
+                
             </div>
         </RadzenCard>
-        <RadzenCard>
-            
-            <RadzenTextBox @bind-Value=@idField MaxLength="8" Change=@(args => sendQuery(args, "designlab")) Class="w-100" />
-            
-        </RadzenCard>
+        
+        
     </div>
+</div>
+
+<div class="flex-history">
+    <RadzenCard Style="background-image: linear-gradient(180deg, #d1b4d4 100px, #eeeeee 125px);  margin: 10px;" >
+        <History />
+    </RadzenCard>
+        
 </div>
 
 
@@ -58,7 +77,7 @@
     private string terminalList;
     private string firstName;
     private string lastName;
-    private string picturePath;
+    private string picturePath = "user.png";
     private string accessPicturePath;
     private string accessIcon = "lock_outline";
     private string connection = "Disconnected";
@@ -116,7 +135,8 @@
                 accountStatus = false;
                 firstName = "User not found.";
                 lastName = "";
-                picturePath = "https://img.search.brave.com/rsnQ2b5ZdZ5NqitJ3pIBqo_yylEga-fOE4uba4Zaq_8/rs:fit:512:512:1/g:ce/aHR0cHM6Ly9jcmlj/ZGFkZHkuY29tL3dw/LWNvbnRlbnQvdXBs/b2Fkcy8yMDIwLzA4/L2JsYW5rLXByb2Zp/bGUtcGljdHVyZS1w/bmcucG5n";
+                userID = id;
+                picturePath = "user.png";
             }
 
             //Checking Access database

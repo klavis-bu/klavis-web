@@ -3,8 +3,8 @@
 }
 
 .top-row {
-    height: 3.5rem;
-    background-color: rgba(0,0,0,0.4);
+    height: 80px;
+    background-image: linear-gradient(180deg, #3a0647 60px, #f3f6f4 80px);
 }
 
 .navbar-brand {
@@ -18,9 +18,13 @@
     top: -2px;
 }
 
+
+
 .nav-item {
+    margin-top: 5px;
     font-size: 0.9rem;
     padding-bottom: 0.5rem;
+    
 }
 
     .nav-item:first-of-type {
@@ -32,23 +36,24 @@
     }
 
     .nav-item ::deep a {
-        color: #d7d7d7;
+        color: #292929;
         border-radius: 4px;
         height: 3rem;
         display: flex;
         align-items: center;
         line-height: 3rem;
+        background-color: rgba(194,194,194,0.25);
     }
 
-.nav-item ::deep a.active {
-    background-color: rgba(255,255,255,0.25);
-    color: white;
-}
+        .nav-item ::deep a.active {
+            background-image: linear-gradient(0deg, #d1b4d4 20%, #eeeeee 25%);
+            color: rebeccapurple;
+        }
 
-.nav-item ::deep a:hover {
-    background-color: rgba(255,255,255,0.1);
-    color: white;
-}
+        .nav-item ::deep a:hover {
+            background-color: rgba(194,194,194,0.4);
+            color: rebeccapurple;
+        }
 
 @media (min-width: 641px) {
     .navbar-toggler {

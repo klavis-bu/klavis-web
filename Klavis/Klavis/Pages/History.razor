@@ -6,9 +6,19 @@
 
 <PageTitle>Access History</PageTitle>
 
-<h1>Access History</h1>
+<div class="flex-row">
+    <div class="flex-controls">
+        <RadzenDropDown AllowClear="true" TValue="int" Class="flex-dropdown " 
+                        Data=@dispnums
+                        Style="width: 40%; height: 2.5rem;"
+                        @bind-Value=@displaysize />
+        <button class="btn btn-primary flex-button" @onclick=@clearHistory>Clear History</button>
+    </div>
     
-<p>This component displays all recorded access history based on location.</p>
+</div>
+
+
+    
 
 @if (accessHistory == null)
 {
@@ -16,10 +26,9 @@
 }
 else
 {
+    
     <div class = "row">
-            <button class="btn btn-primary" @onclick=@clearHistory>Clear History</button>
-    </div>
-    <table class="table">
+       <table class="table">
         <thead>
             <tr>
                 <th>Timestamp</th>
@@ -31,19 +40,22 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (Dictionary<string,object> record in accessHistory)
+            @for (int tablectr = 0; tablectr < displaysize; tablectr++)
             {
                 <tr>
-                    <td>@record["timestamp"]</td>
-                    <td>@(record["firstname"] + " " + record["lastname"])</td>
-                    <td>@record["id"]</td>
-                    <td>@record["accessStatus"]</td>
-                    <td>@record["accountStatus"]</td>
-                    <td>@record["determination"]</td>
+                    <td>@accessHistory[tablectr]["timestamp"]</td>
+                    <td>@(accessHistory[tablectr]["firstname"] + " " + accessHistory[tablectr]["lastname"])</td>
+                    <td>@accessHistory[tablectr]["id"]</td>
+                    <td>@accessHistory[tablectr]["accessStatus"]</td>
+                    <td>@accessHistory[tablectr]["accountStatus"]</td>
+                    <td>@accessHistory[tablectr]["determination"]</td>
                 </tr>
+                
             }
         </tbody>
-    </table>
+    </table> 
+            
+    </div>
 }
 
 @code {
@@ -61,6 +73,9 @@ else
     private bool accessStatus;
     private bool accountStatus;
     private List<Dictionary<string, object>> accessHistory = null;
+
+    private int[] dispnums = { 5, 10, 25 };
+    private int displaysize = 10;
 
     protected override async Task OnInitializedAsync()
     {

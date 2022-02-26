@@ -2,15 +2,17 @@
 
 <PageTitle>Klavis</PageTitle>
 
+
+
 <div class="page">
+    
     <div class="sidebar">
         <NavMenu />
     </div>
 
     <main>
-        <div class="top-row px-4">
-             <RadzenButton Click=@reload Icon="refresh" ButtonStyle="ButtonStyle.Light" />
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+        <div class="top-row">
+             <RadzenButton Click=@reload Icon="refresh" ButtonStyle="ButtonStyle.Light" Style="margin-top: 15px;"/>
         </div>
 
         <article class="content px-4">
@@ -20,6 +22,8 @@
 </div>
 
 @code{
+    private string terminal = "None";
+    private List<string> terminals;
     private void reload()
     {
         StateHasChanged();
