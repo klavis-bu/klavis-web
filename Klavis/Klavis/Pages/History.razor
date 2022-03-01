@@ -12,7 +12,6 @@
                         Data=@dispnums
                         Style="width: 40%; height: 2.5rem;"
                         @bind-Value=@displaysize />
-        <button class="btn btn-primary flex-button" @onclick=@clearHistory>Clear History</button>
     </div>
     
 </div>
@@ -31,26 +30,24 @@ else
        <table class="table">
         <thead>
             <tr>
-                <th>Timestamp</th>
                 <th>Name</th>
                 <th>ID</th>
-                <th>Access</th>
-                <th>Account</th>
+                <th>Terminal</th>
+                <th>Timestamp</th>
                 <th>Determination</th>
             </tr>
         </thead>
         <tbody>
             @for (int tablectr = 0; tablectr < displaysize; tablectr++)
             {
-                <tr>
-                    <td>@accessHistory[tablectr]["timestamp"]</td>
-                    <td>@(accessHistory[tablectr]["firstname"] + " " + accessHistory[tablectr]["lastname"])</td>
-                    <td>@accessHistory[tablectr]["id"]</td>
-                    <td>@accessHistory[tablectr]["accessStatus"]</td>
-                    <td>@accessHistory[tablectr]["accountStatus"]</td>
-                    <td>@accessHistory[tablectr]["determination"]</td>
-                </tr>
-                
+                    @if (tablectr >= accessHistory.Count){ continue; }
+                    <tr>
+                        <td>@(accessHistory[tablectr]["firstname"] + " " + accessHistory[tablectr]["lastname"])</td>
+                        <td>@accessHistory[tablectr]["id"]</td>
+                        <td>@accessHistory[tablectr]["terminal"]</td>
+                        <td>@accessHistory[tablectr]["timestamp"]</td>
+                        <td>@accessHistory[tablectr]["determination"]</td>
+                    </tr>
             }
         </tbody>
     </table> 
@@ -62,20 +59,11 @@ else
 
     FirestoreDb fireStoreDb;
     private string security_key_path = "wwwroot/klavis-4b8d1-eb6f81dfbefe.json";
-    private string userID;
-    private string terminal;
-    private string terminalList;
-    private string firstName;
-    private string lastName;
-    private string picturePath;
     private Google.Cloud.Firestore.Timestamp timestamp;
-    private string connection = "Disconnected";
-    private bool accessStatus;
-    private bool accountStatus;
     private List<Dictionary<string, object>> accessHistory = null;
 
     private int[] dispnums = { 5, 10, 25 };
-    private int displaysize = 10;
+    private int displaysize = 0;
 
     protected override async Task OnInitializedAsync()
     {
@@ -84,18 +72,13 @@ else
         Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", filepath);
         fireStoreDb = FirestoreDb.Create("klavis-4b8d1");
 
-        DocumentReference userRef = fireStoreDb.Collection("access").Document("designlab");
-        DocumentSnapshot snapshot = await userRef.GetSnapshotAsync();
-        if (snapshot.Exists)
-        {
-            connection = "Connected";
-        }
         queryHistory("designlab");
         StateHasChanged();
     }
 
     async void queryHistory(string terminal)
     {
+        int i = 0;
         Google.Cloud.Firestore.Query historyQuery = fireStoreDb.Collection("history").WhereEqualTo("terminal",terminal);
         QuerySnapshot historyQuerySnapshot = await historyQuery.GetSnapshotAsync();
         List<Dictionary<string, object>> records = new List<Dictionary<string, object>>();
@@ -103,17 +86,9 @@ else
         {
             Dictionary<string, object> recordDictionary = documentSnapshot.ToDictionary();
             records.Add(recordDictionary);
-
-            accessStatus = (bool) recordDictionary["accessStatus"];
-            accountStatus = (bool) recordDictionary["accountStatus"];
-            userID = (string) recordDictionary["id"];
-            firstName = (string) recordDictionary["firstname"];
-            lastName = (string) recordDictionary["lastname"];
-            timestamp= (Google.Cloud.Firestore.Timestamp) recordDictionary["timestamp"];
         }
         accessHistory = records;
         StateHasChanged(); 
-
 
 
     }

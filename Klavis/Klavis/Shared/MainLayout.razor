@@ -12,7 +12,9 @@
 
     <main>
         <div class="top-row">
-             <RadzenButton Click=@reload Icon="refresh" ButtonStyle="ButtonStyle.Light" Style="margin-top: 15px;"/>
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            <RadzenButton Click=@reload Icon="refresh" ButtonStyle="ButtonStyle.Light" Style="margin-top: 15px;"/>
+
         </div>
 
         <article class="content px-4">
@@ -28,4 +30,6 @@
     {
         StateHasChanged();
     }
+
+    
 }

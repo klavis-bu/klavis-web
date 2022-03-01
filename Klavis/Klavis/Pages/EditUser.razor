@@ -15,50 +15,42 @@ Adjust information to edit an existing user.
         <h3 class="mb-4">Personal Information</h3>    
         <div class = "row">
             <div class = "col">
-                <RadzenTextBox @bind-Value=@firstName Placeholder=firstName Class="w-100" />
-                <h5 class="mb-4">First Name</h5>
+                <RadzenTextBox @bind-Value=@firstName  Class="w-100" />
+                <h5 class="mb-4">First Name*</h5>
             </div>
             <div class = "col">
-                <RadzenTextBox @bind-Value=@lastName Placeholder=lastName Class="w-100" />
-                <h5 class="mb-4">Last Name</h5>
-            </div>
-        </div>
-        <div class = "row">
-            <div class = "col">
-                <RadzenTextBox @bind-Value=@userID Placeholder=@userID Disabled=true Class="w-100" />
-                <h5 class="mb-4">ID</h5>
-            </div>
-            <div class = "col">
-                <RadzenTextBox @bind-Value=@email Placeholder=@email Class="w-100" />
-                <h5 class="mb-4">Email Address</h5>
+                <RadzenTextBox @bind-Value=@lastName  Class="w-100" />
+                <h5 class="mb-4">Last Name*</h5>
             </div>
         </div>
         <div class = "row">
             <div class = "col">
-                <RadzenTextBox @bind-Value=@pictureLink Placeholder=@pictureLink Class="w-100" />
+                <RadzenTextBox @bind-Value=@userId Placeholder="########" Class="w-100" />
+                <h5 class="mb-4">ID*</h5>
+            </div>
+            <div class = "col">
+                <RadzenTextBox @bind-Value=@email  Class="w-100" />
+                <h5 class="mb-4">Email Address*</h5>
+            </div>
+        </div>
+        <div class = "row">
+            <div class = "col">
+                <RadzenTextBox @bind-Value=@cardSerial  Class="w-100" />
+                <h5 class="mb-4">Card Serial</h5>
+            </div>
+        </div>
+        <div class = "row">
+            <div class = "col">
+                <RadzenTextBox @bind-Value=@pictureLink  Class="w-100" />
                 <h5 class="mb-4">Picture Link</h5>
             </div>
         </div>
         <br />
-        <h3 class="mb-4">Permissions</h3> 
+        <h3 class="mb-4">Scan Card</h3> 
+        
         <div class = "row">
             <div class = "col">
-                <RadzenRadioButtonList @bind-Value=@accountStatus TValue="bool">
-                    <Items>
-                        <RadzenRadioButtonListItem Text="True" Value=true />
-                        <RadzenRadioButtonListItem Text="False" Value=false />
-                    </Items>
-                </RadzenRadioButtonList>
-                <h5 class="mb-4">Account Activation</h5>
-            </div>
-            <div class = "col">
-                <RadzenRadioButtonList @bind-Value=@cardCreated TValue="bool">
-                    <Items>
-                        <RadzenRadioButtonListItem Text="True" Value=true />
-                        <RadzenRadioButtonListItem Text="False" Value=false />
-                    </Items>
-                </RadzenRadioButtonList>
-                <h5 class="mb-4">Card Created</h5>
+                <RadzenTextBox @bind-Value=@cardInput Type="password" Change=@parseInput Class="w-100" />
             </div>
         </div>
         <br />
@@ -82,18 +74,18 @@ Adjust information to edit an existing user.
     FirestoreDb fireStoreDb;
     private string firstName;
     private string lastName;
-    private string userID;
+    private string userId;
     private string email;
     private string pictureLink;
-    private bool cardCreated;
-    private bool accountStatus;
+    private string cardInput;
+    private string cardSerial;
     [Parameter]
     public string targetID{ get; set; }
 
     protected override void OnParametersSet()
     {
         //the param will be set now
-        userID = targetID;
+        userId = targetID;
     }
 
     protected override async Task OnInitializedAsync()
@@ -112,8 +104,8 @@ Adjust information to edit an existing user.
             lastName = (string) userDictionary["lastname"];
             pictureLink = (string) userDictionary["pictureLink"];
             email = (string) userDictionary["email"];
-            cardCreated = (bool) userDictionary["cardCreated"];
-            accountStatus = (bool) userDictionary["accountStatus"];
+            cardSerial = (string)userDictionary["cardSerial"];
+
         }
 
         StateHasChanged();
@@ -124,18 +116,26 @@ Adjust information to edit an existing user.
 
         Dictionary<string, object> log = new Dictionary<string, object>
             {
+                { "cardSerial", cardSerial },
+                { "created", DateTime.UtcNow },
+                { "email", email },
                 { "firstname", firstName },
                 { "lastname", lastName },
-                { "email", email },
-                { "accountStatus", accountStatus },
                 { "pictureLink", pictureLink },
-                { "cardCreated", cardCreated }
             };
-            await fireStoreDb.Collection("users").Document(userID).UpdateAsync(log);
+            await fireStoreDb.Collection("users").Document(userId).UpdateAsync(log);
             NavigationManager.NavigateTo("/usermanagement");
     }
 
     void cancel(){
         NavigationManager.NavigateTo("/usermanagement");
+    }
+
+    void parseInput()
+    {
+        string[] inputArgs = cardInput.Split('|');
+        cardSerial = inputArgs[1];
+        userId = inputArgs[2];
+        StateHasChanged();
     }
 }

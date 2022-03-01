@@ -9,12 +9,13 @@
 <div class="flex-row">
     <div class="flex-col">
         <h1>Check In</h1>
+        <p>@connection</p>
     </div>
     <div class="flex-col" style="margin-left: auto">
         <RadzenDropDown AllowClear="true" TValue="string" Class="flex-dropdown " 
-                        Data=@terminals
+                        Data=@terminalList
                         Style="width: 40%; height: 2.5rem;"
-                        @bind-Value=@terminal />
+                        @bind-Value=@current_terminal />
     </div>
 </div>
 
@@ -29,7 +30,7 @@
                 <RadzenImage Path=@accessIcon   Style="width: 200px; height: 200px;"/>
             </div>
             
-            <RadzenTextBox @bind-Value=@idField Type="password" MaxLength="8" Change=@(args => sendQuery(args, "designlab")) Class="w-100" />
+            <RadzenTextBox @bind-Value=@terminal_input Type="password" Change=@(args => execute(args, current_terminal)) Class="w-100" />
         </RadzenCard>
         
     </div>
@@ -42,11 +43,11 @@
             <div class = "flex-row">
                 <div class = "col">
                     <b>Name:</b>
-                    <b role="status">@(firstName+" "+lastName)</b>
+                    <b role="status">@(firstName_label+" "+lastName_label)</b>
                 </div>
                 <div class = "col">
                     <b>BUID: </b>
-                    <b>@userID</b>
+                    <b>@userId_label</b>
                 </div>
                 
                 
@@ -58,32 +59,101 @@
 </div>
 
 <div class="flex-history">
+
     <RadzenCard Style="background-image: linear-gradient(180deg, #d1b4d4 100px, #eeeeee 125px);  margin: 10px;" >
-        <History />
+        <div class="flex-row">
+            <div class="flex-controls">
+                <p><b># Entries Displayed</b></p>
+                <RadzenDropDown AllowClear="true" TValue="int" Class="flex-dropdown " 
+                                Data=@dispnums
+                                Style="width: 40%; height: 2.5rem
+                                LoadData= ;"
+                                @bind-Value=@displaysize />
+            </div>
+            <div class="flex-controls">
+                <p><b>Location</b></p>
+                <RadzenDropDown AllowClear="true" TValue="string" Class="flex-dropdown " 
+                        Data=@terminalList
+                        Style="width: 100%; height: 2.5rem;"
+                        Change=@queryHistory
+                        @bind-Value=@history_terminal />
+            </div>
+
+            <RadzenButton Click=@queryHistory Icon="refresh" ButtonStyle="ButtonStyle.Light" Style="margin-top: 15px;"/>
+    
+        </div>
+
+        @if (accessHistory == null)
+        {
+            <p><em>Loading...</em></p>
+        }
+        else
+        {
+    
+            <div class = "row">
+               <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>ID</th>
+                        <th>Terminal</th>
+                        <th>Timestamp</th>
+                        <th>Determination</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int tablectr = 0; tablectr < displaysize; tablectr++)
+                    {
+                            @if (tablectr >= accessHistory.Count){ continue; }
+                            <tr>
+                                <td>@(accessHistory[tablectr]["firstname"] + " " + accessHistory[tablectr]["lastname"])</td>
+                                <td>@accessHistory[tablectr]["id"]</td>
+                                <td>@accessHistory[tablectr]["terminal"]</td>
+                                <td>@accessHistory[tablectr]["timestamp"]</td>
+                                <td>@accessHistory[tablectr]["determination"]</td>
+                            </tr>
+                    }
+                </tbody>
+            </table> 
+            
+            </div>
+        }
+
     </RadzenCard>
         
 </div>
 
 
 
-
-
 @code {
     FirestoreDb fireStoreDb;
     private string security_key_path = "wwwroot/klavis-4b8d1-eb6f81dfbefe.json";
-    private string userID;
-    private string idField;
-    private string terminal;
-    private string terminalList;
-    private string firstName;
-    private string lastName;
+    private string userId_label;
+    private string terminal_input;
+    private string current_terminal;
+    private string history_terminal;
+    private string firstName_label;
+    private string lastName_label;
     private string picturePath = "user.png";
-    private string accessPicturePath;
     private string accessIcon = "loading-buffering.gif";
     private string connection = "Disconnected";
-    private bool accountStatus;
-    private bool accessStatus;
-    private List<string> terminals;
+    private List<string> terminalList;
+
+    private List<Dictionary<string, object>> accessHistory = null;
+    private int[] dispnums = { 5, 10, 25 };
+    private int displaysize = 10;
+
+    private Dictionary<string, object> currentUser = new Dictionary<string, object>
+        {
+            {"id", ""},
+            {"cardCreated", false},
+            {"cardSerial", ""},
+            {"created", null},
+            {"email", ""},
+            {"firstname", ""},
+            {"lastname", ""},
+            {"pictureLink", ""}
+        };
 
 
 
@@ -94,14 +164,9 @@
         string filepath = "wwwroot/klavis-4b8d1-eb6f81dfbefe.json";
         Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", filepath);
         fireStoreDb = FirestoreDb.Create("klavis-4b8d1");
-
-        DocumentReference userRef = fireStoreDb.Collection("access").Document("designlab");
-        DocumentSnapshot snapshot = await userRef.GetSnapshotAsync();
-        if (snapshot.Exists)
-        {
-            connection = "Connected";
-        }
         queryTerminals();
+        if(terminalList != null){ connection = "Connected"; }
+        queryHistory();
         StateHasChanged();
     }
 
@@ -111,79 +176,127 @@
         Console.WriteLine($"{args.Message}");
     }
 
-
-
-    async void sendQuery(string id, string terminal)
+    void execute(string terminalInput, string terminalId)
     {
-        if(id.Length == 8)
+        string[] inputArgs = terminalInput.Split('|');
+        string cardSerial = inputArgs[1];
+        string userId = inputArgs[2];
+        if(userId.Length == 8 && cardSerial.Length == 16 && terminalId != "")
         {
-
-            //Checkling User database
-            DocumentReference userRef = fireStoreDb.Collection("users").Document(id);
-            DocumentSnapshot snapshot = await userRef.GetSnapshotAsync();
-            if (snapshot.Exists)
-            {
-                Dictionary<string, object> userDictionary = snapshot.ToDictionary();
-                firstName = (string) userDictionary["firstname"];
-                lastName = (string) userDictionary["lastname"];
-                picturePath = (string) userDictionary["pictureLink"];
-                accountStatus = (bool) userDictionary["accountStatus"];
-                userID = id;
-            }
-            else
-            {
-                accountStatus = false;
-                firstName = "User not found.";
-                lastName = "";
-                userID = id;
-                picturePath = "user.png";
-            }
-
-            //Checking Access database
-            userRef = fireStoreDb.Collection("access").Document(terminal).Collection("users").Document(id);
-            snapshot = await userRef.GetSnapshotAsync();
-            accessStatus = snapshot.Exists;
-
-            if(accessStatus && accountStatus)
-            {
-                accessIcon = "check.png";
-            }
-            else
-            {
-                accessIcon = "x.png";
-            }
-
-            idField = "";
-            StateHasChanged();
-
-            //Logging request
-            Dictionary<string, object> log = new Dictionary<string, object>
-            {
-                { "accessStatus",  accessStatus },
-                { "accountStatus", accountStatus },
-                { "id", userID },
-                { "terminal", terminal },
-                { "firstname", firstName },
-                { "lastname", lastName },
-                { "determination", (accessStatus && accountStatus) },
-                { "timestamp", DateTime.UtcNow }
-            };
-            DocumentReference addedDocRef = await fireStoreDb.Collection("history").AddAsync(log);
+            sendQuery(userId, cardSerial, terminalId);
         }
 
 
     }
 
+    async void sendQuery(string userId, string cardSerial, string terminalId)
+    {
+        bool determination = false;
+        //Checkling User database
+        DocumentReference userRef = fireStoreDb.Collection("users").Document(userId);
+        DocumentSnapshot snapshot = await userRef.GetSnapshotAsync();
+        if (snapshot.Exists)
+        {
+
+            currentUser = snapshot.ToDictionary();
+            firstName_label = (string) currentUser["firstname"];
+            lastName_label = (string) currentUser["lastname"];
+            picturePath = (string) currentUser["pictureLink"];
+            userId_label = userId;
+            currentUser["id"] = userId;
+            if((string) currentUser["cardSerial"] == cardSerial)
+            {
+                userRef = fireStoreDb.Collection("users").Document(userId).Collection("access").Document(terminalId);
+                snapshot = await userRef.GetSnapshotAsync();
+                if (snapshot.Exists)
+                {
+                    determination = true;
+                    accessIcon = "check.png";
+                }
+                else
+                {
+                    accessIcon = "x.png";
+                }
+            }
+        }
+        else
+        {
+            currentUser["id"] = userId;
+            currentUser["firstname"] = "User Not";
+            currentUser["lastname"] = "Found";
+
+            firstName_label = "User not found.";
+            lastName_label = "";
+            userId_label = "Invalid ID";
+            accessIcon = "x.png";
+            picturePath = "user.png";
+        }
+
+        terminal_input = "";
+
+        logQuery(currentUser, terminalId, determination);
+        StateHasChanged();
+
+    }
+
+
+    async void logQuery(Dictionary<string, object> user, string terminal, bool det)
+    {
+        //Logging request
+        Dictionary<string, object> log = new Dictionary<string, object>
+        {
+            { "id", user["id"] },
+            { "terminal", terminal },
+            { "firstname", user["firstname"] },
+            { "lastname", user["lastname"] },
+            { "determination", det },
+            { "timestamp", DateTime.UtcNow.ToString("mm/dd/yyyy , hh:mm:ss tt") }
+        };
+        DocumentReference addedDocRef = await fireStoreDb.Collection("history").AddAsync(log);
+    }
+
     async void queryTerminals()
     {
-        List<string> terms = new List<string>();
+        terminalList = new List<string>();
         CollectionReference terminalRef = fireStoreDb.Collection("access");
         QuerySnapshot userQuerySnapshot = await terminalRef.GetSnapshotAsync();
         foreach (DocumentSnapshot document in userQuerySnapshot.Documents)
         {
-            terms.Add(document.Id);
+            terminalList.Add(document.Id);
         }
-        terminals = terms;
+        StateHasChanged();
+    }
+
+    async void queryHistory()
+    {
+        int i = 0;
+        Google.Cloud.Firestore.Query historyQuery = fireStoreDb.Collection("history").WhereEqualTo("terminal", history_terminal).OrderByDescending("timestamp");
+        QuerySnapshot historyQuerySnapshot = await historyQuery.GetSnapshotAsync();
+        List<Dictionary<string, object>> records = new List<Dictionary<string, object>>();
+        foreach (DocumentSnapshot documentSnapshot in historyQuerySnapshot.Documents)
+        {
+            Dictionary<string, object> recordDictionary = documentSnapshot.ToDictionary();
+            records.Add(recordDictionary);
+        }
+        accessHistory = records;
+        StateHasChanged(); 
+
+
+    }
+
+    async void clearHistory()
+    {
+        QuerySnapshot snapshot = await fireStoreDb.Collection("history").Limit(64).GetSnapshotAsync();
+        IReadOnlyList<DocumentSnapshot> documents = snapshot.Documents;
+        while (documents.Count > 0)
+        {
+            foreach (DocumentSnapshot document in documents)
+            {
+                await document.Reference.DeleteAsync();
+            }
+            snapshot = await fireStoreDb.Collection("history").Limit(64).GetSnapshotAsync();
+            documents = snapshot.Documents;
+        }
         StateHasChanged();
     }
 }

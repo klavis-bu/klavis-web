@@ -10,7 +10,7 @@
 
 Fill in all required (*) information to add a new user.
 <div class = "d-flex flex-row">
-    <RadzenCard>
+    <RadzenCard Style="background-image: linear-gradient(0deg, #d1b4d4 20%, #eeeeee 25%);  margin: 10px;">
 
         <h3 class="mb-4">Personal Information</h3>    
         <div class = "row">
@@ -25,7 +25,7 @@ Fill in all required (*) information to add a new user.
         </div>
         <div class = "row">
             <div class = "col">
-                <RadzenTextBox @bind-Value=@userID Placeholder="########" Class="w-100" />
+                <RadzenTextBox @bind-Value=@userId Placeholder="########" Class="w-100" />
                 <h5 class="mb-4">ID*</h5>
             </div>
             <div class = "col">
@@ -35,30 +35,22 @@ Fill in all required (*) information to add a new user.
         </div>
         <div class = "row">
             <div class = "col">
+                <RadzenTextBox @bind-Value=@cardSerial  Class="w-100" />
+                <h5 class="mb-4">Card Serial</h5>
+            </div>
+        </div>
+        <div class = "row">
+            <div class = "col">
                 <RadzenTextBox @bind-Value=@pictureLink  Class="w-100" />
                 <h5 class="mb-4">Picture Link</h5>
             </div>
         </div>
         <br />
-        <h3 class="mb-4">Permissions</h3> 
+        <h3 class="mb-4">Scan Card</h3> 
+        
         <div class = "row">
             <div class = "col">
-                <RadzenRadioButtonList @bind-Value=@accountStatus TValue="bool">
-                    <Items>
-                        <RadzenRadioButtonListItem Text="True" Value=true />
-                        <RadzenRadioButtonListItem Text="False" Value=false />
-                    </Items>
-                </RadzenRadioButtonList>
-                <h5 class="mb-4">Account Activation*</h5>
-            </div>
-            <div class = "col">
-                <RadzenRadioButtonList @bind-Value=@cardCreated TValue="bool">
-                    <Items>
-                        <RadzenRadioButtonListItem Text="True" Value=true />
-                        <RadzenRadioButtonListItem Text="False" Value=false />
-                    </Items>
-                </RadzenRadioButtonList>
-                <h5 class="mb-4">Card Created*</h5>
+                <RadzenTextBox @bind-Value=@cardInput Type="password" Change=@parseInput Class="w-100" />
             </div>
         </div>
         <br />
@@ -70,8 +62,8 @@ Fill in all required (*) information to add a new user.
                 <button class="btn btn-primary" @onclick=@cancel>Cancel</button>
             </div>
         </div>
-    </RadzenCard>
         
+    </RadzenCard>
         
 </div>
     
@@ -82,11 +74,11 @@ Fill in all required (*) information to add a new user.
     FirestoreDb fireStoreDb;
     private string firstName;
     private string lastName;
-    private string userID;
+    private string userId;
     private string email;
     private string pictureLink;
-    private bool cardCreated;
-    private bool accountStatus;
+    private string cardInput;
+    private string cardSerial;
 
 
     protected override async Task OnInitializedAsync()
@@ -103,19 +95,27 @@ Fill in all required (*) information to add a new user.
     {
         Dictionary<string, object> log = new Dictionary<string, object>
             {
+                { "cardSerial", cardSerial },
+                { "created", DateTime.UtcNow },
+                { "email", email },
                 { "firstname", firstName },
                 { "lastname", lastName },
-                { "email", email },
-                { "accountStatus", true },
-                { "cardCreated", cardCreated },
                 { "pictureLink", pictureLink },
-                { "created", DateTime.UtcNow }
+
             };
-            await fireStoreDb.Collection("users").Document(userID).SetAsync(log);
-            NavigationManager.NavigateTo("/usermanagement");
+        await fireStoreDb.Collection("users").Document(userId).SetAsync(log);
+        NavigationManager.NavigateTo("/usermanagement");
     }
 
     void cancel(){
         NavigationManager.NavigateTo("/usermanagement");
+    }
+
+    void parseInput()
+    {
+        string[] inputArgs = cardInput.Split('|');
+        cardSerial = inputArgs[1];
+        userId = inputArgs[2];
+        StateHasChanged();
     }
 }

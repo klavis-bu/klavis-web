@@ -23,7 +23,7 @@ else
             <RadzenCard Style="background-image: linear-gradient(180deg, #d1b4d4 100px, #eeeeee 125px);  margin: 10px;" >
                 <div class="flex-row">
                     <div class="flex-controls">
-                        
+                        <RadzenButton Click=@addUser Icon="note_add" ButtonStyle="ButtonStyle.Light" Style="margin-top: 15px;"/>
                     </div>
     
                 </div>
@@ -42,13 +42,13 @@ else
                     <tbody>
                         @foreach (Dictionary<string, object> user in users)
                             {
-                                if ((bool)user["cardCreated"] == false)
+                                if ((string) user["cardSerial"] == "")
                                 {
-                                    <tr style="background-color:#F54748">
+                                    <tr>
                                         <td><RadzenImage Path=@((string) user["pictureLink"]) Class="rounded-circle float-left mr-3" Style="width: 100px; height: 100px;" /></td>
                                         <td>@(user["firstname"] + " " + user["lastname"])</td>
                                         <td>@user["id"]</td>
-                                        <td><RadzenButton Click=@(args => createCard((string) user["id"])) Icon="note_add" ButtonStyle="ButtonStyle.Light" /></td>
+                                        <td><RadzenButton Click=@(args => createCard((string) user["id"])) Icon="credit_card" ButtonStyle="ButtonStyle.Light" Style="color: red"/></td>
                                         <td><RadzenButton Click=@(args => editUser((string) user["id"])) Icon="build" ButtonStyle="ButtonStyle.Light" /></td>
                                         <td><RadzenButton Click=@(args => deleteUser((string) user["id"])) Icon="delete" ButtonStyle="ButtonStyle.Light" /></td>
 
@@ -57,13 +57,13 @@ else
                             }
                         @foreach (Dictionary<string, object> user in users)
                             {
-                                if ((bool)user["cardCreated"] == true)
+                                if ((string) user["cardSerial"] != "")
                                 {
                                 <tr>
                                     <td><RadzenImage Path=@((string)user["pictureLink"]) Class="rounded-circle float-left mr-3" Style="width: 100px; height: 100px;" /></td>
                                     <td>@(user["firstname"] + " " + user["lastname"])</td>
                                     <td>@user["id"]</td>
-                                    <td><RadzenButton Click=@(args => createCard((string)user["id"])) Icon="note_add" ButtonStyle="ButtonStyle.Light" /></td>
+                                    <td><RadzenButton Click=@(args => createCard((string)user["id"])) Icon="credit_card" ButtonStyle="ButtonStyle.Light" /></td>
                                     <td><RadzenButton Click=@(args => editUser((string)user["id"])) Icon="build" ButtonStyle="ButtonStyle.Light" /></td>
                                     <td><RadzenButton Click=@(args => deleteUser((string)user["id"])) Icon="delete" ButtonStyle="ButtonStyle.Light" /></td>
 
