@@ -1,0 +1,309 @@
+/* _content/Klavis/Pages/CheckIn.razor.rz.scp.css */
+body[b-ewcz5d8uz3] {
+}
+
+.flex-row[b-ewcz5d8uz3] {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.flex-col[b-ewcz5d8uz3] {
+    float: left;
+    width: 500px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+
+.flex-history[b-ewcz5d8uz3] {
+    float: left;
+    width: 975px;
+    padding-right: 5px;
+    padding-left: 0px;
+}
+
+.flex-image[b-ewcz5d8uz3] {
+    width: 200px;
+    height: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 25px;
+}
+.flex-dropdown[b-ewcz5d8uz3] {
+    float: right;
+    padding-right: 15px;
+    margin-left: auto;
+}
+
+.flex-controls[b-ewcz5d8uz3] {
+    float: right;
+    height: 100px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-left: auto;
+    margin-right: 25px;
+}
+
+.table[b-ewcz5d8uz3] {
+    overflow: hidden;
+    overflow-y: scroll;
+}
+/* _content/Klavis/Pages/History.razor.rz.scp.css */
+body[b-sn7793qpr7] {
+}
+
+.flex-row[b-sn7793qpr7] {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.flex-col[b-sn7793qpr7] {
+    float: left;
+    width: 50%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.flex-history[b-sn7793qpr7] {
+    float: left;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.flex-button[b-sn7793qpr7] {
+    float: right;
+    height: 2.5rem;
+    padding-right: 15px;
+    margin-left: auto;
+}
+
+.flex-title[b-sn7793qpr7] {
+    float: left;
+    width: 30%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.flex-controls[b-sn7793qpr7] {
+    float: right;
+    height: 100px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-left: auto;
+}
+.flex-dropdown[b-sn7793qpr7] {
+    float: right;
+    padding-right: 15px;
+    margin-left: auto;
+}
+
+.table[b-sn7793qpr7] {
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+
+
+/* _content/Klavis/Pages/UserManagement.razor.rz.scp.css */
+body[b-2ay9j0uobj] {
+}
+
+.flex-row[b-2ay9j0uobj] {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.flex-col[b-2ay9j0uobj] {
+    float: left;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.flex-history[b-2ay9j0uobj] {
+    float: left;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.flex-button[b-2ay9j0uobj] {
+    float: right;
+    height: 2.5rem;
+    padding-right: 15px;
+    margin-left: auto;
+}
+
+.flex-title[b-2ay9j0uobj] {
+    float: left;
+    width: 30%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.flex-controls[b-2ay9j0uobj] {
+    float: right;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-left: auto;
+}
+
+.flex-dropdown[b-2ay9j0uobj] {
+    float: right;
+    padding-right: 15px;
+    margin-left: auto;
+}
+
+.table[b-2ay9j0uobj] {
+    overflow: hidden;
+    overflow-y: scroll;
+    margin-top: 100px;
+}
+/* _content/Klavis/Shared/MainLayout.razor.rz.scp.css */
+.page[b-7sxw4wnidi] {
+    background-color: #f3f6f4;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+
+main[b-7sxw4wnidi] {
+    flex: 1;
+    
+}
+
+.sidebar[b-7sxw4wnidi] {
+}
+
+.top-row[b-7sxw4wnidi] {
+    height: 80px;
+    background-image: linear-gradient(180deg, #3a0647 60px, #f3f6f4 80px);
+    justify-content: flex-end;
+    display: flex;
+    position: fixed;
+}
+
+    .top-row[b-7sxw4wnidi]  a, .top-row .btn-link[b-7sxw4wnidi] {
+        white-space: nowrap;
+        margin-left: 1.5rem;
+    }
+
+    .top-row a:first-child[b-7sxw4wnidi] {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+@media (max-width: 640.98px) {
+    .top-row:not(.auth)[b-7sxw4wnidi] {
+        display: none;
+    }
+
+    .top-row.auth[b-7sxw4wnidi] {
+        justify-content: space-between;
+    }
+
+    .top-row a[b-7sxw4wnidi], .top-row .btn-link[b-7sxw4wnidi] {
+        margin-left: 0;
+    }
+}
+
+@media (min-width: 641px) {
+    .page[b-7sxw4wnidi] {
+        flex-direction: row;
+    }
+
+    .sidebar[b-7sxw4wnidi] {
+        width: 250px;
+        height: 100vh;
+        position: sticky;
+        top: 0;
+    }
+
+    .top-row[b-7sxw4wnidi] {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+    .top-row[b-7sxw4wnidi], article[b-7sxw4wnidi] {
+        padding-left: 2rem !important;
+        padding-right: 1.5rem !important;
+    }
+}
+/* _content/Klavis/Shared/NavMenu.razor.rz.scp.css */
+.navbar-toggler[b-p4m2bcyvi3] {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.top-row[b-p4m2bcyvi3] {
+    height: 80px;
+    background-image: linear-gradient(180deg, #3a0647 60px, #f3f6f4 80px);
+}
+
+.navbar-brand[b-p4m2bcyvi3] {
+    font-size: 1.1rem;
+}
+
+.oi[b-p4m2bcyvi3] {
+    width: 2rem;
+    font-size: 1.1rem;
+    vertical-align: text-top;
+    top: -2px;
+}
+
+
+
+.nav-item[b-p4m2bcyvi3] {
+    margin-top: 5px;
+    font-size: 0.9rem;
+    padding-bottom: 0.5rem;
+    
+}
+
+    .nav-item:first-of-type[b-p4m2bcyvi3] {
+        padding-top: 1rem;
+    }
+
+    .nav-item:last-of-type[b-p4m2bcyvi3] {
+        padding-bottom: 1rem;
+    }
+
+    .nav-item[b-p4m2bcyvi3]  a {
+        color: #292929;
+        border-radius: 4px;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        line-height: 3rem;
+        background-color: rgba(194,194,194,0.25);
+    }
+
+        .nav-item[b-p4m2bcyvi3]  a.active {
+            background-image: linear-gradient(0deg, #d1b4d4 20%, #eeeeee 25%);
+            color: rebeccapurple;
+        }
+
+        .nav-item[b-p4m2bcyvi3]  a:hover {
+            background-color: rgba(194,194,194,0.4);
+            color: rebeccapurple;
+        }
+
+@media (min-width: 641px) {
+    .navbar-toggler[b-p4m2bcyvi3] {
+        display: none;
+    }
+
+    .collapse[b-p4m2bcyvi3] {
+        /* Never collapse the sidebar for wide screens */
+        display: block;
+    }
+}

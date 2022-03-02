@@ -1,31 +1,28 @@
 {
   "format": 1,
   "restore": {
-    "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\Klavis.csproj": {}
+    "/Users/diamond/Documents/senior_design/klavis-web/Klavis/Klavis/Klavis.csproj": {}
   },
   "projects": {
-    "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\Klavis.csproj": {
+    "/Users/diamond/Documents/senior_design/klavis-web/Klavis/Klavis/Klavis.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\Klavis.csproj",
+        "projectUniqueName": "/Users/diamond/Documents/senior_design/klavis-web/Klavis/Klavis/Klavis.csproj",
         "projectName": "Klavis",
-        "projectPath": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\Klavis.csproj",
-        "packagesPath": "C:\\Users\\isaac\\.nuget\\packages\\",
-        "outputPath": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\obj\\",
+        "projectPath": "/Users/diamond/Documents/senior_design/klavis-web/Klavis/Klavis/Klavis.csproj",
+        "packagesPath": "/Users/diamond/.nuget/packages/",
+        "outputPath": "/Users/diamond/Documents/senior_design/klavis-web/Klavis/Klavis/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\isaac\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/diamond/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -54,7 +51,7 @@
             },
             "Radzen.Blazor": {
               "target": "Package",
-              "version": "[3.14.11, )"
+              "version": "[3.16.1, )"
             }
           },
           "imports": [
@@ -75,7 +72,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.200/RuntimeIdentifierGraph.json"
         }
       }
     }

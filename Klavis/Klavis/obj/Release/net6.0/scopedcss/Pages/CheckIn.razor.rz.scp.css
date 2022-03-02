@@ -1,0 +1,52 @@
+body[b-ewcz5d8uz3] {
+}
+
+.flex-row[b-ewcz5d8uz3] {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.flex-col[b-ewcz5d8uz3] {
+    float: left;
+    width: 500px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+
+.flex-history[b-ewcz5d8uz3] {
+    float: left;
+    width: 975px;
+    padding-right: 5px;
+    padding-left: 0px;
+}
+
+.flex-image[b-ewcz5d8uz3] {
+    width: 200px;
+    height: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 25px;
+}
+.flex-dropdown[b-ewcz5d8uz3] {
+    float: right;
+    padding-right: 15px;
+    margin-left: auto;
+}
+
+.flex-controls[b-ewcz5d8uz3] {
+    float: right;
+    height: 100px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-left: auto;
+    margin-right: 25px;
+}
+
+.table[b-ewcz5d8uz3] {
+    overflow: hidden;
+    overflow-y: scroll;
+}
