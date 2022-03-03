@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "HQ/fp2aL/Ii7Ou6LHkG6d8xduYJMGy4BkTBGKwZSH6r6Z1LOrT9JoHw1uoZ0wyLIrmXyPIx5fQ/gXdyIos9bZw==",
+  "dgSpecHash": "khsL8zIqbRHPFPjNLQ06G6dE51aWgtho4JmApcQXQzEsSsHNzO3yzsLbXbqCGKVBiCrDNAB+vtilI7iJeh/6Fw==",
   "success": true,
   "projectFilePath": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\Klavis.csproj",
   "expectedPackageFiles": [
@@ -19,7 +19,6 @@
     "C:\\Users\\isaac\\.nuget\\packages\\grpc.core\\2.41.0\\grpc.core.2.41.0.nupkg.sha512",
     "C:\\Users\\isaac\\.nuget\\packages\\grpc.core.api\\2.41.0\\grpc.core.api.2.41.0.nupkg.sha512",
     "C:\\Users\\isaac\\.nuget\\packages\\libsassbuilder\\2.0.1\\libsassbuilder.2.0.1.nupkg.sha512",
-    "C:\\Users\\isaac\\.nuget\\packages\\microsoft.aspnetcore.authentication.google\\6.0.2\\microsoft.aspnetcore.authentication.google.6.0.2.nupkg.sha512",
     "C:\\Users\\isaac\\.nuget\\packages\\microsoft.aspnetcore.authorization\\5.0.0\\microsoft.aspnetcore.authorization.5.0.0.nupkg.sha512",
     "C:\\Users\\isaac\\.nuget\\packages\\microsoft.aspnetcore.components\\5.0.0\\microsoft.aspnetcore.components.5.0.0.nupkg.sha512",
     "C:\\Users\\isaac\\.nuget\\packages\\microsoft.aspnetcore.components.analyzers\\5.0.0\\microsoft.aspnetcore.components.analyzers.5.0.0.nupkg.sha512",
