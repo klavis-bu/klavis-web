@@ -1,0 +1,116 @@
+﻿@page "/login/{targetID}"
+@page "/"
+
+@using Google.Cloud.Firestore;
+@using System;
+@using Klavis.Models;
+@inject NavigationManager NavigationManager
+
+<PageTitle>Login</PageTitle>
+
+<h1>Admin Login</h1>
+
+    Login as an administrator here.
+
+@if (admins == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="row d-flex px-3">
+        <div class="col-xl-4 d-flex p-3">
+            <RadzenCard Style="width: 100%;">
+                <h2 class="mb-4">Simple login</h2>
+                <RadzenTemplateForm Data=@("SimpleLogin")>
+                    <RadzenLogin AllowRegister="false" AllowResetPassword="false" Login=@(args => OnLogin(args)) />
+                </RadzenTemplateForm>
+            </RadzenCard>
+        </div>
+    </div>
+}
+
+
+@code {
+    FirestoreDb fireStoreDb;
+    private string security_key_path = "wwwroot/klavis-4b8d1-eb6f81dfbefe.json";
+    private Google.Cloud.Firestore.Timestamp timestamp;
+    private string adminID;
+    private string determination;
+    private List<Dictionary<string, object>> admins = null;
+
+
+    private Dictionary<string, object> currentAdmin = new Dictionary<string, object>
+    {
+        { "email", ""},
+    };
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("Connecting");
+        string filepath = "wwwroot/klavis-4b8d1-eb6f81dfbefe.json";
+        Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", filepath);
+        fireStoreDb = FirestoreDb.Create("klavis-4b8d1");
+        queryAdmins();
+        StateHasChanged();
+    }
+
+    void OnError(UploadErrorEventArgs args, string name)
+    {
+        Console.WriteLine($"{args.Message}");
+    }
+
+    public async void queryAdmins()
+    {
+        try
+        {
+            Google.Cloud.Firestore.Query adminQuery = fireStoreDb.Collection("admins");
+            QuerySnapshot adminQuerySnapshot = await adminQuery.GetSnapshotAsync();
+            List<Dictionary<string, object>> records = new List<Dictionary<string, object>>();
+
+            foreach (DocumentSnapshot documentSnapshot in adminQuerySnapshot.Documents)
+            {
+                if (documentSnapshot.Exists)
+                {
+                    Dictionary<string, object> recordDictionary = documentSnapshot.ToDictionary();
+                    recordDictionary.Add("id", documentSnapshot.Id);
+                    records.Add(recordDictionary);
+                }
+
+            }
+            admins = records;
+            StateHasChanged();
+        }
+        catch
+        {
+            throw;
+        }
+
+
+    }
+
+    public async void sendQuery(string adminID)
+    {
+        bool login = false;
+        //Checkling User database
+        DocumentReference adminRef = fireStoreDb.Collection("admin").Document(adminID).;
+        DocumentSnapshot snapshot = await adminRef.GetSnapshotAsync();
+
+        if (snapshot.Exists)
+        {
+            NavigationManager.NavigateTo("/checkin");
+        }
+        else
+        {
+            // deny access + dialog popup
+        }
+        //logQuery(currentUser, terminalId, determination);
+    }
+
+    public async void OnLogin(string email)
+    {
+        //string adminID = from database ??
+        //sendQuery(adminID, email);
+    }
+}
