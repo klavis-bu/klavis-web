@@ -23,10 +23,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkVXNlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/OneDrive/Documents/GitHub/klavis-web/Klavis/Klavis/Pages/CheckIn.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hlY2tJbi5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 
-
 [D:/OneDrive/Documents/GitHub/klavis-web/Klavis/Klavis/Pages/Counter.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -35,16 +31,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRWRpdFVzZXIucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/OneDrive/Documents/GitHub/klavis-web/Klavis/Klavis/Pages/History.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSGlzdG9yeS5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 
-
 [D:/OneDrive/Documents/GitHub/klavis-web/Klavis/Klavis/Pages/Settings.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2V0dGluZ3MucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/OneDrive/Documents/GitHub/klavis-web/Klavis/Klavis/Pages/UserManagement.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlck1hbmFnZW1lbnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/OneDrive/Documents/GitHub/klavis-web/Klavis/Klavis/Shared/SurveyPrompt.razor]
@@ -54,6 +42,18 @@ build_metadata.AdditionalFiles.CssScope =
 [D:/OneDrive/Documents/GitHub/klavis-web/Klavis/Klavis/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
+
+[D:/OneDrive/Documents/GitHub/klavis-web/Klavis/Klavis/Pages/CheckIn.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hlY2tJbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-fibcpdlpnp
+
+[D:/OneDrive/Documents/GitHub/klavis-web/Klavis/Klavis/Pages/History.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSGlzdG9yeS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-bnqewglz96
+
+[D:/OneDrive/Documents/GitHub/klavis-web/Klavis/Klavis/Pages/UserManagement.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlck1hbmFnZW1lbnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-0ijel944k1
 
 [D:/OneDrive/Documents/GitHub/klavis-web/Klavis/Klavis/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=

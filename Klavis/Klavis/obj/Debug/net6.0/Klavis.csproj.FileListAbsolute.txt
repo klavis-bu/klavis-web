@@ -240,3 +240,7 @@ C:\Users\isaac\Documents\GitHub\klavis-web\Klavis\Klavis\obj\Debug\net6.0\scoped
 C:\Users\isaac\Documents\GitHub\klavis-web\Klavis\Klavis\obj\Debug\net6.0\scopedcss\projectbundle\Klavis.bundle.scp.css
 C:\Users\isaac\Documents\GitHub\klavis-web\Klavis\Klavis\obj\Debug\net6.0\Klavis.csproj.CopyComplete
 C:\Users\isaac\Documents\GitHub\klavis-web\Klavis\Klavis\obj\Debug\net6.0\Klavis.genruntimeconfig.cache
+D:\OneDrive\Documents\GitHub\klavis-web\Klavis\Klavis\obj\Debug\net6.0\scopedcss\Pages\CheckIn.razor.rz.scp.css
+D:\OneDrive\Documents\GitHub\klavis-web\Klavis\Klavis\obj\Debug\net6.0\scopedcss\Pages\History.razor.rz.scp.css
+D:\OneDrive\Documents\GitHub\klavis-web\Klavis\Klavis\obj\Debug\net6.0\scopedcss\Pages\UserManagement.razor.rz.scp.css
+D:\OneDrive\Documents\GitHub\klavis-web\Klavis\Klavis\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.Google.dll

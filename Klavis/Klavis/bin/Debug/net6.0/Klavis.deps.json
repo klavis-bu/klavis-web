@@ -9,6 +9,7 @@
       "Klavis/1.0.0": {
         "dependencies": {
           "Google.Cloud.Firestore": "2.5.0",
+          "Microsoft.AspNetCore.Authentication.Google": "6.0.2",
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.14.0",
           "Radzen.Blazor": "3.14.11"
         },
@@ -214,6 +215,14 @@
         }
       },
       "LibSassBuilder/2.0.1": {},
+      "Microsoft.AspNetCore.Authentication.Google/6.0.2": {
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Authentication.Google.dll": {
+            "assemblyVersion": "6.0.2.0",
+            "fileVersion": "6.0.222.6412"
+          }
+        }
+      },
       "Microsoft.AspNetCore.Authorization/5.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Metadata": "5.0.0",
@@ -422,6 +431,13 @@
       "sha512": "sha512-f+7TWQtCirW94VdzKL9SaAfeSF96TeEqdtDztmTGbndrcUlZZlL6uJLZKQCXQgj1BB3OqX0584OCvqFHrkAusA==",
       "path": "libsassbuilder/2.0.1",
       "hashPath": "libsassbuilder.2.0.1.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Authentication.Google/6.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Go4twMzp874xYtAVgFFkOlO/d9ia6ONmF8Lmc+9z7KJbf7wy+lTlWaVprPiwSQCxE2ymgm2brO640K0rBKYYKA==",
+      "path": "microsoft.aspnetcore.authentication.google/6.0.2",
+      "hashPath": "microsoft.aspnetcore.authentication.google.6.0.2.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Authorization/5.0.0": {
       "type": "package",
