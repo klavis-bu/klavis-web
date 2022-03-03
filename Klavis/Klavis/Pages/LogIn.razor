@@ -1,0 +1,56 @@
+﻿@layout LoginLayout
+@page "/"
+@using Klavis.Data
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager NavigationManager
+
+
+
+@using Google.Cloud.Firestore;
+@using System;
+@using Klavis.Models;
+<PageTitle>Index</PageTitle>
+
+<h1>Welcome</h1>
+
+Secuirty is a priority. Please fill out Admin Log In below.
+
+<RadzenLogin AllowRegister="false" AllowResetPassword="false"
+             Login="@(args => OnLogin(args, "Simple login"))" />
+<br />
+
+<p />
+<p />
+
+@code{
+
+    string userName = "admin";
+    string password = "admin";
+
+    string msg;
+    void OnLogin(LoginArgs args, string name)
+    {
+        msg = name + "-> UserName: " + args.Username + " and password:" + args.Password;
+
+    }
+    private User adm;
+    protected override Task OnInitializedAsync()
+
+    {
+        adm = new User();
+        return base.OnInitializedAsync();
+    }
+
+    private async Task<bool> ValidateUser()
+    {
+        //assume that use is valid
+        //call an API
+
+        ((CustomAuthenticationStateProvider)AuthenticationStateProvider).MarkUserAsAuthenticated(User.emailAddress);
+        NavigationManager.NavigateTo("/checkin");
+        return await Task.FromResult(true);
+    }
+
+
+
+}

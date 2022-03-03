@@ -1391,31 +1391,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\isaac\\.nuget\\packages\\": {},
-    "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "/Users/darkthaider/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\Klavis.csproj",
+      "projectUniqueName": "/Users/darkthaider/Desktop/klavis-web/Klavis/Klavis/Klavis.csproj",
       "projectName": "Klavis",
-      "projectPath": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\Klavis.csproj",
-      "packagesPath": "C:\\Users\\isaac\\.nuget\\packages\\",
-      "outputPath": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\obj\\",
+      "projectPath": "/Users/darkthaider/Desktop/klavis-web/Klavis/Klavis/Klavis.csproj",
+      "packagesPath": "/Users/darkthaider/.nuget/packages/",
+      "outputPath": "/Users/darkthaider/Desktop/klavis-web/Klavis/Klavis/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\isaac\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/darkthaider/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1465,7 +1458,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.200/RuntimeIdentifierGraph.json"
       }
     }
   }
