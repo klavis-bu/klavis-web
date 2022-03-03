@@ -2,7 +2,6 @@
 
 @using Google.Cloud.Firestore;
 @using System;
-@using Klavis.Models;
 
 <PageTitle>Access History</PageTitle>
 
@@ -57,28 +56,29 @@ else
 
 @code {
 
-    FirestoreDb fireStoreDb;
-    private string security_key_path = "wwwroot/klavis-4b8d1-eb6f81dfbefe.json";
-    private Google.Cloud.Firestore.Timestamp timestamp;
-    private List<Dictionary<string, object>> accessHistory = null;
+    FirestoreDb fireStoreDb = default!;
+    private List<Dictionary<string, object>> accessHistory = default!;
 
     private int[] dispnums = { 5, 10, 25 };
     private int displaysize = 0;
 
     protected override async Task OnInitializedAsync()
     {
-        Console.WriteLine("Connecting");
-        string filepath = "wwwroot/klavis-4b8d1-eb6f81dfbefe.json";
-        Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", filepath);
-        fireStoreDb = FirestoreDb.Create("klavis-4b8d1");
-
-        queryHistory("designlab");
+        await Task.Run(() =>
+        {
+            Console.WriteLine("Connecting");
+            string filepath = "wwwroot/klavis-4b8d1-eb6f81dfbefe.json";
+            Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", filepath);
+            fireStoreDb = FirestoreDb.Create("klavis-4b8d1");
+            
+        });
+        queryHistory("");
         StateHasChanged();
+        
     }
 
     async void queryHistory(string terminal)
     {
-        int i = 0;
         Google.Cloud.Firestore.Query historyQuery = fireStoreDb.Collection("history").WhereEqualTo("terminal",terminal);
         QuerySnapshot historyQuerySnapshot = await historyQuery.GetSnapshotAsync();
         List<Dictionary<string, object>> records = new List<Dictionary<string, object>>();

@@ -1,6 +1,6 @@
 ﻿@page "/checkin"
 @page "/"
-
+@inject DialogService DialogService
 @using Google.Cloud.Firestore;
 @using System;
 
@@ -11,11 +11,14 @@
         <h1>Check In</h1>
         <p>@connection</p>
     </div>
+
     <div class="flex-col" style="margin-left: auto">
+        <p>Location:</p>
         <RadzenDropDown AllowClear="true" TValue="string" Class="flex-dropdown " 
                         Data=@terminalList
                         Style="width: 40%; height: 2.5rem;"
                         @bind-Value=@current_terminal />
+        <RadzenButton Click=@clearCheckIn Icon="refresh" ButtonStyle="ButtonStyle.Light" Style=""/>
     </div>
 </div>
 
@@ -25,29 +28,29 @@
 <div class="flex-row" >
     
     <div class="flex-col">
-        <RadzenCard Style="background-image: linear-gradient(0deg, #d1b4d4 20%, #eeeeee 25%);  margin: 10px; height: 300px;" >
+        <RadzenCard Style="background-image: linear-gradient(0deg, #d1b4d4 20%, #eeeeee 25%);  margin: 10px; height: 315px;" >
             <div class="flex-image">
                 <RadzenImage Path=@accessIcon   Style="width: 200px; height: 200px;"/>
             </div>
             
-            <RadzenTextBox @bind-Value=@terminal_input Type="password" Change=@(args => execute(args, current_terminal)) Class="w-100" />
+            <RadzenTextBox @bind-Value=@terminal_input Type="password" Change=@(args => execute(args, current_terminal)) Class="w-100"  Style = "margin-top: 15px; text-align: center"/>
         </RadzenCard>
         
     </div>
     <div class="flex-col">
-        <RadzenCard Style="background-image: linear-gradient(0deg, #d1b4d4 20%, #eeeeee 25%);  margin: 10px; height: 300px;" >
+        <RadzenCard Style="background-image: linear-gradient(0deg, #d1b4d4 20%, #eeeeee 25%);  margin: 10px; height: 315px;" >
             <div class="flex-image">
                 <RadzenImage Path=@picturePath Class="rounded-circle"  Style="width: 200px; height: 200px;"/>
                 
             </div>
-            <div class = "flex-row">
-                <div class = "col">
-                    <b>Name:</b>
-                    <b role="status">@(firstName_label+" "+lastName_label)</b>
+            <div class = "flex-row" style = "height: 115px; ">
+                <div class = "col" style = "text-align: center;">
+                    <p>Name</p>
+                    <p style="font-size: 24px; font-weight: 600;border-top: 2px solid gray">@(firstName_label+" "+lastName_label)</p>
                 </div>
-                <div class = "col">
-                    <b>BUID: </b>
-                    <b>@userId_label</b>
+                <div class = "col" style = "text-align: center;">
+                    <p>BUID</p>
+                    <p style="font-size: 24px; font-weight: 600;border-top: 2px solid gray">@userId_label</p>
                 </div>
                 
                 
@@ -126,20 +129,19 @@
 
 
 @code {
-    FirestoreDb fireStoreDb;
-    private string security_key_path = "wwwroot/klavis-4b8d1-eb6f81dfbefe.json";
-    private string userId_label;
-    private string terminal_input;
-    private string current_terminal;
-    private string history_terminal;
-    private string firstName_label;
-    private string lastName_label;
+    FirestoreDb fireStoreDb = default!;
+    private string userId_label = default!;
+    private string terminal_input = default!;
+    private string current_terminal = default!;
+    private string history_terminal = default!;
+    private string firstName_label = " " ;
+    private string lastName_label = " ";
     private string picturePath = "user.png";
     private string accessIcon = "loading-buffering.gif";
     private string connection = "Disconnected";
-    private List<string> terminalList;
+    private List<string> terminalList = default!;
 
-    private List<Dictionary<string, object>> accessHistory = null;
+    private List<Dictionary<string, object>> accessHistory = default!;
     private int[] dispnums = { 5, 10, 25 };
     private int displaysize = 10;
 
@@ -148,7 +150,7 @@
             {"id", ""},
             {"cardCreated", false},
             {"cardSerial", ""},
-            {"created", null},
+            {"created", ""},
             {"email", ""},
             {"firstname", ""},
             {"lastname", ""},
@@ -160,10 +162,14 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Console.WriteLine("Connecting");
-        string filepath = "wwwroot/klavis-4b8d1-eb6f81dfbefe.json";
-        Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", filepath);
-        fireStoreDb = FirestoreDb.Create("klavis-4b8d1");
+        await Task.Run(() =>
+        {
+            Console.WriteLine("Connecting");
+            string filepath = "wwwroot/klavis-4b8d1-eb6f81dfbefe.json";
+            Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", filepath);
+            fireStoreDb = FirestoreDb.Create("klavis-4b8d1");
+
+        });
         queryTerminals();
         if(terminalList != null){ connection = "Connected"; }
         queryHistory();
@@ -176,23 +182,61 @@
         Console.WriteLine($"{args.Message}");
     }
 
-    void execute(string terminalInput, string terminalId)
+    async void execute(string terminalInput, string terminalId)
     {
+        terminal_input = "";
+        var count = terminalInput.Count(s => s == '|');
+        if(count != 3)
+        {
+            await ShowCardWarningDialog();
+            clearCheckIn();
+            StateHasChanged();
+            return;
+        }
+        if (!terminalList.Contains(terminalId))
+        {
+            await ShowLocationWarningDialog();
+            clearCheckIn();
+            StateHasChanged();
+            return;
+        }
         string[] inputArgs = terminalInput.Split('|');
         string cardSerial = inputArgs[1];
         string userId = inputArgs[2];
-        if(userId.Length == 8 && cardSerial.Length == 16 && terminalId != "")
+        if(userId.Length == 8 && cardSerial.Length == 16)
         {
             sendQuery(userId, cardSerial, terminalId);
         }
+        else
+        {
+            await ShowCardWarningDialog();
+        }
+        clearCheckIn();
+        StateHasChanged();
+    }
 
+    async Task ShowLocationWarningDialog()
+    {
+     await DialogService.OpenAsync("WARNING", ds =>
+        @<div>
+            Select a location before continuing!
+        </div>, new DialogOptions() { CloseDialogOnOverlayClick = true });
+    }
+
+    async Task ShowCardWarningDialog()
+    {
+     await DialogService.OpenAsync("WARNING", ds =>
+        @<div>
+            Invalid card data!
+    </div>
+       , new DialogOptions() { CloseDialogOnOverlayClick = true });
 
     }
 
     async void sendQuery(string userId, string cardSerial, string terminalId)
     {
         bool determination = false;
-        //Checkling User database
+        //Checking User database
         DocumentReference userRef = fireStoreDb.Collection("users").Document(userId);
         DocumentSnapshot snapshot = await userRef.GetSnapshotAsync();
         if (snapshot.Exists)
@@ -225,11 +269,7 @@
             currentUser["firstname"] = "User Not";
             currentUser["lastname"] = "Found";
 
-            firstName_label = "User not found.";
-            lastName_label = "";
-            userId_label = "Invalid ID";
-            accessIcon = "x.png";
-            picturePath = "user.png";
+            clearCheckIn();
         }
 
         terminal_input = "";
@@ -269,7 +309,6 @@
 
     async void queryHistory()
     {
-        int i = 0;
         Google.Cloud.Firestore.Query historyQuery = fireStoreDb.Collection("history").WhereEqualTo("terminal", history_terminal).OrderByDescending("timestamp");
         QuerySnapshot historyQuerySnapshot = await historyQuery.GetSnapshotAsync();
         List<Dictionary<string, object>> records = new List<Dictionary<string, object>>();
@@ -298,5 +337,14 @@
             documents = snapshot.Documents;
         }
         StateHasChanged();
+    }
+
+    void clearCheckIn()
+    {
+        firstName_label = " ";
+        lastName_label = " ";
+        userId_label = " ";
+        accessIcon = "loading-buffering.gif";
+        picturePath = "user.png";
     }
 }

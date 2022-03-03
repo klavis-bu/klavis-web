@@ -10,7 +10,7 @@
 
 Adjust information to edit an existing user.
 <div class = "d-flex flex-row">
-    <RadzenCard>
+    <RadzenCard Style="background-image: linear-gradient(0deg, #d1b4d4 20%, #eeeeee 25%);  margin: 10px;" >
 
         <h3 class="mb-4">Personal Information</h3>    
         <div class = "row">
@@ -56,14 +56,36 @@ Adjust information to edit an existing user.
         <br />
         <div class = "row">
             <div class = "col">
-                <button class="btn btn-primary" @onclick=@editUser>Submit</button>
+                <button class="btn btn-primary" @onclick=@edit>Submit</button>
             </div>
             <div class = "col">
                 <button class="btn btn-primary" @onclick=@cancel>Cancel</button>
             </div>
         </div>
     </RadzenCard>
+    <RadzenCard Style="background-image: linear-gradient(0deg, #d1b4d4 20%, #eeeeee 25%);  margin: 10px;" >
+
+        <h3 class="mb-4">Access</h3>    
+        <div class = "row">
+            <p>Design Lab</p>
+            <div class = "col">
+                <RadzenButton Click=@(args => grant("designlab")) Text="Grant" ButtonStyle="ButtonStyle.Success" />
+            </div>
+            <div class = "col">
+                <RadzenButton Click=@(args => revoke("designlab")) Text="Revoke" ButtonStyle="ButtonStyle.Danger" />
+            </div>
+        </div>
+        <div class = "row">
+            <p>Photonics</p>
+            <div class = "col">
+                <RadzenButton Click=@(args => grant("photonics")) Text="Grant" ButtonStyle="ButtonStyle.Success" />
+            </div>
+            <div class = "col">
+                <RadzenButton Click=@(args => revoke("photonics")) Text="Revoke" ButtonStyle="ButtonStyle.Danger" />
+            </div>
+        </div>
         
+    </RadzenCard>    
         
 </div>
     
@@ -71,16 +93,19 @@ Adjust information to edit an existing user.
 
 
 @code{
-    FirestoreDb fireStoreDb;
-    private string firstName;
-    private string lastName;
-    private string userId;
-    private string email;
-    private string pictureLink;
-    private string cardInput;
-    private string cardSerial;
+    FirestoreDb fireStoreDb = default!;
+    private string firstName = default!;
+    private string lastName = default!;
+    private string userId = default!;
+    private string email = default!;
+    private string pictureLink = default!;
+    private string cardInput = default!;
+    private string cardSerial = default!;
+    private string[] terminals = { "designlab", "photonics", "epic" };
+    private int[] terminalList = default!;
+
     [Parameter]
-    public string targetID{ get; set; }
+    public string targetID { get; set; } = default!;
 
     protected override void OnParametersSet()
     {
@@ -90,11 +115,15 @@ Adjust information to edit an existing user.
 
     protected override async Task OnInitializedAsync()
     {
-        Console.WriteLine("Connecting");
-        string filepath = "wwwroot/klavis-4b8d1-eb6f81dfbefe.json";
-        Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", filepath);
-        fireStoreDb = FirestoreDb.Create("klavis-4b8d1");
+        await Task.Run(() =>
+        {
+            Console.WriteLine("Connecting");
+            string filepath = "wwwroot/klavis-4b8d1-eb6f81dfbefe.json";
+            Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", filepath);
+            fireStoreDb = FirestoreDb.Create("klavis-4b8d1");
 
+
+        });
         DocumentReference userRef = fireStoreDb.Collection("users").Document(targetID);
         DocumentSnapshot snapshot = await userRef.GetSnapshotAsync();
         if (snapshot.Exists)
@@ -106,12 +135,12 @@ Adjust information to edit an existing user.
             email = (string) userDictionary["email"];
             cardSerial = (string)userDictionary["cardSerial"];
 
-        }
 
+        }
         StateHasChanged();
     }
 
-    async void editUser()
+    async void edit()
     {
 
         Dictionary<string, object> log = new Dictionary<string, object>
@@ -123,8 +152,8 @@ Adjust information to edit an existing user.
                 { "lastname", lastName },
                 { "pictureLink", pictureLink },
             };
-            await fireStoreDb.Collection("users").Document(userId).UpdateAsync(log);
-            NavigationManager.NavigateTo("/usermanagement");
+        await fireStoreDb.Collection("users").Document(userId).UpdateAsync(log);
+        NavigationManager.NavigateTo("/usermanagement");
     }
 
     void cancel(){
@@ -138,4 +167,20 @@ Adjust information to edit an existing user.
         userId = inputArgs[2];
         StateHasChanged();
     }
+
+    async void grant(string location)
+    {
+        DocumentReference accessRef = fireStoreDb.Collection("users").Document(userId).Collection("access").Document(location);
+        Dictionary<string, object> update = new Dictionary<string, object>
+            {
+                { "location", location }
+            };
+        await accessRef.SetAsync(update);
+    }
+    async void revoke(string location)
+    {
+        DocumentReference accessRef = fireStoreDb.Collection("users").Document(userId).Collection("access").Document(location);
+        await accessRef.DeleteAsync();
+    }
+
 }

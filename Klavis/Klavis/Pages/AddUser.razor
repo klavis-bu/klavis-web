@@ -35,28 +35,14 @@ Fill in all required (*) information to add a new user.
         </div>
         <div class = "row">
             <div class = "col">
-                <RadzenTextBox @bind-Value=@cardSerial  Class="w-100" />
-                <h5 class="mb-4">Card Serial</h5>
-            </div>
-        </div>
-        <div class = "row">
-            <div class = "col">
                 <RadzenTextBox @bind-Value=@pictureLink  Class="w-100" />
                 <h5 class="mb-4">Picture Link</h5>
             </div>
         </div>
         <br />
-        <h3 class="mb-4">Scan Card</h3> 
-        
         <div class = "row">
             <div class = "col">
-                <RadzenTextBox @bind-Value=@cardInput Type="password" Change=@parseInput Class="w-100" />
-            </div>
-        </div>
-        <br />
-        <div class = "row">
-            <div class = "col">
-                <button class="btn btn-primary" @onclick=@addUser>Submit</button>
+                <button class="btn btn-primary" @onclick=@add>Submit</button>
             </div>
             <div class = "col">
                 <button class="btn btn-primary" @onclick=@cancel>Cancel</button>
@@ -71,31 +57,34 @@ Fill in all required (*) information to add a new user.
 
 
 @code{
-    FirestoreDb fireStoreDb;
-    private string firstName;
-    private string lastName;
-    private string userId;
-    private string email;
-    private string pictureLink;
-    private string cardInput;
-    private string cardSerial;
+    FirestoreDb fireStoreDb = default!;
+    private string firstName = default!;
+    private string lastName = default!;
+    private string userId = default!;
+    private string email = default!;
+    private string pictureLink = default!;
+    private string cardInput = default!;
+    private string cardSerial = default!;
 
 
     protected override async Task OnInitializedAsync()
     {
-        Console.WriteLine("Connecting");
-        string filepath = "wwwroot/klavis-4b8d1-eb6f81dfbefe.json";
-        Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", filepath);
-        fireStoreDb = FirestoreDb.Create("klavis-4b8d1");
-
+        await Task.Run(() =>
+        {
+            Console.WriteLine("Connecting");
+            string filepath = "wwwroot/klavis-4b8d1-eb6f81dfbefe.json";
+            Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", filepath);
+            fireStoreDb = FirestoreDb.Create("klavis-4b8d1");
+        });
         StateHasChanged();
+        
     }
 
-    async void addUser()
+    async void add()
     {
-        Dictionary<string, object> log = new Dictionary<string, object>
+        Dictionary<string, object?> log = new Dictionary<string, object?>
             {
-                { "cardSerial", cardSerial },
+                { "cardSerial", "" },
                 { "created", DateTime.UtcNow },
                 { "email", email },
                 { "firstname", firstName },

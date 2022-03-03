@@ -2,7 +2,6 @@
 
 @using Google.Cloud.Firestore;
 @using System;
-@using Klavis.Models;
 @inject NavigationManager NavigationManager
 @inject IJSRuntime jsRuntime
 
@@ -23,7 +22,8 @@ else
             <RadzenCard Style="background-image: linear-gradient(180deg, #d1b4d4 100px, #eeeeee 125px);  margin: 10px;" >
                 <div class="flex-row">
                     <div class="flex-controls">
-                        <RadzenButton Click=@addUser Icon="note_add" ButtonStyle="ButtonStyle.Light" Style="margin-top: 15px;"/>
+                        <p style="font-weight: 600;">Add User  <RadzenButton Click=@addUser Icon="note_add" ButtonStyle="ButtonStyle.Light" Style="margin-top: 15px;"/></p>
+                        
                     </div>
     
                 </div>
@@ -83,35 +83,21 @@ else
 
 @code {
 
-    FirestoreDb fireStoreDb;
-    private string security_key_path = "wwwroot/klavis-4b8d1-eb6f81dfbefe.json";
-    private string userID;
-    private string terminal;
-    private string terminalList;
-    private string firstName;
-    private string lastName;
-    private string picturePath;
-    private Google.Cloud.Firestore.Timestamp timestamp;
-    private string connection = "Disconnected";
-    private bool accessStatus;
-    private bool accountStatus;
-    private List<Dictionary<string, object>> users = null;
+    FirestoreDb fireStoreDb = default!;
+    private List<Dictionary<string, object>> users = default!;
 
     protected override async Task OnInitializedAsync()
     {
-        Console.WriteLine("Connecting");
-        string filepath = "wwwroot/klavis-4b8d1-eb6f81dfbefe.json";
-        Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", filepath);
-        fireStoreDb = FirestoreDb.Create("klavis-4b8d1");
-
-        DocumentReference userRef = fireStoreDb.Collection("access").Document("designlab");
-        DocumentSnapshot snapshot = await userRef.GetSnapshotAsync();
-        if (snapshot.Exists)
+        await Task.Run(() =>
         {
-            connection = "Connected";
-        }
+            Console.WriteLine("Connecting");
+            string filepath = "wwwroot/klavis-4b8d1-eb6f81dfbefe.json";
+            Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", filepath);
+            fireStoreDb = FirestoreDb.Create("klavis-4b8d1");
+        });
         queryUsers();
         StateHasChanged();
+        
     }
 
     async void queryUsers()
@@ -146,7 +132,7 @@ else
         StateHasChanged();
     }
 
-    async void addUser()
+    void addUser()
     {
         NavigationManager.NavigateTo("/adduser");
     }
@@ -155,8 +141,10 @@ else
     {
         DocumentReference userRef = fireStoreDb.Collection("users").Document(id);
         await userRef.DeleteAsync();
+        queryUsers();
+        StateHasChanged();
     }
-    async void editUser(string id)
+    void editUser(string id)
     {
         NavigationManager.NavigateTo(("/edituser/"+id));
     }
@@ -164,6 +152,6 @@ else
     async void createCard(string id)
     {
         string url = "https://www.originpass.com/BU/";
-        await jsRuntime.InvokeAsync<object>("open", url, "_blank");
+        await jsRuntime.InvokeAsync<object>("open", System.Threading.CancellationToken.None, url, "_blank");
     }
 }
