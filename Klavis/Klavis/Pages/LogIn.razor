@@ -1,6 +1,7 @@
 ﻿@layout LoginLayout
 @page "/"
 @using Klavis.Data
+@using 
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager NavigationManager
 
@@ -15,6 +16,8 @@
 
 Secuirty is a priority. Please fill out Admin Log In below.
 
+<br />
+<img src=""
 <RadzenLogin AllowRegister="false" AllowResetPassword="false"
              Login="@(args => OnLogin(args, "Simple login"))" />
 <br />

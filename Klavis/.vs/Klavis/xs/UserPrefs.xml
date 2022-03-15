@@ -1,0 +1,45 @@
+﻿<Properties StartupConfiguration="{8BD53718-9AAE-4295-866E-C11FD571C730}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Klavis/Pages/LogIn.razor">
+    <Files>
+      <File FileName="Klavis/Program.cs" Line="13" Column="57" />
+      <File FileName="Klavis/Shared/NavMenu.razor" Line="31" Column="15" />
+      <File FileName="Klavis/App.razor" Line="14" Column="3" />
+      <File FileName="Klavis/Data/CustomAuthenticationStateProvider.cs" Line="1" Column="1" />
+      <File FileName="Klavis/Shared/LoginLayout.razor" Line="1" Column="1" />
+      <File FileName="Klavis/Shared/MainLayout.razor" Line="1" Column="1" />
+      <File FileName="Klavis/LogIn.razor" Line="33" Column="16" />
+      <File FileName="Klavis/Pages/CheckIn.razor" Line="11" Column="7" />
+      <File FileName="Klavis/_Imports.razor" Line="1" Column="1" />
+      <File FileName="Klavis/Admin.cs" Line="9" Column="4" />
+      <File FileName="Klavis/Models/User.cs" Line="11" Column="9" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Klavis" expanded="True">
+            <Node name="Klavis" expanded="True">
+              <Node name="Dependencies" expanded="True" />
+              <Node name="Data" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Pages" expanded="True" />
+              <Node name="Shared" expanded="True" />
+              <Node name="wwwroot" expanded="True">
+                <Node name="css" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.Klavis PreferredExecutionTarget="/Applications/Brave Browser.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+</Properties>
