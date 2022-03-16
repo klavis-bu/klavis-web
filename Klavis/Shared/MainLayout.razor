@@ -1,0 +1,33 @@
+﻿@inherits LayoutComponentBase
+
+<PageTitle>Klavis</PageTitle>
+
+<RadzenDialog/>
+
+<div class="page">
+    
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row">
+            <LoginDisplay/>
+            <RadzenButton Click=@reload Icon="refresh" ButtonStyle="ButtonStyle.Light" Style="margin-top: 15px;"/>
+
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+
+@code{
+    private void reload()
+    {
+        StateHasChanged();
+    }
+
+    
+}

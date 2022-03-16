@@ -1,0 +1,66 @@
+.navbar-toggler[b-8fax7pwjia] {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.top-row[b-8fax7pwjia] {
+    height: 80px;
+    background-image: linear-gradient(180deg, #3a0647 60px, #f3f6f4 80px);
+}
+
+.navbar-brand[b-8fax7pwjia] {
+    font-size: 1.1rem;
+}
+
+.oi[b-8fax7pwjia] {
+    width: 2rem;
+    font-size: 1.1rem;
+    vertical-align: text-top;
+    top: -2px;
+}
+
+
+
+.nav-item[b-8fax7pwjia] {
+    margin-top: 5px;
+    font-size: 0.9rem;
+    padding-bottom: 0.5rem;
+}
+
+    .nav-item:first-of-type[b-8fax7pwjia] {
+        padding-top: 1rem;
+    }
+
+    .nav-item:last-of-type[b-8fax7pwjia] {
+        padding-bottom: 1rem;
+    }
+
+    .nav-item[b-8fax7pwjia]  a {
+        color: #292929;
+        border-radius: 4px;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        line-height: 3rem;
+        background-color: rgba(194,194,194,0.25);
+    }
+
+        .nav-item[b-8fax7pwjia]  a.active {
+            background-image: linear-gradient(0deg, #d1b4d4 20%, #eeeeee 25%);
+            color: rebeccapurple;
+        }
+
+        .nav-item[b-8fax7pwjia]  a:hover {
+            background-color: rgba(194,194,194,0.4);
+            color: rebeccapurple;
+        }
+
+@media (min-width: 641px) {
+    .navbar-toggler[b-8fax7pwjia] {
+        display: none;
+    }
+
+    .collapse[b-8fax7pwjia] {
+        /* Never collapse the sidebar for wide screens */
+        display: block;
+    }
+}
