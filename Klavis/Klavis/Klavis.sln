@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1700.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Klavis", "Klavis.csproj", "{0238FC3B-E374-4D7E-9CFA-CC4B40DBB796}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0238FC3B-E374-4D7E-9CFA-CC4B40DBB796}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0238FC3B-E374-4D7E-9CFA-CC4B40DBB796}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0238FC3B-E374-4D7E-9CFA-CC4B40DBB796}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0238FC3B-E374-4D7E-9CFA-CC4B40DBB796}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AC08108E-677E-461D-ABF2-FD37BE4E294C}
+	EndGlobalSection
+EndGlobal
