@@ -46,6 +46,7 @@ namespace BlazorGmail.Server.Pages
                 authProperties);
             }
             return LocalRedirect("/_Host");
+            //ok
         }
     }
 }
