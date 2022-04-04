@@ -1,0 +1,80 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Klavis
+build_property.RootNamespace = Klavis
+build_property.ProjectDir = /Users/alexjedrey/Desktop/Klavis2022/klavis-web/Klavis/Klavis/
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /Users/alexjedrey/Desktop/Klavis2022/klavis-web/Klavis/Klavis
+build_property._RazorSourceGeneratorDebug = 
+
+[/Users/alexjedrey/Desktop/Klavis2022/klavis-web/Klavis/Klavis/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/alexjedrey/Desktop/Klavis2022/klavis-web/Klavis/Klavis/Pages/AddUser.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRkVXNlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/alexjedrey/Desktop/Klavis2022/klavis-web/Klavis/Klavis/Pages/Counter.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ291bnRlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/alexjedrey/Desktop/Klavis2022/klavis-web/Klavis/Klavis/Pages/EditUser.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRWRpdFVzZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/alexjedrey/Desktop/Klavis2022/klavis-web/Klavis/Klavis/Pages/Settings.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2V0dGluZ3MucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/alexjedrey/Desktop/Klavis2022/klavis-web/Klavis/Klavis/Shared/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL1N1cnZleVByb21wdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/alexjedrey/Desktop/Klavis2022/klavis-web/Klavis/Klavis/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/alexjedrey/Desktop/Klavis2022/klavis-web/Klavis/Klavis/Pages/CheckIn.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ2hlY2tJbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-ewcz5d8uz3
+
+[/Users/alexjedrey/Desktop/Klavis2022/klavis-web/Klavis/Klavis/Pages/History.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSGlzdG9yeS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-sn7793qpr7
+
+[/Users/alexjedrey/Desktop/Klavis2022/klavis-web/Klavis/Klavis/Pages/UserManagement.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlck1hbmFnZW1lbnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-2ay9j0uobj
+
+[/Users/alexjedrey/Desktop/Klavis2022/klavis-web/Klavis/Klavis/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL01haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-7sxw4wnidi
+
+[/Users/alexjedrey/Desktop/Klavis2022/klavis-web/Klavis/Klavis/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL05hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-p4m2bcyvi3
+
+[/Users/alexjedrey/Desktop/Klavis2022/klavis-web/Klavis/Klavis/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/alexjedrey/Desktop/Klavis2022/klavis-web/Klavis/Klavis/Pages/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/alexjedrey/Desktop/Klavis2022/klavis-web/Klavis/Klavis/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX0hvc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/alexjedrey/Desktop/Klavis2022/klavis-web/Klavis/Klavis/Pages/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX0xheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
