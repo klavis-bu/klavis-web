@@ -1,75 +1,41 @@
-﻿@inherits LayoutComponentBase
-@using System.Security.Claims
+﻿@using System.Security.Claims
 @using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor _httpContextAccessor
 @inject HttpClient Http
-@using Google.Cloud.Firestore;
-@using System;
-
-<PageTitle>Klavis</PageTitle>
 
 @if (User.Identity.Name != null)
 {
-    <div class="page">
     
-        <div class="sidebar">
-            <NavMenu />
-        </div>
-
-        <main>
-            <div class="top-row">
-                <div style="margin-top: 5px;">
-                    <img style="border-radius: 50%; width: 50px; height: 50px; border: 2px solid black; "src="@Avatar" />
-                    <a style="color: #fff; margin-right: 10px;">@GivenName @Surname    </a>
-                    <a class="ml-md-auto btn btn-primary"
-                        style="background-color: darkred"
-                        href="/Logout"
-                        target="_top">Logout</a>
-                </div>
-            </div>
-
-            <article class="content px-4">
-                @Body
-            </article>
-        </main>
+    <div style="margin-top: 5px;">
+        <img style="border-radius: 50%; width: 50px; height: 50px; border: 2px solid black; "src="@Avatar" />
+        <a style="color: #fff; margin-right: 10px;">@GivenName @Surname    </a>
+        <a class="ml-md-auto btn btn-primary"
+           style="background-color: darkred"
+           href="/Logout"
+           target="_top">Logout</a>
     </div>
-    
-    
 }
 else
 {
-    <div style="display: flex;"> 
-        <div style="margin: auto; margin-top: 10%">
-            <img style="border-radius: 30%; width: 350px; height: 350px;  "src="klavis.png" />
-        </div>
-    </div>
-    <div style="display: flex;">
-        <div style="margin: auto; margin-top: 25px">
-            <a class="ml-md-auto btn btn-primary"
-            style="background-color: #3a0647"
+    <div style="margin-top: 5px;">
+        <a class="ml-md-auto btn btn-primary"
             href="/Login"
             target="_top">Login</a>
-        </div>
     </div>
     
 }
-   
-
-    
 
 
-@code {
+@functions {
     private ClaimsPrincipal User;
-    private string GivenName = "";
-    private string Surname = "";
-    private string Avatar = "";
+    private string GivenName;
+    private string Surname;
+    private string Avatar;
 
-    
-    
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        
+
         try
         {
             // Set the user to determine if they are logged in
@@ -116,14 +82,7 @@ else
             {
                 Avatar = "";
             }
-
-            
         }
         catch { }
-    }
-    
-    private void reload()
-    {
-        StateHasChanged();
     }
 }

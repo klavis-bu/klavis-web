@@ -5,7 +5,6 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -22,8 +21,8 @@ namespace BlazorGmail.Server.Pages
             // Request a redirect to the external login provider.
             var authenticationProperties = new AuthenticationProperties
             {
-                RedirectUri = Url.Page("/Login", 
-                pageHandler: "Callback", 
+                RedirectUri = Url.Page("./Login",
+                pageHandler: "Callback",
                 values: new { returnUrl }),
             };
             return new ChallengeResult(provider, authenticationProperties);
@@ -45,8 +44,7 @@ namespace BlazorGmail.Server.Pages
                 new ClaimsPrincipal(GoogleUser),
                 authProperties);
             }
-            return LocalRedirect("/_Host");
-            //ok
+            return LocalRedirect("/");
         }
     }
 }
