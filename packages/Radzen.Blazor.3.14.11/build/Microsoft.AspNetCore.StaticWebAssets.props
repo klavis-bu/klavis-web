@@ -1,0 +1,193 @@
+﻿<Project>
+  <ItemGroup>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\css\dark-base.css">
+      <SourceType>Package</SourceType>
+      <SourceId>Radzen.Blazor</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Radzen.Blazor</BasePath>
+      <RelativePath>css\dark-base.css</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\css\dark.css">
+      <SourceType>Package</SourceType>
+      <SourceId>Radzen.Blazor</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Radzen.Blazor</BasePath>
+      <RelativePath>css\dark.css</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\css\default-base.css">
+      <SourceType>Package</SourceType>
+      <SourceId>Radzen.Blazor</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Radzen.Blazor</BasePath>
+      <RelativePath>css\default-base.css</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\css\default.css">
+      <SourceType>Package</SourceType>
+      <SourceId>Radzen.Blazor</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Radzen.Blazor</BasePath>
+      <RelativePath>css\default.css</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\css\humanistic-base.css">
+      <SourceType>Package</SourceType>
+      <SourceId>Radzen.Blazor</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Radzen.Blazor</BasePath>
+      <RelativePath>css\humanistic-base.css</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\css\humanistic.css">
+      <SourceType>Package</SourceType>
+      <SourceId>Radzen.Blazor</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Radzen.Blazor</BasePath>
+      <RelativePath>css\humanistic.css</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\css\software-base.css">
+      <SourceType>Package</SourceType>
+      <SourceId>Radzen.Blazor</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Radzen.Blazor</BasePath>
+      <RelativePath>css\software-base.css</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\css\software.css">
+      <SourceType>Package</SourceType>
+      <SourceId>Radzen.Blazor</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Radzen.Blazor</BasePath>
+      <RelativePath>css\software.css</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\css\standard-base.css">
+      <SourceType>Package</SourceType>
+      <SourceId>Radzen.Blazor</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Radzen.Blazor</BasePath>
+      <RelativePath>css\standard-base.css</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\css\standard.css">
+      <SourceType>Package</SourceType>
+      <SourceId>Radzen.Blazor</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Radzen.Blazor</BasePath>
+      <RelativePath>css\standard.css</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\fonts\MaterialIcons-Regular.woff">
+      <SourceType>Package</SourceType>
+      <SourceId>Radzen.Blazor</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Radzen.Blazor</BasePath>
+      <RelativePath>fonts\MaterialIcons-Regular.woff</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\fonts\roboto-v15-latin-300.woff">
+      <SourceType>Package</SourceType>
+      <SourceId>Radzen.Blazor</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Radzen.Blazor</BasePath>
+      <RelativePath>fonts\roboto-v15-latin-300.woff</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\fonts\roboto-v15-latin-700.woff">
+      <SourceType>Package</SourceType>
+      <SourceId>Radzen.Blazor</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Radzen.Blazor</BasePath>
+      <RelativePath>fonts\roboto-v15-latin-700.woff</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\fonts\roboto-v15-latin-regular.woff">
+      <SourceType>Package</SourceType>
+      <SourceId>Radzen.Blazor</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Radzen.Blazor</BasePath>
+      <RelativePath>fonts\roboto-v15-latin-regular.woff</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\fonts\SourceSansPro-Black.woff">
+      <SourceType>Package</SourceType>
+      <SourceId>Radzen.Blazor</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Radzen.Blazor</BasePath>
+      <RelativePath>fonts\SourceSansPro-Black.woff</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\fonts\SourceSansPro-BlackIt.woff">
+      <SourceType>Package</SourceType>
+      <SourceId>Radzen.Blazor</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Radzen.Blazor</BasePath>
+      <RelativePath>fonts\SourceSansPro-BlackIt.woff</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\fonts\SourceSansPro-Bold.woff">
+      <SourceType>Package</SourceType>
+      <SourceId>Radzen.Blazor</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Radzen.Blazor</BasePath>
+      <RelativePath>fonts\SourceSansPro-Bold.woff</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\fonts\SourceSansPro-BoldIt.woff">
+      <SourceType>Package</SourceType>
+      <SourceId>Radzen.Blazor</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Radzen.Blazor</BasePath>
+      <RelativePath>fonts\SourceSansPro-BoldIt.woff</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\fonts\SourceSansPro-ExtraLight.woff">
+      <SourceType>Package</SourceType>
+      <SourceId>Radzen.Blazor</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Radzen.Blazor</BasePath>
+      <RelativePath>fonts\SourceSansPro-ExtraLight.woff</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\fonts\SourceSansPro-ExtraLightIt.woff">
+      <SourceType>Package</SourceType>
+      <SourceId>Radzen.Blazor</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Radzen.Blazor</BasePath>
+      <RelativePath>fonts\SourceSansPro-ExtraLightIt.woff</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\fonts\SourceSansPro-It.woff">
+      <SourceType>Package</SourceType>
+      <SourceId>Radzen.Blazor</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Radzen.Blazor</BasePath>
+      <RelativePath>fonts\SourceSansPro-It.woff</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\fonts\SourceSansPro-Light.woff">
+      <SourceType>Package</SourceType>
+      <SourceId>Radzen.Blazor</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Radzen.Blazor</BasePath>
+      <RelativePath>fonts\SourceSansPro-Light.woff</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\fonts\SourceSansPro-LightIt.woff">
+      <SourceType>Package</SourceType>
+      <SourceId>Radzen.Blazor</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Radzen.Blazor</BasePath>
+      <RelativePath>fonts\SourceSansPro-LightIt.woff</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\fonts\SourceSansPro-Regular.woff">
+      <SourceType>Package</SourceType>
+      <SourceId>Radzen.Blazor</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Radzen.Blazor</BasePath>
+      <RelativePath>fonts\SourceSansPro-Regular.woff</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\fonts\SourceSansPro-Semibold.woff">
+      <SourceType>Package</SourceType>
+      <SourceId>Radzen.Blazor</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Radzen.Blazor</BasePath>
+      <RelativePath>fonts\SourceSansPro-Semibold.woff</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\fonts\SourceSansPro-SemiboldIt.woff">
+      <SourceType>Package</SourceType>
+      <SourceId>Radzen.Blazor</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Radzen.Blazor</BasePath>
+      <RelativePath>fonts\SourceSansPro-SemiboldIt.woff</RelativePath>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$(MSBuildThisFileDirectory)..\staticwebassets\Radzen.Blazor.js">
+      <SourceType>Package</SourceType>
+      <SourceId>Radzen.Blazor</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Radzen.Blazor</BasePath>
+      <RelativePath>Radzen.Blazor.js</RelativePath>
+    </StaticWebAsset>
+  </ItemGroup>
+</Project>

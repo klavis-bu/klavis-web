@@ -1,24 +1,25 @@
 .page[b-fsa6v1daxo] {
+    background-color: #f3f6f4;
     position: relative;
     display: flex;
     flex-direction: column;
 }
 
+
 main[b-fsa6v1daxo] {
     flex: 1;
+    
 }
 
 .sidebar[b-fsa6v1daxo] {
-    background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
 }
 
 .top-row[b-fsa6v1daxo] {
-    background-color: #f7f7f7;
-    border-bottom: 1px solid #d6d5d5;
+    height: 80px;
+    background-image: linear-gradient(180deg, #3a0647 60px, #f3f6f4 80px);
     justify-content: flex-end;
-    height: 3.5rem;
     display: flex;
-    align-items: center;
+    position: fixed;
 }
 
     .top-row[b-fsa6v1daxo]  a, .top-row .btn-link[b-fsa6v1daxo] {

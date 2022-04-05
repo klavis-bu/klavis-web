@@ -3,126 +3,209 @@
 
 @using Google.Cloud.Firestore;
 @using System;
+@using Klavis.Models
 
 <PageTitle>Check In</PageTitle>
 
 <div class="flex-row">
     <div class="flex-col">
-        <h1>Check In</h1>
-        <p>@connection</p>
+        <h5 class="mt-1 mb-0">Check In - @connection</h5>
     </div>
-    <div class="flex-col" style="margin-left: auto">
-        <RadzenDropDown AllowClear="true" TValue="string" Class="flex-dropdown " 
-                        Data=@terminalList
-                        Style="width: 40%; height: 2.5rem;"
-                        @bind-Value=@current_terminal />
-    </div>
+
 </div>
 
 
 
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-8">
+                <RadzenCard Style="background-image: linear-gradient(180deg, #d1b4d4 100px, #eeeeee 125px);  margin: 10px;">
 
-<div class="flex-row" >
-    
-    <div class="flex-col">
-        <RadzenCard Style="background-image: linear-gradient(0deg, #d1b4d4 20%, #eeeeee 25%);  margin: 10px; height: 300px;" >
-            <div class="flex-image">
-                <RadzenImage Path=@accessIcon   Style="width: 200px; height: 200px;"/>
-            </div>
-            
-            <RadzenTextBox @bind-Value=@terminal_input Type="password" Change=@(args => execute(args, current_terminal)) Class="w-100" />
-        </RadzenCard>
-        
-    </div>
-    <div class="flex-col">
-        <RadzenCard Style="background-image: linear-gradient(0deg, #d1b4d4 20%, #eeeeee 25%);  margin: 10px; height: 300px;" >
-            <div class="flex-image">
-                <RadzenImage Path=@picturePath Class="rounded-circle"  Style="width: 200px; height: 200px;"/>
-                
-            </div>
-            <div class = "flex-row">
-                <div class = "col">
-                    <b>Name:</b>
-                    <b role="status">@(firstName_label+" "+lastName_label)</b>
-                </div>
-                <div class = "col">
-                    <b>BUID: </b>
-                    <b>@userId_label</b>
-                </div>
-                
-                
-            </div>
-        </RadzenCard>
-        
-        
-    </div>
-</div>
+                    <div class="row" style="width:100%;text-align:center; vertical-align:central">
+                        <div class="col">
+                            <h3><b># Entries Displayed</b></h3>
+                            <RadzenDropDown AllowClear="true" TValue="int" Class="flex-dropdown"
+                                            Data=@dispnums
+                                            @bind-Value=@displaysize />
+                        </div>
+                        <div class="col">
+                            <h3><b>Location</b></h3>
 
-<div class="flex-history">
 
-    <RadzenCard Style="background-image: linear-gradient(180deg, #d1b4d4 100px, #eeeeee 125px);  margin: 10px;" >
-        <div class="flex-row">
-            <div class="flex-controls">
-                <p><b># Entries Displayed</b></p>
-                <RadzenDropDown AllowClear="true" TValue="int" Class="flex-dropdown " 
-                                Data=@dispnums
-                                Style="width: 40%; height: 2.5rem
-                                LoadData= ;"
-                                @bind-Value=@displaysize />
-            </div>
-            <div class="flex-controls">
-                <p><b>Location</b></p>
-                <RadzenDropDown AllowClear="true" TValue="string" Class="flex-dropdown " 
-                        Data=@terminalList
-                        Style="width: 100%; height: 2.5rem;"
-                        Change=@queryHistory
-                        @bind-Value=@history_terminal />
-            </div>
+                            <RadzenDropDown AllowClear="true" TValue="string" Class="flex-dropdown "
+                                            Data=@terminalList
+                                            Change=@queryHistory
+                                            @bind-Value=@history_terminal />
 
-            <RadzenButton Click=@queryHistory Icon="refresh" ButtonStyle="ButtonStyle.Light" Style="margin-top: 15px;"/>
-    
-        </div>
+                        </div>
 
-        @if (accessHistory == null)
-        {
-            <p><em>Loading...</em></p>
-        }
-        else
-        {
-    
-            <div class = "row">
-               <table class="table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>ID</th>
-                        <th>Terminal</th>
-                        <th>Timestamp</th>
-                        <th>Determination</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (int tablectr = 0; tablectr < displaysize; tablectr++)
+                    </div>
+
+                    <RadzenButton Click=@queryHistory Icon="refresh" ButtonStyle="ButtonStyle.Light" Style="margin-top: 15px;" />
+                    <br />
+
+                    @if (accessHistory == null)
                     {
-                            @if (tablectr >= accessHistory.Count){ continue; }
-                            <tr>
-                                <td>@(accessHistory[tablectr]["firstname"] + " " + accessHistory[tablectr]["lastname"])</td>
-                                <td>@accessHistory[tablectr]["id"]</td>
-                                <td>@accessHistory[tablectr]["terminal"]</td>
-                                <td>@accessHistory[tablectr]["timestamp"]</td>
-                                <td>@accessHistory[tablectr]["determination"]</td>
-                            </tr>
+                        <div class="flex-image">
+                            <RadzenImage Path=@accessIcon Style="width: 200px; height: 200px;" />
+                        </div>
                     }
-                </tbody>
-            </table> 
-            
+                    else if (!accessHistory.Any())
+                    {
+                        <p>Data is not available</p>
+                    }
+                    else
+                    {
+                        <div class="row">
+                            <RadzenDataGrid @ref="accessGrid" AllowFiltering="true" AllowPaging="true" PageSize=@displaysize AllowSorting="true"
+                                        Data="@accessList" TItem="AccessInfo">
+
+                                <Columns>
+                                    <RadzenDataGridColumn Width="50px" TItem="AccessInfo" Filterable="false" Sortable="false" TextAlign="TextAlign.Center">
+                                        <HeaderTemplate>
+                                            <b>#</b>
+                                        </HeaderTemplate>
+                                        <Template Context="data">
+                                            <h6 class="mt-1 mb-0"> @(accessList.IndexOf(data) + 1) </h6>
+                                        </Template>
+                                    </RadzenDataGridColumn>
+
+                                    <RadzenDataGridColumn TItem="AccessInfo" Property="firstName">
+                                        <HeaderTemplate>
+                                            <p class="text-capitalize"> <b>Name</b></p>
+                                        </HeaderTemplate>
+                                        <Template Context="AccessInfo">
+                                            <h6 class="mt-1 mb-0">@AccessInfo.FirstName @AccessInfo.LastName</h6>
+                                            <p class="m-0" style="font-size: 0.8em;">@AccessInfo.Id</p>
+                                        </Template>
+
+                                    </RadzenDataGridColumn>
+
+                                    <RadzenDataGridColumn TItem="AccessInfo" Property="Terminal">
+                                        <HeaderTemplate>
+                                            <p class="text-capitalize"> <b>Terminal</b></p>
+                                        </HeaderTemplate>
+                                        <Template Context="AccessInfo">
+                                            <h6 class="mt-1 mb-0">@AccessInfo.Terminal</h6>
+                                        </Template>
+
+                                    </RadzenDataGridColumn>
+
+                                    <RadzenDataGridColumn TItem="AccessInfo" Property="TimeStamp" Filterable="false" Sortable="false">
+                                        <HeaderTemplate>
+                                            <p class="text-capitalize"> <b>Time Stamp</b></p>
+                                        </HeaderTemplate>
+                                        <Template Context="AccessInfo">
+                                            <h6 class="mt-1 mb-0">@AccessInfo.TimeStamp</h6>
+                                        </Template>
+
+                                    </RadzenDataGridColumn>
+
+                                    <RadzenDataGridColumn TItem="AccessInfo" Property="Dertimination" TextAlign="TextAlign.Center" Filterable="false" Sortable="false">
+                                        <HeaderTemplate>
+                                            <p class="text-capitalize"> <b>Determination</b></p>
+                                        </HeaderTemplate>
+                                        <Template Context="AccessInfo">
+                                            @if (AccessInfo.Determination)
+                                            {
+                                                <RadzenImage Path=@checkPath Class="rounded-circle" Style="width: 30px; height: 30px;" />
+                                            }
+                                            else
+                                            {
+                                                <RadzenImage Path=@xPath Class="rounded-circle" Style="width: 30px; height: 30px;" />
+                                            }
+                                        </Template>
+
+                                    </RadzenDataGridColumn>
+
+                                </Columns>
+
+                            </RadzenDataGrid>
+
+                        </div>
+
+
+
+                        @*<div class="container">
+                            <table class="table">
+                            <thead>
+                            <tr>
+                            <th>Name</th>
+                            <th>ID</th>
+                            <th>Terminal</th>
+                            <th>Timestamp</th>
+                            <th>Determination</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @for (int tablectr = 0; tablectr < displaysize; tablectr++)
+                            {
+
+                            @if (tablectr >= accessHistory.Count) { continue; }
+                            <tr>
+                            <td>@(accessHistory[tablectr]["firstname"] + " " + accessHistory[tablectr]["lastname"])</td>
+                            <td>@accessHistory[tablectr]["id"]</td>
+                            <td>@accessHistory[tablectr]["terminal"]</td>
+                            <td>@accessHistory[tablectr]["timestamp"]</td>
+                            <td>@accessHistory[tablectr]["determination"]</td>
+                            </tr>
+                            }
+                            </tbody>
+                            </table>
+
+                            </div>*@
+                    }
+
+                </RadzenCard>
+
             </div>
-        }
+            <div class="col-md-4">
 
-    </RadzenCard>
-        
+                <RadzenCard Style="background-image: linear-gradient(0deg, #d1b4d4 20%, #eeeeee 25%);  margin: 10px;">
+                    <div class="flex-image">
+                        <RadzenImage Path=@accessIcon Style="width: 200px; height: 200px;" />
+                    </div>
+
+                    <RadzenTextBox @bind-Value=@terminal_input Type="password" Change=@(args => execute(args, current_terminal)) Class="w-100" />
+                </RadzenCard>
+
+
+                <RadzenCard Style="background-image: linear-gradient(0deg, #d1b4d4 20%, #eeeeee 25%);  margin: 10px;">
+                    <div class="flex-image">
+                        <RadzenImage Path=@picturePath Class="rounded-circle" Style="width: 200px; height: 200px;" />
+
+                    </div>
+                    <div class="flex-row">
+                        <div class="col">
+                            <b>Name:</b>
+                            <b role="status">@(firstName_label+" "+lastName_label)</b>
+                        </div>
+                        <div class="col">
+                            <b>BUID: </b>
+                            <b>@userId_label</b>
+                        </div>
+
+
+                    </div>
+                </RadzenCard>
+                <RadzenCard Style="background-image: linear-gradient(0deg, #d1b4d4 20%, #eeeeee 25%);  margin: 10px;">
+
+
+
+                    <div class="flex-col" style="margin-left: auto">
+                        <RadzenDropDown AllowClear="true" TValue="string" Class="flex-dropdown "
+                                        Data=@terminalList
+                                        Style="width: 40%; height: 2.5rem;"
+                                        @bind-Value=@current_terminal />
+                    </div>
+                </RadzenCard>
+
+
+            </div>
+        </div>
+    </div>
 </div>
-
 
 
 @code {
@@ -135,11 +218,19 @@
     private string firstName_label;
     private string lastName_label;
     private string picturePath = "user.png";
+    private string xPath = "x.png";
+    private string checkPath = "check.png";
     private string accessIcon = "loading-buffering.gif";
     private string connection = "Disconnected";
     private List<string> terminalList;
 
+    RadzenDataGrid<AccessInfo> accessGrid;
+
+    List<AccessInfo> accessList = new List<AccessInfo>();
+
+
     private List<Dictionary<string, object>> accessHistory = null;
+
     private int[] dispnums = { 5, 10, 25 };
     private int displaysize = 10;
 
@@ -165,7 +256,7 @@
         Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", filepath);
         fireStoreDb = FirestoreDb.Create("klavis-4b8d1");
         queryTerminals();
-        if(terminalList != null){ connection = "Connected"; }
+        if (terminalList != null) { connection = "Connected"; }
         queryHistory();
         StateHasChanged();
     }
@@ -181,7 +272,7 @@
         string[] inputArgs = terminalInput.Split('|');
         string cardSerial = inputArgs[1];
         string userId = inputArgs[2];
-        if(userId.Length == 8 && cardSerial.Length == 16 && terminalId != "")
+        if (userId.Length == 8 && cardSerial.Length == 16 && terminalId != "")
         {
             sendQuery(userId, cardSerial, terminalId);
         }
@@ -199,12 +290,12 @@
         {
 
             currentUser = snapshot.ToDictionary();
-            firstName_label = (string) currentUser["firstname"];
-            lastName_label = (string) currentUser["lastname"];
-            picturePath = (string) currentUser["pictureLink"];
+            firstName_label = (string)currentUser["firstname"];
+            lastName_label = (string)currentUser["lastname"];
+            picturePath = (string)currentUser["pictureLink"];
             userId_label = userId;
             currentUser["id"] = userId;
-            if((string) currentUser["cardSerial"] == cardSerial)
+            if ((string)currentUser["cardSerial"] == cardSerial)
             {
                 userRef = fireStoreDb.Collection("users").Document(userId).Collection("access").Document(terminalId);
                 snapshot = await userRef.GetSnapshotAsync();
@@ -279,7 +370,17 @@
             records.Add(recordDictionary);
         }
         accessHistory = records;
-        StateHasChanged(); 
+
+        accessList = records.Select(r => new AccessInfo
+            {
+                FirstName = r["firstname"] != null ? r["firstname"].ToString() : "",
+                LastName = r["lastname"] != null ? r["lastname"].ToString() : "",
+                Terminal = r["terminal"] != null ? r["terminal"].ToString() : "",
+                Id = r["id"] != null ? r["id"].ToString() : "",
+                Determination = Convert.ToBoolean(r["determination"]),
+                TimeStamp = r["timestamp"] != null ? r["timestamp"].ToString() : ""
+            }).ToList();
+        StateHasChanged();
 
 
     }

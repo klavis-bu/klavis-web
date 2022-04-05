@@ -1,0 +1,56 @@
+body[b-0ijel944k1] {
+}
+
+.flex-row[b-0ijel944k1] {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.flex-col[b-0ijel944k1] {
+    float: left;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.flex-history[b-0ijel944k1] {
+    float: left;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.flex-button[b-0ijel944k1] {
+    float: right;
+    height: 2.5rem;
+    padding-right: 15px;
+    margin-left: auto;
+}
+
+.flex-title[b-0ijel944k1] {
+    float: left;
+    width: 30%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.flex-controls[b-0ijel944k1] {
+    float: right;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-left: auto;
+}
+
+.flex-dropdown[b-0ijel944k1] {
+    float: right;
+    padding-right: 15px;
+    margin-left: auto;
+}
+
+.table[b-0ijel944k1] {
+    overflow: hidden;
+    overflow-y: scroll;
+    margin-top: 100px;
+}

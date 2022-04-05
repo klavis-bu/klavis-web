@@ -1,0 +1,58 @@
+body[b-bnqewglz96] {
+}
+
+.flex-row[b-bnqewglz96] {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.flex-col[b-bnqewglz96] {
+    float: left;
+    width: 50%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.flex-history[b-bnqewglz96] {
+    float: left;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.flex-button[b-bnqewglz96] {
+    float: right;
+    height: 2.5rem;
+    padding-right: 15px;
+    margin-left: auto;
+}
+
+.flex-title[b-bnqewglz96] {
+    float: left;
+    width: 30%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.flex-controls[b-bnqewglz96] {
+    float: right;
+    height: 100px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-left: auto;
+}
+.flex-dropdown[b-bnqewglz96] {
+    float: right;
+    padding-right: 15px;
+    margin-left: auto;
+}
+
+.table[b-bnqewglz96] {
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+
+

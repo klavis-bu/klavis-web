@@ -1,35 +1,76 @@
 ﻿@inherits LayoutComponentBase
-
+<RadzenDialog></RadzenDialog>
 <PageTitle>Klavis</PageTitle>
 
 
 
-<div class="page">
-    
+@*<div class="page">
+
     <div class="sidebar">
-        <NavMenu />
+    <NavMenu />
     </div>
 
     <main>
-        <div class="top-row">
-            <div class="g-signin2" data-onsuccess="onSignIn"></div>
-            <RadzenButton Click=@reload Icon="refresh" ButtonStyle="ButtonStyle.Light" Style="margin-top: 15px;"/>
+    <div class="top-row">
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <RadzenButton Click=@reload Icon="refresh" ButtonStyle="ButtonStyle.Light" Style="margin-top: 15px;"/>
+
+    </div>
+
+    <article class="content px-4">
+
+    </article>
+    </main>
+    </div>*@
+
+<div class="card">
+
+    <div class="card-header sticky-top bg-white">
+        <div class="row">
+            <div class="col-md-2">
+                <a class="navbar-brand" href="" style="font-size: 40px; font-weight:800; padding-top: 0rem">KLAVIS</a>
+            </div>
+            <div class="col-md-10">
+                <ul class="nav nav-tabs card-header-tabs" style="position:absolute;bottom:0">
+                    <li class="nav-item">
+                        <NavLink class="nav-link text-dark nav-ta" href="checkin">
+                            <span class="oi oi-key" aria-hidden="true"></span> Check In
+                        </NavLink>
+                    </li>
+                    <li class="nav-item">
+                        <NavLink class="nav-link text-dark" href="usermanagement">
+                            <span class="oi oi-plus" aria-hidden="true"></span> User Actions
+                        </NavLink>
+                    </li>
+                </ul>
+            </div>
 
         </div>
 
-        <article class="content px-4">
+    </div>
+    <div class="card-body">
+        <article class="content px-4 bg-light">
             @Body
         </article>
-    </main>
+    </div>
 </div>
 
-@code{
+@code {
     private string terminal = "None";
     private List<string> terminals;
+
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
     private void reload()
     {
         StateHasChanged();
     }
 
-    
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
 }

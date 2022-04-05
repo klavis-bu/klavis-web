@@ -1,25 +1,195 @@
+/* _content/Klavis/Pages/CheckIn.razor.rz.scp.css */
+body[b-fibcpdlpnp] {
+}
+
+.flex-row[b-fibcpdlpnp] {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.flex-col[b-fibcpdlpnp] {
+    float: left;
+    width: 500px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+
+.flex-history[b-fibcpdlpnp] {
+    float: left;
+    width: 975px;
+    padding-right: 5px;
+    padding-left: 0px;
+}
+
+.flex-image[b-fibcpdlpnp] {
+    width: 200px;
+    height: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 25px;
+}
+.flex-dropdown[b-fibcpdlpnp] {
+    float: right;
+    padding-right: 15px;
+    margin-left: auto;
+}
+
+.flex-controls[b-fibcpdlpnp] {
+    float: right;
+    height: 100px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-left: auto;
+    margin-right: 25px;
+}
+
+.table[b-fibcpdlpnp] {
+    overflow: hidden;
+    overflow-y: scroll;
+}
+/* _content/Klavis/Pages/History.razor.rz.scp.css */
+body[b-bnqewglz96] {
+}
+
+.flex-row[b-bnqewglz96] {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.flex-col[b-bnqewglz96] {
+    float: left;
+    width: 50%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.flex-history[b-bnqewglz96] {
+    float: left;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.flex-button[b-bnqewglz96] {
+    float: right;
+    height: 2.5rem;
+    padding-right: 15px;
+    margin-left: auto;
+}
+
+.flex-title[b-bnqewglz96] {
+    float: left;
+    width: 30%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.flex-controls[b-bnqewglz96] {
+    float: right;
+    height: 100px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-left: auto;
+}
+.flex-dropdown[b-bnqewglz96] {
+    float: right;
+    padding-right: 15px;
+    margin-left: auto;
+}
+
+.table[b-bnqewglz96] {
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+
+
+/* _content/Klavis/Pages/UserManagement.razor.rz.scp.css */
+body[b-0ijel944k1] {
+}
+
+.flex-row[b-0ijel944k1] {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.flex-col[b-0ijel944k1] {
+    float: left;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.flex-history[b-0ijel944k1] {
+    float: left;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.flex-button[b-0ijel944k1] {
+    float: right;
+    height: 2.5rem;
+    padding-right: 15px;
+    margin-left: auto;
+}
+
+.flex-title[b-0ijel944k1] {
+    float: left;
+    width: 30%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.flex-controls[b-0ijel944k1] {
+    float: right;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-left: auto;
+}
+
+.flex-dropdown[b-0ijel944k1] {
+    float: right;
+    padding-right: 15px;
+    margin-left: auto;
+}
+
+.table[b-0ijel944k1] {
+    overflow: hidden;
+    overflow-y: scroll;
+    margin-top: 100px;
+}
 /* _content/Klavis/Shared/MainLayout.razor.rz.scp.css */
 .page[b-fsa6v1daxo] {
+    background-color: #f3f6f4;
     position: relative;
     display: flex;
     flex-direction: column;
 }
 
+
 main[b-fsa6v1daxo] {
     flex: 1;
+    
 }
 
 .sidebar[b-fsa6v1daxo] {
-    background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
 }
 
 .top-row[b-fsa6v1daxo] {
-    background-color: #f7f7f7;
-    border-bottom: 1px solid #d6d5d5;
+    height: 80px;
+    background-image: linear-gradient(180deg, #3a0647 60px, #f3f6f4 80px);
     justify-content: flex-end;
-    height: 3.5rem;
     display: flex;
-    align-items: center;
+    position: fixed;
 }
 
     .top-row[b-fsa6v1daxo]  a, .top-row .btn-link[b-fsa6v1daxo] {
@@ -75,8 +245,8 @@ main[b-fsa6v1daxo] {
 }
 
 .top-row[b-8fax7pwjia] {
-    height: 3.5rem;
-    background-color: rgba(0,0,0,0.4);
+    height: 80px;
+    background-image: linear-gradient(180deg, #3a0647 60px, #f3f6f4 80px);
 }
 
 .navbar-brand[b-8fax7pwjia] {
@@ -90,9 +260,13 @@ main[b-fsa6v1daxo] {
     top: -2px;
 }
 
+
+
 .nav-item[b-8fax7pwjia] {
+    margin-top: 5px;
     font-size: 0.9rem;
     padding-bottom: 0.5rem;
+    
 }
 
     .nav-item:first-of-type[b-8fax7pwjia] {
@@ -104,23 +278,24 @@ main[b-fsa6v1daxo] {
     }
 
     .nav-item[b-8fax7pwjia]  a {
-        color: #d7d7d7;
+        color: #292929;
         border-radius: 4px;
         height: 3rem;
         display: flex;
         align-items: center;
         line-height: 3rem;
+        background-color: rgba(194,194,194,0.25);
     }
 
-.nav-item[b-8fax7pwjia]  a.active {
-    background-color: rgba(255,255,255,0.25);
-    color: white;
-}
+        .nav-item[b-8fax7pwjia]  a.active {
+            background-image: linear-gradient(0deg, #d1b4d4 20%, #eeeeee 25%);
+            color: rebeccapurple;
+        }
 
-.nav-item[b-8fax7pwjia]  a:hover {
-    background-color: rgba(255,255,255,0.1);
-    color: white;
-}
+        .nav-item[b-8fax7pwjia]  a:hover {
+            background-color: rgba(194,194,194,0.4);
+            color: rebeccapurple;
+        }
 
 @media (min-width: 641px) {
     .navbar-toggler[b-8fax7pwjia] {

@@ -1,5 +1,11 @@
 {
   "Version": 1,
-  "ProjectMap": {},
-  "NextColorIndex": 0
+  "ProjectMap": {
+    "2cf20bd1-4ec3-4717-a7f9-c7c9dc2d4177": {
+      "ProjectGuid": "2cf20bd1-4ec3-4717-a7f9-c7c9dc2d4177",
+      "DisplayName": "Klavis",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
 }

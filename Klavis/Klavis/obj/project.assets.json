@@ -1391,24 +1391,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\isaac\\.nuget\\packages\\": {},
-    "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\amire\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\Klavis.csproj",
+      "projectUniqueName": "C:\\Users\\amire\\source\\repos\\klavis-web\\Klavis\\Klavis\\Klavis.csproj",
       "projectName": "Klavis",
-      "projectPath": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\Klavis.csproj",
-      "packagesPath": "C:\\Users\\isaac\\.nuget\\packages\\",
-      "outputPath": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\obj\\",
+      "projectPath": "C:\\Users\\amire\\source\\repos\\klavis-web\\Klavis\\Klavis\\Klavis.csproj",
+      "packagesPath": "C:\\Users\\amire\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\amire\\source\\repos\\klavis-web\\Klavis\\Klavis\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\isaac\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\amire\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1465,7 +1460,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }
