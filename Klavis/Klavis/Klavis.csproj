@@ -15,7 +15,6 @@
     <Compile Remove="Models\DataAccess.cs" />
     <Compile Remove="Models\Record.cs" />
     <Compile Remove="Models\Terminals.cs" />
-    <Compile Remove="Models\User.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,10 +26,6 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="6.0.3" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\" />
   </ItemGroup>
 
   <ItemGroup>

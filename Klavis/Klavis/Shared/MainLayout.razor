@@ -6,11 +6,12 @@
 @using Google.Cloud.Firestore;
 @using System;
 
+<RadzenDialog></RadzenDialog>
 <PageTitle>Klavis</PageTitle>
 
 @if (User.Identity.Name != null)
 {
-    <div class="page">
+<div class="page">
     
         <div class="sidebar">
             <NavMenu />
@@ -122,8 +123,18 @@ else
         catch { }
     }
     
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
     private void reload()
     {
         StateHasChanged();
+    }
+
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
     }
 }

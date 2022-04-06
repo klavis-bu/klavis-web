@@ -2,102 +2,138 @@
 
 @using Google.Cloud.Firestore;
 @using System;
+@using Klavis.Models;
 @inject NavigationManager NavigationManager
 @inject IJSRuntime jsRuntime
+@inject DialogService DialogService
+@inject IJSRuntime JsRuntime
 
 <PageTitle>User Management</PageTitle>
 
-<h1>User Management</h1>
-
-Add, remove, and modify user access permissions here.
-
 @if (users == null)
 {
-    <p><em>Loading...</em></p>
+    <div class="flex-image">
+        <RadzenImage Path=@bufferingImage Style="width: 200px; height: 200px;" />
+    </div>
 }
 else
 {
-    <div class="flex-row" >
+    <h5>Add, remove, and modify user access permissions here.</h5>
+    <div class="flex-row">
         <div class="flex-col">
-            <RadzenCard Style="background-image: linear-gradient(180deg, #d1b4d4 100px, #eeeeee 125px);  margin: 10px;" >
+            <RadzenCard Style="background-image: linear-gradient(180deg, #d1b4d4 75px, #eeeeee 100px);  margin: 10px;">
                 <div class="flex-row">
                     <div class="flex-controls">
-                        <p style="font-weight: 600;">Add User  <RadzenButton Click=@addUser Icon="note_add" ButtonStyle="ButtonStyle.Light" Style="margin-top: 15px;"/></p>
-                        
+                        <RadzenButton Click=@addUser Icon="note_add" ButtonStyle="ButtonStyle.Light" Style="margin-top: 10px;" />
                     </div>
-    
-                </div>
-                <div class="row">
-                    <table class="table">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Name</th>
-                            <th>ID</th>
-                            <th>Add Card</th>
-                            <th>Modify</th>
-                            <th>Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (Dictionary<string, object> user in users)
-                            {
-                                if ((string) user["cardSerial"] == "")
-                                {
-                                    <tr>
-                                        <td><RadzenImage Path=@((string) user["pictureLink"]) Class="rounded-circle float-left mr-3" Style="width: 100px; height: 100px;" /></td>
-                                        <td>@(user["firstname"] + " " + user["lastname"])</td>
-                                        <td>@user["id"]</td>
-                                        <td><RadzenButton Click=@(args => createCard((string) user["id"])) Icon="credit_card" ButtonStyle="ButtonStyle.Light" Style="color: red"/></td>
-                                        <td><RadzenButton Click=@(args => editUser((string) user["id"])) Icon="build" ButtonStyle="ButtonStyle.Light" /></td>
-                                        <td><RadzenButton Click=@(args => deleteUser((string) user["id"])) Icon="delete" ButtonStyle="ButtonStyle.Light" /></td>
 
-                                    </tr>
-                                }
-                            }
-                        @foreach (Dictionary<string, object> user in users)
-                            {
-                                if ((string) user["cardSerial"] != "")
-                                {
-                                <tr>
-                                    <td><RadzenImage Path=@((string)user["pictureLink"]) Class="rounded-circle float-left mr-3" Style="width: 100px; height: 100px;" /></td>
-                                    <td>@(user["firstname"] + " " + user["lastname"])</td>
-                                    <td>@user["id"]</td>
-                                    <td><RadzenButton Click=@(args => createCard((string)user["id"])) Icon="credit_card" ButtonStyle="ButtonStyle.Light" /></td>
-                                    <td><RadzenButton Click=@(args => editUser((string)user["id"])) Icon="build" ButtonStyle="ButtonStyle.Light" /></td>
-                                    <td><RadzenButton Click=@(args => deleteUser((string)user["id"])) Icon="delete" ButtonStyle="ButtonStyle.Light" /></td>
-
-                                </tr>
-                                }
-                            }
-                    </tbody>
-                </table>
                 </div>
-                
+                <br />
+                <div class="row" style="margin-top: 10px">
+                    <RadzenDataGrid @ref="usersGrid" AllowFiltering="true" AllowPaging="true" PageSize="5" AllowSorting="true"
+                                Data="@userList" TItem="User">
+                        <Columns>
+                            <RadzenDataGridColumn Width="50px" TItem="User" Title="#" Filterable="false" Sortable="false" TextAlign="TextAlign.Center">
+                                <HeaderTemplate>
+                                    <b>#</b>
+                                </HeaderTemplate>
+                                <Template Context="data">
+                                    <h6 class="mt-1 mb-0">@(userList.IndexOf(data) + 1)</h6>
+                                </Template>
+                            </RadzenDataGridColumn>
+
+                            <RadzenDataGridColumn TItem="User" Property="firstName" Title="User">
+                                <HeaderTemplate>
+                                    <p class="text-capitalize"> <b>User</b></p>
+                                </HeaderTemplate>
+                                <Template Context="User">
+                                    <RadzenImage Path=@((string) @User.pictureLink) Class="rounded-circle float-left mr-3" Style="width: 40px; height: 40px; border-radius: 8px; margin-right: 8px; float: left;" />
+                                    <h6 class="mt-1 mb-0">@User.firstName @User.lastName</h6>
+                                    <p class="m-0" style="font-size: 0.8em;">@User.userID</p>
+                                </Template>
+
+                            </RadzenDataGridColumn>
+                            <RadzenDataGridColumn TItem="User" Title="Add Card" Filterable="false" Sortable="false" TextAlign="TextAlign.Center">
+                                <HeaderTemplate>
+                                    <p class="text-capitalize"> <b>Add Card</b></p>
+                                </HeaderTemplate>
+                                <Template Context="User">
+
+                                    @if (string.IsNullOrWhiteSpace(User.cardSerial))
+                                    {
+                                        <RadzenButton Click=@(args => createCard((string) @User.userID)) Icon="credit_card" ButtonStyle="ButtonStyle.Light" Style="color: red" />
+                                    }
+                                    else
+                                    {
+                                        <RadzenButton Click=@(args => createCard((string) @User.userID)) Icon="credit_card" ButtonStyle="ButtonStyle.Light" />
+                                    }
+                                </Template>
+                            </RadzenDataGridColumn>
+                            <RadzenDataGridColumn TItem="User" Title="Modify" Filterable="false" Sortable="false" TextAlign="TextAlign.Center">
+                                <HeaderTemplate>
+                                    <p class="text-capitalize"> <b>Modify</b></p>
+                                </HeaderTemplate>
+                                <Template Context="User">
+                                    <RadzenButton Click=@(args => editUser((string) @User.userID)) Icon="build" ButtonStyle="ButtonStyle.Light" />
+                                </Template>
+                            </RadzenDataGridColumn>
+                            <RadzenDataGridColumn TItem="User" Title="Delete" Filterable="false" Sortable="false" TextAlign="TextAlign.Center">
+                                <HeaderTemplate>
+                                    <p class="text-capitalize"> <b>Delete</b></p>
+                                </HeaderTemplate>
+                                <Template Context="User">
+                                    <RadzenButton Click=@(args => deleteUser((string) @User.userID)) Icon="delete" ButtonStyle="ButtonStyle.Light" />
+                                </Template>
+                            </RadzenDataGridColumn>
+
+                        </Columns>
+                    </RadzenDataGrid>
+
+                </div>
+
             </RadzenCard>
-        
+
         </div>
     </div>
-    
+
 }
+
 
 @code {
 
-    FirestoreDb fireStoreDb = default!;
-    private List<Dictionary<string, object>> users = default!;
+    FirestoreDb fireStoreDb;
+    private string security_key_path = "wwwroot/klavis-4b8d1-eb6f81dfbefe.json";
+    private string userID;
+    private string terminal;
+    private string terminalList;
+    private string firstName;
+    private string lastName;
+    private string picturePath;
+    private Google.Cloud.Firestore.Timestamp timestamp;
+    private string connection = "Disconnected";
+    private bool accessStatus;
+    private bool accountStatus;
+    private List<Dictionary<string, object>> users = null;
+    private string bufferingImage = "loading-buffering.gif";
+    RadzenDataGrid<User> usersGrid;
+
+    List<User> userList = new List<User>();
 
     protected override async Task OnInitializedAsync()
     {
-        await Task.Run(() =>
+        Console.WriteLine("Connecting");
+        string filepath = "wwwroot/klavis-4b8d1-eb6f81dfbefe.json";
+        Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", filepath);
+        fireStoreDb = FirestoreDb.Create("klavis-4b8d1");
+
+        DocumentReference userRef = fireStoreDb.Collection("access").Document("designlab");
+        DocumentSnapshot snapshot = await userRef.GetSnapshotAsync();
+        if (snapshot.Exists)
         {
-            Console.WriteLine("Connecting");
-            string filepath = "wwwroot/klavis-4b8d1-eb6f81dfbefe.json";
-            Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", filepath);
-            fireStoreDb = FirestoreDb.Create("klavis-4b8d1");
-        });
+            connection = "Connected";
+        }
         queryUsers();
         StateHasChanged();
-        
     }
 
     async void queryUsers()
@@ -112,7 +148,16 @@ else
             records.Add(recordDictionary);
         }
         users = records;
-        StateHasChanged(); 
+
+        userList = records.Select(r => new User
+            {
+                firstName = r["firstname"].ToString(),
+                lastName = r["lastname"].ToString(),
+                pictureLink = r["pictureLink"] != null ? r["pictureLink"].ToString() : string.Empty,
+                cardSerial = r["cardSerial"] != null ?  r["cardSerial"].ToString() : string.Empty,
+                userID = r["id"].ToString()
+            }).ToList();
+        StateHasChanged();
 
     }
 
@@ -132,26 +177,33 @@ else
         StateHasChanged();
     }
 
-    void addUser()
+    async void addUser()
     {
-        NavigationManager.NavigateTo("/adduser");
+        //NavigationManager.NavigateTo("/adduser");
+
+        await DialogService.OpenAsync<AddUser>("Add User",
+               null,
+               new DialogOptions() { Resizable = true, Draggable = true });
     }
+
 
     async void deleteUser(string id)
     {
         DocumentReference userRef = fireStoreDb.Collection("users").Document(id);
         await userRef.DeleteAsync();
-        queryUsers();
-        StateHasChanged();
     }
-    void editUser(string id)
+    async void editUser(string id)
     {
-        NavigationManager.NavigateTo(("/edituser/"+id));
+        //NavigationManager.NavigateTo(("/edituser/"+id));
+
+        await DialogService.OpenAsync<EditUser>("Edit User",
+               new Dictionary<string, object>() { { "targetID", id } },
+               new DialogOptions() { Resizable = true, Draggable = true });
     }
 
     async void createCard(string id)
     {
         string url = "https://www.originpass.com/BU/";
-        await jsRuntime.InvokeAsync<object>("open", System.Threading.CancellationToken.None, url, "_blank");
+        await jsRuntime.InvokeAsync<object>("open", url, "_blank");
     }
 }
