@@ -72,6 +72,11 @@ namespace Klavis
         {
             if (env.IsDevelopment())
             {
+                app.Use((context, next) =>
+                {
+                    context.Request.Scheme = "https";
+                    return next(context);
+                });
                 app.UseDeveloperExceptionPage();
             }
             else
@@ -81,6 +86,11 @@ namespace Klavis
                 app.UseHsts();
             }
 
+            app.Use((context, next) =>
+            {
+                context.Request.Scheme = "https";
+                return next(context);
+            });
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
