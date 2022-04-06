@@ -248,3 +248,5 @@ D:\OneDrive\Documents\GitHub\klavis-web\Klavis\Klavis\bin\Debug\net6.0\Microsoft
 D:\OneDrive\Documents\GitHub\klavis-web\Klavis\Klavis\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
 D:\OneDrive\Documents\GitHub\klavis-web\Klavis\Klavis\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 D:\OneDrive\Documents\GitHub\klavis-web\Klavis\Klavis\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+D:\OneDrive\Documents\GitHub\klavis-web\Klavis\Klavis\bin\Debug\net6.0\Klavis.xml
+D:\OneDrive\Documents\GitHub\klavis-web\Klavis\Klavis\obj\Debug\net6.0\Klavis.xml

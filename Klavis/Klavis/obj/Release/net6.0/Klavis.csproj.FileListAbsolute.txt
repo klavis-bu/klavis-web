@@ -116,3 +116,5 @@ D:\OneDrive\Documents\GitHub\klavis-web\Klavis\Klavis\bin\Release\net6.0\Microso
 D:\OneDrive\Documents\GitHub\klavis-web\Klavis\Klavis\bin\Release\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 D:\OneDrive\Documents\GitHub\klavis-web\Klavis\Klavis\bin\Release\net6.0\Microsoft.Extensions.Configuration.dll
 D:\OneDrive\Documents\GitHub\klavis-web\Klavis\Klavis\bin\Release\net6.0\Newtonsoft.Json.Bson.dll
+D:\OneDrive\Documents\GitHub\klavis-web\Klavis\Klavis\bin\Release\net6.0\Klavis.xml
+D:\OneDrive\Documents\GitHub\klavis-web\Klavis\Klavis\obj\Release\net6.0\Klavis.xml
