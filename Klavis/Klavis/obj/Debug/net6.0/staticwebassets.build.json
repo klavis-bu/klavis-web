@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "vTboDYXi4GVWO+8lWdxmAPauh3u90DfuNtdR38h1BrA=",
+  "Hash": "hugHvrC+1ZCTwsY714Szyo44ky9t/eDHB/tvngJWQrA=",
   "Source": "Klavis",
   "BasePath": "_content/Klavis",
   "Mode": "Default",
@@ -763,6 +763,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\wwwroot\\klavis.png",
+      "SourceId": "Klavis",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\wwwroot\\",
+      "BasePath": "_content/Klavis",
+      "RelativePath": "klavis.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\klavis.png"
     },
     {
       "Identity": "D:\\OneDrive\\Documents\\GitHub\\klavis-web\\Klavis\\Klavis\\wwwroot\\klavis-4b8d1-eb6f81dfbefe.json",

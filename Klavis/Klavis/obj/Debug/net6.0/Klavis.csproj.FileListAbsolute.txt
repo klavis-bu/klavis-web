@@ -202,7 +202,6 @@ D:\OneDrive\Documents\GitHub\klavis-web\Klavis\Klavis\bin\Debug\net6.0\Klavis.ex
 D:\OneDrive\Documents\GitHub\klavis-web\Klavis\Klavis\bin\Debug\net6.0\Klavis.deps.json
 D:\OneDrive\Documents\GitHub\klavis-web\Klavis\Klavis\bin\Debug\net6.0\Klavis.runtimeconfig.json
 D:\OneDrive\Documents\GitHub\klavis-web\Klavis\Klavis\bin\Debug\net6.0\Klavis.dll
-D:\OneDrive\Documents\GitHub\klavis-web\Klavis\Klavis\bin\Debug\net6.0\ref\Klavis.dll
 D:\OneDrive\Documents\GitHub\klavis-web\Klavis\Klavis\bin\Debug\net6.0\Klavis.pdb
 D:\OneDrive\Documents\GitHub\klavis-web\Klavis\Klavis\bin\Debug\net6.0\Google.Api.CommonProtos.dll
 D:\OneDrive\Documents\GitHub\klavis-web\Klavis\Klavis\bin\Debug\net6.0\Google.Api.Gax.dll
@@ -243,3 +242,9 @@ D:\OneDrive\Documents\GitHub\klavis-web\Klavis\Klavis\obj\Debug\net6.0\Klavis.dl
 D:\OneDrive\Documents\GitHub\klavis-web\Klavis\Klavis\obj\Debug\net6.0\ref\Klavis.dll
 D:\OneDrive\Documents\GitHub\klavis-web\Klavis\Klavis\obj\Debug\net6.0\Klavis.pdb
 D:\OneDrive\Documents\GitHub\klavis-web\Klavis\Klavis\obj\Debug\net6.0\Klavis.genruntimeconfig.cache
+D:\OneDrive\Documents\GitHub\klavis-web\Klavis\Klavis\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.Google.dll
+D:\OneDrive\Documents\GitHub\klavis-web\Klavis\Klavis\obj\Debug\net6.0\refint\Klavis.dll
+D:\OneDrive\Documents\GitHub\klavis-web\Klavis\Klavis\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+D:\OneDrive\Documents\GitHub\klavis-web\Klavis\Klavis\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\OneDrive\Documents\GitHub\klavis-web\Klavis\Klavis\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\OneDrive\Documents\GitHub\klavis-web\Klavis\Klavis\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll

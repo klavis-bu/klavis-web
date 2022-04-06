@@ -1,15 +1,15 @@
 /* _content/Klavis/Pages/CheckIn.razor.rz.scp.css */
-body[b-ewcz5d8uz3] {
+body[b-fibcpdlpnp] {
 }
 
-.flex-row[b-ewcz5d8uz3] {
+.flex-row[b-fibcpdlpnp] {
     display: flex;
     flex-wrap: wrap;
     margin-right: -15px;
     margin-left: -15px;
 }
 
-.flex-col[b-ewcz5d8uz3] {
+.flex-col[b-fibcpdlpnp] {
     float: left;
     width: 500px;
     padding-right: 15px;
@@ -17,14 +17,15 @@ body[b-ewcz5d8uz3] {
 }
 
 
-.flex-history[b-ewcz5d8uz3] {
+.flex-history[b-fibcpdlpnp] {
     float: left;
     width: 975px;
     padding-right: 5px;
     padding-left: 0px;
+    
 }
 
-.flex-image[b-ewcz5d8uz3] {
+.flex-image[b-fibcpdlpnp] {
     width: 200px;
     height: 200px;
     display: block;
@@ -32,13 +33,13 @@ body[b-ewcz5d8uz3] {
     margin-right: auto;
     margin-bottom: 25px;
 }
-.flex-dropdown[b-ewcz5d8uz3] {
+.flex-dropdown[b-fibcpdlpnp] {
     float: right;
     padding-right: 15px;
     margin-left: auto;
 }
 
-.flex-controls[b-ewcz5d8uz3] {
+.flex-controls[b-fibcpdlpnp] {
     float: right;
     height: 100px;
     padding-right: 15px;
@@ -47,7 +48,7 @@ body[b-ewcz5d8uz3] {
     margin-right: 25px;
 }
 
-.table[b-ewcz5d8uz3] {
+.table[b-fibcpdlpnp] {
     overflow: hidden;
     overflow-y: scroll;
 }

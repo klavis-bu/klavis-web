@@ -1,0 +1,56 @@
+body[b-zbxf6kept0] {
+}
+
+.flex-row[b-zbxf6kept0] {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.flex-col[b-zbxf6kept0] {
+    float: left;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.flex-history[b-zbxf6kept0] {
+    float: left;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.flex-button[b-zbxf6kept0] {
+    float: right;
+    height: 2.5rem;
+    padding-right: 15px;
+    margin-left: auto;
+}
+
+.flex-title[b-zbxf6kept0] {
+    float: left;
+    width: 30%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.flex-controls[b-zbxf6kept0] {
+    float: right;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-left: auto;
+}
+
+.flex-dropdown[b-zbxf6kept0] {
+    float: right;
+    padding-right: 15px;
+    margin-left: auto;
+}
+
+.table[b-zbxf6kept0] {
+    overflow: hidden;
+    overflow-y: scroll;
+    margin-top: 100px;
+}

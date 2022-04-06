@@ -8,73 +8,85 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Klavis
 build_property.RootNamespace = Klavis
-build_property.ProjectDir = /Users/alexjedrey/Desktop/Klavis2022/klavis-web/Klavis/Klavis/
+build_property.ProjectDir = D:\OneDrive\Documents\GitHub\klavis-web\Klavis\Klavis\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /Users/alexjedrey/Desktop/Klavis2022/klavis-web/Klavis/Klavis
+build_property.MSBuildProjectDirectory = D:\OneDrive\Documents\GitHub\klavis-web\Klavis\Klavis
 build_property._RazorSourceGeneratorDebug = 
 
-[/Users/alexjedrey/Desktop/Klavis2022/klavis-web/Klavis/Klavis/App.razor]
+[D:/OneDrive/Documents/GitHub/klavis-web/Klavis/Klavis/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/alexjedrey/Desktop/Klavis2022/klavis-web/Klavis/Klavis/Pages/AddUser.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRkVXNlci5yYXpvcg==
+[D:/OneDrive/Documents/GitHub/klavis-web/Klavis/Klavis/Pages/AddUser.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkVXNlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/alexjedrey/Desktop/Klavis2022/klavis-web/Klavis/Klavis/Pages/Counter.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ291bnRlci5yYXpvcg==
+[D:/OneDrive/Documents/GitHub/klavis-web/Klavis/Klavis/Pages/Counter.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/alexjedrey/Desktop/Klavis2022/klavis-web/Klavis/Klavis/Pages/EditUser.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRWRpdFVzZXIucmF6b3I=
+[D:/OneDrive/Documents/GitHub/klavis-web/Klavis/Klavis/Pages/EditUser.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRWRpdFVzZXIucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/alexjedrey/Desktop/Klavis2022/klavis-web/Klavis/Klavis/Pages/Settings.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2V0dGluZ3MucmF6b3I=
+[D:/OneDrive/Documents/GitHub/klavis-web/Klavis/Klavis/Pages/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/alexjedrey/Desktop/Klavis2022/klavis-web/Klavis/Klavis/Shared/SurveyPrompt.razor]
-build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL1N1cnZleVByb21wdC5yYXpvcg==
+[D:/OneDrive/Documents/GitHub/klavis-web/Klavis/Klavis/Pages/Settings.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2V0dGluZ3MucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/alexjedrey/Desktop/Klavis2022/klavis-web/Klavis/Klavis/_Imports.razor]
+[D:/OneDrive/Documents/GitHub/klavis-web/Klavis/Klavis/Shared/LoginControl.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExvZ2luQ29udHJvbC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/OneDrive/Documents/GitHub/klavis-web/Klavis/Klavis/Shared/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/OneDrive/Documents/GitHub/klavis-web/Klavis/Klavis/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/alexjedrey/Desktop/Klavis2022/klavis-web/Klavis/Klavis/Pages/CheckIn.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ2hlY2tJbi5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = b-ewcz5d8uz3
+[D:/OneDrive/Documents/GitHub/klavis-web/Klavis/Klavis/Pages/CheckIn.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hlY2tJbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-fibcpdlpnp
 
-[/Users/alexjedrey/Desktop/Klavis2022/klavis-web/Klavis/Klavis/Pages/History.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSGlzdG9yeS5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = b-sn7793qpr7
+[D:/OneDrive/Documents/GitHub/klavis-web/Klavis/Klavis/Pages/History.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSGlzdG9yeS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-bnqewglz96
 
-[/Users/alexjedrey/Desktop/Klavis2022/klavis-web/Klavis/Klavis/Pages/UserManagement.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlck1hbmFnZW1lbnQucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-2ay9j0uobj
+[D:/OneDrive/Documents/GitHub/klavis-web/Klavis/Klavis/Pages/UserManagement.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlck1hbmFnZW1lbnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-0ijel944k1
 
-[/Users/alexjedrey/Desktop/Klavis2022/klavis-web/Klavis/Klavis/Shared/MainLayout.razor]
-build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL01haW5MYXlvdXQucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-7sxw4wnidi
+[D:/OneDrive/Documents/GitHub/klavis-web/Klavis/Klavis/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-fsa6v1daxo
 
-[/Users/alexjedrey/Desktop/Klavis2022/klavis-web/Klavis/Klavis/Shared/NavMenu.razor]
-build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL05hdk1lbnUucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-p4m2bcyvi3
+[D:/OneDrive/Documents/GitHub/klavis-web/Klavis/Klavis/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-8fax7pwjia
 
-[/Users/alexjedrey/Desktop/Klavis2022/klavis-web/Klavis/Klavis/Pages/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXJyb3IuY3NodG1s
+[D:/OneDrive/Documents/GitHub/klavis-web/Klavis/Klavis/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/alexjedrey/Desktop/Klavis2022/klavis-web/Klavis/Klavis/Pages/Login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTG9naW4uY3NodG1s
+[D:/OneDrive/Documents/GitHub/klavis-web/Klavis/Klavis/Pages/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/alexjedrey/Desktop/Klavis2022/klavis-web/Klavis/Klavis/Pages/_Host.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX0hvc3QuY3NodG1s
+[D:/OneDrive/Documents/GitHub/klavis-web/Klavis/Klavis/Pages/Logout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9nb3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/alexjedrey/Desktop/Klavis2022/klavis-web/Klavis/Klavis/Pages/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX0xheW91dC5jc2h0bWw=
+[D:/OneDrive/Documents/GitHub/klavis-web/Klavis/Klavis/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/OneDrive/Documents/GitHub/klavis-web/Klavis/Klavis/Pages/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0xheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
