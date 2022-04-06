@@ -8,6 +8,7 @@
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <StartupObject>Klavis.Program</StartupObject>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
+	<EnvironmentName>Development</EnvironmentName>
   </PropertyGroup>
 
   <ItemGroup>
