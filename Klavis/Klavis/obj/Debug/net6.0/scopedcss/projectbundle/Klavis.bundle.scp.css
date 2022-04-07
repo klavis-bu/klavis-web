@@ -65,30 +65,32 @@ body[b-bnqewglz96] {
 
 .flex-col[b-bnqewglz96] {
     float: left;
-    width: 50%;
+    width: 500px;
     padding-right: 15px;
     padding-left: 15px;
 }
+
 
 .flex-history[b-bnqewglz96] {
     float: left;
-    width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
+    width: 975px;
+    padding-right: 5px;
+    padding-left: 0px;
 }
 
-.flex-button[b-bnqewglz96] {
+.flex-image[b-bnqewglz96] {
+    width: 200px;
+    height: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 25px;
+}
+
+.flex-dropdown[b-bnqewglz96] {
     float: right;
-    height: 2.5rem;
     padding-right: 15px;
     margin-left: auto;
-}
-
-.flex-title[b-bnqewglz96] {
-    float: left;
-    width: 30%;
-    padding-right: 15px;
-    padding-left: 15px;
 }
 
 .flex-controls[b-bnqewglz96] {
@@ -97,20 +99,13 @@ body[b-bnqewglz96] {
     padding-right: 15px;
     padding-left: 15px;
     margin-left: auto;
-}
-.flex-dropdown[b-bnqewglz96] {
-    float: right;
-    padding-right: 15px;
-    margin-left: auto;
+    margin-right: 25px;
 }
 
 .table[b-bnqewglz96] {
     overflow: hidden;
     overflow-y: scroll;
 }
-
-
-
 /* _content/Klavis/Pages/UserManagement.razor.rz.scp.css */
 body[b-0ijel944k1] {
 }

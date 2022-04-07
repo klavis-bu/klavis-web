@@ -198,7 +198,7 @@ else
 
         await DialogService.OpenAsync<EditUser>("Edit User",
                new Dictionary<string, object>() { { "targetID", id } },
-               new DialogOptions() { Resizable = true, Draggable = true });
+               new DialogOptions() { Resizable = true, Draggable = true, Width = "800px" });
     }
 
     async void createCard(string id)

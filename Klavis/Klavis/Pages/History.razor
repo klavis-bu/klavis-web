@@ -2,93 +2,355 @@
 
 @using Google.Cloud.Firestore;
 @using System;
+@using Klavis.Models
 
-<PageTitle>Access History</PageTitle>
+<PageTitle>Check In</PageTitle>
 
-<div class="flex-row">
-    <div class="flex-controls">
-        <RadzenDropDown AllowClear="true" TValue="int" Class="flex-dropdown " 
-                        Data=@dispnums
-                        Style="width: 40%; height: 2.5rem;"
-                        @bind-Value=@displaysize />
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-8">
+                <RadzenCard Style="background-image: linear-gradient(180deg, #d1b4d4 100px, #eeeeee 125px);  margin: 10px;">
+
+                    <div class="row" style="width:100%;text-align:center; vertical-align:central">
+                        <div class="col">
+                            <h3><b>Location</b></h3>
+
+
+                            <RadzenDropDown AllowClear="true" TValue="string" Class="flex-dropdown "
+                                            Data=@terminalDict.Keys.ToList()
+                                            Style="width: 300px;"
+                                            Change=@queryHistory
+                                            @bind-Value=@current_terminal />
+
+                        </div>
+                        <div class="col">
+                            <h3><b># Entries Displayed</b></h3>
+                            <RadzenDropDown AllowClear="true" TValue="int" Class="flex-dropdown"
+                                            Data=@dispnums
+                                            @bind-Value=@displaysize />
+                        </div>
+                        
+
+                    </div>
+
+                    <RadzenButton Click=@queryHistory Icon="refresh" ButtonStyle="ButtonStyle.Light" Style="margin-top: 15px;" />
+                    <br />
+
+                    @if (accessHistory == null)
+                    {
+                        <div class="flex-image">
+                            <RadzenImage Path=@accessIcon Style="width: 200px; height: 200px;" />
+                        </div>
+                    }
+                    else if (!accessHistory.Any())
+                    {
+                        <p>No records available.</p>
+                    }
+                    else
+                    {
+                        <div class="row">
+                            <RadzenDataGrid @ref="accessGrid" AllowFiltering="true" AllowPaging="true" PageSize=@displaysize AllowSorting="true"
+                                        Data="@accessList" TItem="AccessInfo">
+
+                                <Columns>
+                                    <RadzenDataGridColumn Width="50px" TItem="AccessInfo" Filterable="false" Sortable="false" TextAlign="TextAlign.Center">
+                                        <HeaderTemplate>
+                                            <b>#</b>
+                                        </HeaderTemplate>
+                                        <Template Context="data">
+                                            <h6 class="mt-1 mb-0"> @(accessList.IndexOf(data) + 1) </h6>
+                                        </Template>
+                                    </RadzenDataGridColumn>
+
+                                    <RadzenDataGridColumn TItem="AccessInfo" Property="firstName">
+                                        <HeaderTemplate>
+                                            <p class="text-capitalize"> <b>Name</b></p>
+                                        </HeaderTemplate>
+                                        <Template Context="AccessInfo">
+                                            <h6 class="mt-1 mb-0">@AccessInfo.FirstName @AccessInfo.LastName</h6>
+                                            <p class="m-0" style="font-size: 0.8em;">@AccessInfo.Id</p>
+                                        </Template>
+
+                                    </RadzenDataGridColumn>
+
+                                    <RadzenDataGridColumn TItem="AccessInfo" Property="Terminal">
+                                        <HeaderTemplate>
+                                            <p class="text-capitalize"> <b>Terminal</b></p>
+                                        </HeaderTemplate>
+                                        <Template Context="AccessInfo">
+                                            <h6 class="mt-1 mb-0">@AccessInfo.Terminal</h6>
+                                        </Template>
+
+                                    </RadzenDataGridColumn>
+
+                                    <RadzenDataGridColumn TItem="AccessInfo" Property="TimeStamp" Filterable="false" Sortable="false">
+                                        <HeaderTemplate>
+                                            <p class="text-capitalize"> <b>Time Stamp</b></p>
+                                        </HeaderTemplate>
+                                        <Template Context="AccessInfo">
+                                            <h6 class="mt-1 mb-0">@AccessInfo.TimeStamp</h6>
+                                        </Template>
+
+                                    </RadzenDataGridColumn>
+
+                                    <RadzenDataGridColumn TItem="AccessInfo" Property="Dertimination" TextAlign="TextAlign.Center" Filterable="false" Sortable="false">
+                                        <HeaderTemplate>
+                                            <p class="text-capitalize"> <b>Determination</b></p>
+                                        </HeaderTemplate>
+                                        <Template Context="AccessInfo">
+                                            @if (AccessInfo.Determination)
+                                            {
+                                                <RadzenImage Path=@checkPath Class="rounded-circle" Style="width: 30px; height: 30px;" />
+                                            }
+                                            else
+                                            {
+                                                <RadzenImage Path=@xPath Class="rounded-circle" Style="width: 30px; height: 30px;" />
+                                            }
+                                        </Template>
+
+                                    </RadzenDataGridColumn>
+
+                                </Columns>
+
+                            </RadzenDataGrid>
+
+                        </div>
+
+
+
+                        @*<div class="container">
+                            <table class="table">
+                            <thead>
+                            <tr>
+                            <th>Name</th>
+                            <th>ID</th>
+                            <th>Terminal</th>
+                            <th>Timestamp</th>
+                            <th>Determination</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @for (int tablectr = 0; tablectr < displaysize; tablectr++)
+                            {
+                            @if (tablectr >= accessHistory.Count) { continue; }
+                            <tr>
+                            <td>@(accessHistory[tablectr]["firstname"] + " " + accessHistory[tablectr]["lastname"])</td>
+                            <td>@accessHistory[tablectr]["id"]</td>
+                            <td>@accessHistory[tablectr]["terminal"]</td>
+                            <td>@accessHistory[tablectr]["timestamp"]</td>
+                            <td>@accessHistory[tablectr]["determination"]</td>
+                            </tr>
+                            }
+                            </tbody>
+                            </table>
+                            </div>*@
+                    }
+
+                </RadzenCard>
+
+            </div>
+            
+        </div>
     </div>
-    
 </div>
 
 
-    
-
-@if (accessHistory == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    
-    <div class = "row">
-       <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>ID</th>
-                <th>Terminal</th>
-                <th>Timestamp</th>
-                <th>Determination</th>
-            </tr>
-        </thead>
-        <tbody>
-            @for (int tablectr = 0; tablectr < displaysize; tablectr++)
-            {
-                    @if (tablectr >= accessHistory.Count){ continue; }
-                    <tr>
-                        <td>@(accessHistory[tablectr]["firstname"] + " " + accessHistory[tablectr]["lastname"])</td>
-                        <td>@accessHistory[tablectr]["id"]</td>
-                        <td>@accessHistory[tablectr]["terminal"]</td>
-                        <td>@accessHistory[tablectr]["timestamp"]</td>
-                        <td>@accessHistory[tablectr]["determination"]</td>
-                    </tr>
-            }
-        </tbody>
-    </table> 
-            
-    </div>
-}
-
 @code {
+    FirestoreDb fireStoreDb;
+    private string security_key_path = "wwwroot/klavis-4b8d1-eb6f81dfbefe.json";
+    private string userId_label;
+    private string terminal_input;
+    private string current_terminal;
+    private string history_terminal;
+    private string firstName_label;
+    private string lastName_label;
+    private string picturePath = "user.png";
+    private string xPath = "x.png";
+    private string checkPath = "check.png";
+    private string accessIcon = "loading-buffering.gif";
+    private string connection = "Disconnected";
+    private Dictionary<string, string> terminalDict;
+    private List<string> terminalNames;
 
-    FirestoreDb fireStoreDb = default!;
-    private List<Dictionary<string, object>> accessHistory = default!;
+    RadzenDataGrid<AccessInfo> accessGrid;
+
+    List<AccessInfo> accessList = new List<AccessInfo>();
+
+
+    private List<Dictionary<string, object>> accessHistory = null;
 
     private int[] dispnums = { 5, 10, 25 };
-    private int displaysize = 0;
+    private int displaysize = 10;
+
+    private Dictionary<string, object> currentUser = new Dictionary<string, object>
+        {
+            {"id", ""},
+            {"cardCreated", false},
+            {"cardSerial", ""},
+            {"created", null},
+            {"email", ""},
+            {"firstname", ""},
+            {"lastname", ""},
+            {"pictureLink", ""}
+        };
+
+    private Dictionary<string, object> term = new Dictionary<string, object>
+        {
+            {"location", ""},
+            {"title", ""}
+        };
+
+
+
 
     protected override async Task OnInitializedAsync()
     {
-        await Task.Run(() =>
-        {
-            Console.WriteLine("Connecting");
-            string filepath = "wwwroot/klavis-4b8d1-eb6f81dfbefe.json";
-            Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", filepath);
-            fireStoreDb = FirestoreDb.Create("klavis-4b8d1");
-            
-        });
-        queryHistory("");
+        Console.WriteLine("Connecting");
+        string filepath = "wwwroot/klavis-4b8d1-eb6f81dfbefe.json";
+        Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", filepath);
+        fireStoreDb = FirestoreDb.Create("klavis-4b8d1");
+        queryTerminals();
+        if (terminalDict != null) { connection = "Connected"; }
+        queryHistory();
         StateHasChanged();
-        
     }
 
-    async void queryHistory(string terminal)
+
+    void OnError(UploadErrorEventArgs args, string name)
     {
-        Google.Cloud.Firestore.Query historyQuery = fireStoreDb.Collection("history").WhereEqualTo("terminal",terminal);
-        QuerySnapshot historyQuerySnapshot = await historyQuery.GetSnapshotAsync();
-        List<Dictionary<string, object>> records = new List<Dictionary<string, object>>();
-        foreach (DocumentSnapshot documentSnapshot in historyQuerySnapshot.Documents)
+        Console.WriteLine($"{args.Message}");
+    }
+
+    void execute(string terminalInput, string terminalId)
+    {
+        string[] inputArgs = terminalInput.Split('|');
+        string cardSerial = inputArgs[1];
+        string userId = inputArgs[2];
+        if (userId.Length == 8 && cardSerial.Length == 16 && terminalId != "")
         {
-            Dictionary<string, object> recordDictionary = documentSnapshot.ToDictionary();
-            records.Add(recordDictionary);
+            sendQuery(userId, cardSerial, terminalId);
         }
-        accessHistory = records;
-        StateHasChanged(); 
+
+
+    }
+
+    async void sendQuery(string userId, string cardSerial, string terminalId)
+    {
+        bool determination = false;
+        //Checkling User database
+        DocumentReference userRef = fireStoreDb.Collection("users").Document(userId);
+        DocumentSnapshot snapshot = await userRef.GetSnapshotAsync();
+        if (snapshot.Exists)
+        {
+
+            currentUser = snapshot.ToDictionary();
+            firstName_label = (string)currentUser["firstname"];
+            lastName_label = (string)currentUser["lastname"];
+            picturePath = (string)currentUser["pictureLink"];
+            userId_label = userId;
+            currentUser["id"] = userId;
+            if ((string)currentUser["cardSerial"] == cardSerial)
+            {
+                userRef = fireStoreDb.Collection("users").Document(userId).Collection("access").Document(terminalId);
+                snapshot = await userRef.GetSnapshotAsync();
+                if (snapshot.Exists)
+                {
+                    determination = true;
+                    accessIcon = "check.png";
+                }
+                else
+                {
+                    accessIcon = "x.png";
+                }
+            }
+        }
+        else
+        {
+            currentUser["id"] = userId;
+            currentUser["firstname"] = "User Not";
+            currentUser["lastname"] = "Found";
+
+            firstName_label = "User not found.";
+            lastName_label = "";
+            userId_label = "Invalid ID";
+            accessIcon = "x.png";
+            picturePath = "user.png";
+        }
+
+        terminal_input = "";
+
+        logQuery(currentUser, terminalId, determination);
+        StateHasChanged();
+
+    }
+
+
+    async void logQuery(Dictionary<string, object> user, string terminal, bool det)
+    {
+        //Logging request
+        Dictionary<string, object> log = new Dictionary<string, object>
+        {
+            { "id", user["id"] },
+            { "terminal", terminal },
+            { "firstname", user["firstname"] },
+            { "lastname", user["lastname"] },
+            { "determination", det },
+            { "timestamp", DateTime.UtcNow.ToString("M/d/yyyy , hh:mm:ss tt") }
+        };
+        DocumentReference addedDocRef = await fireStoreDb.Collection("history").AddAsync(log);
+    }
+
+    async void queryTerminals()
+    {
+
+        terminalDict = new Dictionary<string, string>();
+        terminalNames = new List<string>();
+        CollectionReference terminalRef = fireStoreDb.Collection("access");
+        QuerySnapshot userQuerySnapshot = await terminalRef.GetSnapshotAsync();
+        foreach (DocumentSnapshot document in userQuerySnapshot.Documents)
+        {
+            if (document.Exists)
+            {
+                term = document.ToDictionary();
+                terminalDict.Add(term["title"].ToString(), term["location"].ToString());
+
+            }
+
+        }
+        StateHasChanged();
+    }
+
+    async void queryHistory()
+    {
+        if (current_terminal != null)
+        {
+            int i = 0;
+            Google.Cloud.Firestore.Query historyQuery = fireStoreDb.Collection("history").WhereEqualTo("terminal", terminalDict[current_terminal]).OrderByDescending("timestamp");
+            QuerySnapshot historyQuerySnapshot = await historyQuery.GetSnapshotAsync();
+            List<Dictionary<string, object>> records = new List<Dictionary<string, object>>();
+            foreach (DocumentSnapshot documentSnapshot in historyQuerySnapshot.Documents)
+            {
+                Dictionary<string, object> recordDictionary = documentSnapshot.ToDictionary();
+                records.Add(recordDictionary);
+            }
+            accessHistory = records;
+
+            accessList = records.Select(r => new AccessInfo
+                {
+                    FirstName = r["firstname"] != null ? r["firstname"].ToString() : "",
+                    LastName = r["lastname"] != null ? r["lastname"].ToString() : "",
+                    Terminal = r["terminal"] != null ? r["terminal"].ToString() : "",
+                    Id = r["id"] != null ? r["id"].ToString() : "",
+                    Determination = Convert.ToBoolean(r["determination"]),
+                    TimeStamp = r["timestamp"] != null ? r["timestamp"].ToString() : ""
+                }).ToList();
+            StateHasChanged();
+        }
+        
 
 
     }

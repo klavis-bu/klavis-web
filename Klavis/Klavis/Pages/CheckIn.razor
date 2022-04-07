@@ -19,26 +19,59 @@
 <div class="row">
     <div class="col-md-12">
         <div class="row">
+            <div class="col-md-4">
+
+                <RadzenCard Style="background-image: linear-gradient(0deg, #d1b4d4 20%, #eeeeee 25%);  margin: 10px;">
+                    <div class="flex-image">
+                        <RadzenImage Path=@picturePath Class="rounded-circle" Style="width: 200px; height: 200px;" />
+
+                    </div>
+                    <div class="flex-row">
+                        <div class="col">
+                            <b>Name:</b>
+                            <b role="status">@(firstName_label+" "+lastName_label)</b>
+                        </div>
+                        <div class="col">
+                            <b>BUID: </b>
+                            <b>@userId_label</b>
+                        </div>
+
+
+                    </div>
+                </RadzenCard>
+
+                <RadzenCard Style="background-image: linear-gradient(0deg, #d1b4d4 20%, #eeeeee 25%);  margin: 10px;">
+                    <div class="flex-image">
+                        <RadzenImage Path=@accessIcon Style="width: 200px; height: 200px;" />
+                    </div>
+
+                    <RadzenTextBox @bind-Value=@terminal_input Type="password" Change=@(args => execute(args, terminalDict[current_terminal])) Class="w-100" />
+                    
+                </RadzenCard>
+
+            </div>
             <div class="col-md-8">
                 <RadzenCard Style="background-image: linear-gradient(180deg, #d1b4d4 100px, #eeeeee 125px);  margin: 10px;">
 
                     <div class="row" style="width:100%;text-align:center; vertical-align:central">
+                        <div class="col">
+                            <h3><b>Location</b></h3>
+
+
+                            <RadzenDropDown AllowClear="true" TValue="string" Class="flex-dropdown "
+                                            Data=@terminalDict.Keys.ToList()
+                                            Style="width: 300px;"
+                                            Change=@queryHistory
+                                            @bind-Value=@current_terminal />
+
+                        </div>
                         <div class="col">
                             <h3><b># Entries Displayed</b></h3>
                             <RadzenDropDown AllowClear="true" TValue="int" Class="flex-dropdown"
                                             Data=@dispnums
                                             @bind-Value=@displaysize />
                         </div>
-                        <div class="col">
-                            <h3><b>Location</b></h3>
-
-
-                            <RadzenDropDown AllowClear="true" TValue="string" Class="flex-dropdown "
-                                            Data=@terminalList
-                                            Change=@queryHistory
-                                            @bind-Value=@history_terminal />
-
-                        </div>
+                        
 
                     </div>
 
@@ -53,7 +86,7 @@
                     }
                     else if (!accessHistory.Any())
                     {
-                        <p>Data is not available</p>
+                        <p>No records available.</p>
                     }
                     else
                     {
@@ -158,49 +191,7 @@
                 </RadzenCard>
 
             </div>
-            <div class="col-md-4">
-
-                <RadzenCard Style="background-image: linear-gradient(0deg, #d1b4d4 20%, #eeeeee 25%);  margin: 10px;">
-                    <div class="flex-image">
-                        <RadzenImage Path=@accessIcon Style="width: 200px; height: 200px;" />
-                    </div>
-
-                    <RadzenTextBox @bind-Value=@terminal_input Type="password" Change=@(args => execute(args, current_terminal)) Class="w-100" />
-                </RadzenCard>
-
-
-                <RadzenCard Style="background-image: linear-gradient(0deg, #d1b4d4 20%, #eeeeee 25%);  margin: 10px;">
-                    <div class="flex-image">
-                        <RadzenImage Path=@picturePath Class="rounded-circle" Style="width: 200px; height: 200px;" />
-
-                    </div>
-                    <div class="flex-row">
-                        <div class="col">
-                            <b>Name:</b>
-                            <b role="status">@(firstName_label+" "+lastName_label)</b>
-                        </div>
-                        <div class="col">
-                            <b>BUID: </b>
-                            <b>@userId_label</b>
-                        </div>
-
-
-                    </div>
-                </RadzenCard>
-                <RadzenCard Style="background-image: linear-gradient(0deg, #d1b4d4 20%, #eeeeee 25%);  margin: 10px;">
-
-
-
-                    <div class="flex-col" style="margin-left: auto">
-                        <RadzenDropDown AllowClear="true" TValue="string" Class="flex-dropdown "
-                                        Data=@terminalList
-                                        Style="width: 40%; height: 2.5rem;"
-                                        @bind-Value=@current_terminal />
-                    </div>
-                </RadzenCard>
-
-
-            </div>
+            
         </div>
     </div>
 </div>
@@ -220,7 +211,8 @@
     private string checkPath = "check.png";
     private string accessIcon = "loading-buffering.gif";
     private string connection = "Disconnected";
-    private List<string> terminalList;
+    private Dictionary<string, string> terminalDict;
+    private List<string> terminalNames;
 
     RadzenDataGrid<AccessInfo> accessGrid;
 
@@ -244,6 +236,12 @@
             {"pictureLink", ""}
         };
 
+    private Dictionary<string, object> term = new Dictionary<string, object>
+        {
+            {"location", ""},
+            {"title", ""}
+        };
+
 
 
 
@@ -254,7 +252,7 @@
         Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", filepath);
         fireStoreDb = FirestoreDb.Create("klavis-4b8d1");
         queryTerminals();
-        if (terminalList != null) { connection = "Connected"; }
+        if (terminalDict != null) { connection = "Connected"; }
         queryHistory();
         StateHasChanged();
     }
@@ -346,39 +344,51 @@
 
     async void queryTerminals()
     {
-        terminalList = new List<string>();
+
+        terminalDict = new Dictionary<string, string>();
+        terminalNames = new List<string>();
         CollectionReference terminalRef = fireStoreDb.Collection("access");
         QuerySnapshot userQuerySnapshot = await terminalRef.GetSnapshotAsync();
         foreach (DocumentSnapshot document in userQuerySnapshot.Documents)
         {
-            terminalList.Add(document.Id);
+            if (document.Exists)
+            {
+                term = document.ToDictionary();
+                terminalDict.Add(term["title"].ToString(), term["location"].ToString());
+
+            }
+
         }
         StateHasChanged();
     }
 
     async void queryHistory()
     {
-        int i = 0;
-        Google.Cloud.Firestore.Query historyQuery = fireStoreDb.Collection("history").WhereEqualTo("terminal", history_terminal).OrderByDescending("timestamp");
-        QuerySnapshot historyQuerySnapshot = await historyQuery.GetSnapshotAsync();
-        List<Dictionary<string, object>> records = new List<Dictionary<string, object>>();
-        foreach (DocumentSnapshot documentSnapshot in historyQuerySnapshot.Documents)
+        if (current_terminal != null)
         {
-            Dictionary<string, object> recordDictionary = documentSnapshot.ToDictionary();
-            records.Add(recordDictionary);
-        }
-        accessHistory = records;
-
-        accessList = records.Select(r => new AccessInfo
+            int i = 0;
+            Google.Cloud.Firestore.Query historyQuery = fireStoreDb.Collection("history").WhereEqualTo("terminal", terminalDict[current_terminal]).OrderByDescending("timestamp");
+            QuerySnapshot historyQuerySnapshot = await historyQuery.GetSnapshotAsync();
+            List<Dictionary<string, object>> records = new List<Dictionary<string, object>>();
+            foreach (DocumentSnapshot documentSnapshot in historyQuerySnapshot.Documents)
             {
-                FirstName = r["firstname"] != null ? r["firstname"].ToString() : "",
-                LastName = r["lastname"] != null ? r["lastname"].ToString() : "",
-                Terminal = r["terminal"] != null ? r["terminal"].ToString() : "",
-                Id = r["id"] != null ? r["id"].ToString() : "",
-                Determination = Convert.ToBoolean(r["determination"]),
-                TimeStamp = r["timestamp"] != null ? r["timestamp"].ToString() : ""
-            }).ToList();
-        StateHasChanged();
+                Dictionary<string, object> recordDictionary = documentSnapshot.ToDictionary();
+                records.Add(recordDictionary);
+            }
+            accessHistory = records;
+
+            accessList = records.Select(r => new AccessInfo
+                {
+                    FirstName = r["firstname"] != null ? r["firstname"].ToString() : "",
+                    LastName = r["lastname"] != null ? r["lastname"].ToString() : "",
+                    Terminal = r["terminal"] != null ? r["terminal"].ToString() : "",
+                    Id = r["id"] != null ? r["id"].ToString() : "",
+                    Determination = Convert.ToBoolean(r["determination"]),
+                    TimeStamp = r["timestamp"] != null ? r["timestamp"].ToString() : ""
+                }).ToList();
+            StateHasChanged();
+        }
+        
 
 
     }

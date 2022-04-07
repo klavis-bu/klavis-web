@@ -10,30 +10,32 @@
 
 .flex-col {
     float: left;
-    width: 50%;
+    width: 500px;
     padding-right: 15px;
     padding-left: 15px;
 }
+
 
 .flex-history {
     float: left;
-    width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
+    width: 975px;
+    padding-right: 5px;
+    padding-left: 0px;
 }
 
-.flex-button {
+.flex-image {
+    width: 200px;
+    height: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 25px;
+}
+
+.flex-dropdown {
     float: right;
-    height: 2.5rem;
     padding-right: 15px;
     margin-left: auto;
-}
-
-.flex-title {
-    float: left;
-    width: 30%;
-    padding-right: 15px;
-    padding-left: 15px;
 }
 
 .flex-controls {
@@ -42,17 +44,10 @@
     padding-right: 15px;
     padding-left: 15px;
     margin-left: auto;
-}
-.flex-dropdown {
-    float: right;
-    padding-right: 15px;
-    margin-left: auto;
+    margin-right: 25px;
 }
 
 .table {
     overflow: hidden;
     overflow-y: scroll;
 }
-
-
-
