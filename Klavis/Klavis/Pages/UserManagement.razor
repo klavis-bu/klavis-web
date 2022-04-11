@@ -184,6 +184,8 @@ else
         await DialogService.OpenAsync<AddUser>("Add User",
                null,
                new DialogOptions() { Resizable = true, Draggable = true });
+        queryUsers();
+        StateHasChanged();
     }
 
 
@@ -191,6 +193,8 @@ else
     {
         DocumentReference userRef = fireStoreDb.Collection("users").Document(id);
         await userRef.DeleteAsync();
+        queryUsers();
+        StateHasChanged();
     }
     async void editUser(string id)
     {
@@ -199,6 +203,8 @@ else
         await DialogService.OpenAsync<EditUser>("Edit User",
                new Dictionary<string, object>() { { "targetID", id } },
                new DialogOptions() { Resizable = true, Draggable = true, Width = "800px" });
+        queryUsers();
+        StateHasChanged();
     }
 
     async void createCard(string id)

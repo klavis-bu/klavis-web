@@ -75,13 +75,12 @@
 
                     </div>
 
-                    <RadzenButton Click=@queryHistory Icon="refresh" ButtonStyle="ButtonStyle.Light" Style="margin-top: 15px;" />
                     <br />
 
                     @if (accessHistory == null)
                     {
                         <div class="flex-image">
-                            <RadzenImage Path=@accessIcon Style="width: 200px; height: 200px;" />
+                            <RadzenImage Path=@accessIcon Style="width: 200px; height: 200px; margin-top: 25px;" />
                         </div>
                     }
                     else if (!accessHistory.Any())
@@ -322,6 +321,7 @@
         terminal_input = "";
 
         logQuery(currentUser, terminalId, determination);
+        queryHistory();
         StateHasChanged();
 
     }
@@ -340,6 +340,7 @@
             { "timestamp", DateTime.UtcNow.ToString("M/d/yyyy , hh:mm:ss tt") }
         };
         DocumentReference addedDocRef = await fireStoreDb.Collection("history").AddAsync(log);
+        StateHasChanged();
     }
 
     async void queryTerminals()
